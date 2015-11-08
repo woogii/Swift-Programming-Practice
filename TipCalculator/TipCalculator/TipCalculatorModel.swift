@@ -27,7 +27,7 @@ class TipCalculatorModel {
         return subtotal * tipPct
     }
     
-    func returnPossibleTips() -> [Int:Double]  {
+    func returnPossibleTips() -> [Int:(]  {
         let possibleTipsInferred = [0.15,0.18,0.20]
         
         var retval = [Int:Double]()
