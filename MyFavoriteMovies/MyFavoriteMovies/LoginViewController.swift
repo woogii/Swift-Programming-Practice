@@ -312,15 +312,14 @@ class LoginViewController: UIViewController {
             guard let sesson_id = parsedResult["session_id"] as? String  else{
                 dispatch_async(dispatch_get_main_queue()) {
                     self.debugTextLabel.text = "Login Failed (Request Token)."
-                    print("Cannot find key 'request_token' in (\(parsedResult)")
+                    print("Cannot find key 'sesson_id' in (\(parsedResult)")
                 }
                 return
             }
             
-            self.appDelegate.sessionID = sesson_id
-                
-            
+            print(sesson_id)
             /* 6. Use the data! */
+            self.appDelegate.sessionID = sesson_id
             self.getUserID(self.appDelegate.sessionID!)
         }
         
@@ -332,12 +331,73 @@ class LoginViewController: UIViewController {
         
         /* TASK: Get the user's ID, then store it (appDelegate.userID) for future use and go to next view! */
         /* 1. Set the parameters */
+       let methodParameters = [
+            "api_key" : appDelegate.apiKey,
+            "session_id" : session_id
+        ]
+        
         /* 2. Build the URL */
+        let urlString = appDelegate.baseURLSecureString + "account" + appDelegate.escapedParameters(methodParameters)
+        let url = NSURL(string: urlString)
+        
         /* 3. Configure the request */
+        let request = NSMutableURLRequest(URL:url!)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+
         /* 4. Make the request */
-        /* 5. Parse the data */
-        /* 6. Use the data! */
+        let task = session.dataTaskWithRequest( request )  { (data, response, error) in
+            
+            guard error == nil else {
+                print("There was an error with your request \(error)")
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                
+                if let response = response as? NSHTTPURLResponse {
+                    print("Your request returned an invalid response! Status code: \(response.statusCode)!")
+                } else if let response = response {
+                    print("Your request returned an invalid response! Response: \(response)!")
+                } else {
+                    print("Your request returned an invalid response!")
+                }
+                
+                return
+            }
+            
+            guard data == data else {
+                print("No data was returned by the request!")
+                return            }
+            
+            /* 5. Parse the data */
+            let parsedResult :AnyObject!
+            
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
+            } catch {
+                parsedResult = nil
+                print("Cannot parse JSon data \(parsedResult)")
+
+            }
+            
+            guard let id = parsedResult["id"] as? Int else {
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.debugTextLabel.text = "Login Failed (Request Token)."
+                    print("Cannot find key 'id' in (\(parsedResult)")
+                }
+                return
+            }
+            
+            /* 6. Use the data! */
+            self.appDelegate.userID = id
+            self.completeLogin()
+            print(id)
+            
+        }
+        
         /* 7. Start the request */
+        task.resume()
+        
     }
 }
 
