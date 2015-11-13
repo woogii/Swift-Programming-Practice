@@ -236,7 +236,7 @@ class LoginViewController: UIViewController {
                 return
             }
             
-            guard let success = parsedResult["success"] as? Bool  else {
+            guard let _ = parsedResult["success"] as? Bool  else {
                 dispatch_async(dispatch_get_main_queue()) {
                     self.debugTextLabel.text = "Login Failed (Request Token)."
                 }

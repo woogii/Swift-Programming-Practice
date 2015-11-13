@@ -47,12 +47,12 @@
                                     </label>
                                 </subviews>
                             </stackView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmi-MN-7iS">
-                                <rect key="frame" x="49" y="500" width="228" height="43"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nmi-MN-7iS">
+                                <rect key="frame" x="13" y="500" width="287" height="43"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="43" id="qW1-F9-g6C"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <fontDescription key="fontDescription" type="italicSystem" pointSize="13"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
@@ -65,7 +65,7 @@
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ihj-Py-iGZ">
                                 <rect key="frame" x="13" y="380" width="338" height="32"/>
                                 <subviews>
-                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e38-kz-glh">
+                                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e38-kz-glh">
                                         <rect key="frame" x="0.0" y="0.0" width="106" height="32"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="106" id="uGX-MH-CvQ"/>
@@ -123,14 +123,14 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <gestureRecognizers/>
                         <constraints>
-                            <constraint firstItem="nmi-MN-7iS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="33" id="05O-c9-Pto"/>
+                            <constraint firstItem="nmi-MN-7iS" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-7" id="05O-c9-Pto"/>
                             <constraint firstItem="CcZ-vA-fqO" firstAttribute="centerX" secondItem="5bC-KX-yjj" secondAttribute="centerX" id="5Yw-bC-Fds"/>
                             <constraint firstItem="o4f-tj-Mb7" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-7" id="9Tl-u8-AAO"/>
                             <constraint firstItem="5cX-av-GIY" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="9jt-zu-2Kv"/>
                             <constraint firstItem="Ihj-Py-iGZ" firstAttribute="top" secondItem="o4f-tj-Mb7" secondAttribute="bottom" constant="17" id="CCl-bm-pzz"/>
                             <constraint firstItem="nmi-MN-7iS" firstAttribute="top" secondItem="4KE-UL-GPy" secondAttribute="bottom" constant="41" id="I9m-tv-xAe"/>
                             <constraint firstItem="4KE-UL-GPy" firstAttribute="top" secondItem="Ihj-Py-iGZ" secondAttribute="bottom" constant="26" id="IFU-gy-mZw"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="nmi-MN-7iS" secondAttribute="trailing" constant="27" id="Itt-ZW-MXZ"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="nmi-MN-7iS" secondAttribute="trailing" id="Itt-ZW-MXZ"/>
                             <constraint firstItem="5cX-av-GIY" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="71" id="LyD-E6-o3o"/>
                             <constraint firstItem="Ihj-Py-iGZ" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-7" id="Z1r-Hr-l4Q"/>
                             <constraint firstItem="4KE-UL-GPy" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-7" id="ZgV-S7-pQg"/>
@@ -148,9 +148,9 @@
                     <connections>
                         <outlet property="defaultText" destination="5bC-KX-yjj" id="vUc-17-Wyg"/>
                         <outlet property="imageView" destination="CcZ-vA-fqO" id="Hej-QM-TYf"/>
-                        <outlet property="latText" destination="e38-kz-glh" id="mVV-AQ-dhR"/>
+                        <outlet property="latitudeText" destination="e38-kz-glh" id="Ozj-93-Cyr"/>
                         <outlet property="locationSearch" destination="qtW-UW-ePn" id="zSc-ku-ung"/>
-                        <outlet property="longText" destination="lNE-51-f1v" id="0Ay-x9-N32"/>
+                        <outlet property="longitudeText" destination="lNE-51-f1v" id="Q0T-Pw-A7f"/>
                         <outlet property="phraseSearch" destination="9bd-Mr-6kq" id="J0h-Lc-haX"/>
                         <outlet property="phraseText" destination="7Ol-xK-BHq" id="Vfw-HB-GTH"/>
                         <outlet property="titleLabel" destination="nmi-MN-7iS" id="G5f-IA-bHk"/>
