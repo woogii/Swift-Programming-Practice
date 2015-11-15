@@ -47,7 +47,6 @@ class MoviePickerViewController: UIViewController {
     }
     
     // MARK: Dismissals
-    
     func handleSingleTap(recognizer: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
