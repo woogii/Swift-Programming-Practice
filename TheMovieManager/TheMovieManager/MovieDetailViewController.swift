@@ -21,9 +21,6 @@ class MovieDetailViewController: UIViewController {
     
     var movie: TMDBMovie?
     
-    var favoriteList =  [TMDBMovie]()
-    var watchList = [TMDBMovie]()
-    
     var isFavorite = false
     var isWatchlist = false
     
@@ -37,68 +34,88 @@ class MovieDetailViewController: UIViewController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        // Get favorite movies, then update the favorite button
-        TMDBClient.sharedInstance().getFavoriteMovies() {  (movies, error) in
-            
-            if let error = error {
-                print(error)
-            } else {
-                
-                if let movies = movies {
-                    
-                    for movieInFavorite in movies {
-                        if movieInFavorite.title == self.movie!.title {
-                            dispatch_async(dispatch_get_main_queue()){
-                            self.toggleFavoriteButton.tintColor = nil
-                            }
-                            
-                        }
-                    }
-                    
-                } else {
-                    print("there are no movies on the favorite list")
-                }
-            }
-            
-        }
+        self.activityIndicator.alpha = 1.0
+        self.activityIndicator.startAnimating()
         
-        // Get watchlist movies, then update the watchlist button
-        TMDBClient.sharedInstance().getWatchlistMovies() {  (movies, error) in
+        if let movie = movie {
             
-            if let error = error {
-                print(error)
+            if let releaseYear = movie.releaseYear {
+                self.navigationItem.title = "\(movie.title) (\(releaseYear))"
             } else {
-                
+                self.navigationItem.title = "\(movie.title)"
+            }
+            
+            posterImageView.image = UIImage(named: "MissingPoster")
+            isFavorite = false
+            
+            // Get favorite movies, then update the favorite button
+            TMDBClient.sharedInstance().getFavoriteMovies() {  (movies, error) in
+            
                 if let movies = movies {
-                    print(movies)
-                    for movieInFavorite in movies {
-                        if movieInFavorite.title == self.movie!.title {
-                            dispatch_async(dispatch_get_main_queue()){
-                                self.toggleWatchlistButton.tintColor = nil
-                            }
+                    
+                    for movie in movies {
+                        if movie.id == self.movie!.id {
+                            self.isFavorite = true
                         }
                     }
                     
-                } else {
-                    print("there is no movie on the watchlist")
-                }
-            }
-            
-        }
-       
-        // Get the poster image, then populate the poster image view
-        if let posterPath = self.movie!.posterPath {
-            TMDBClient.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.DetailPoster, filePath: posterPath, completionHandler: { (imageData, error) in
-                if let image = UIImage(data: imageData!) {
                     dispatch_async(dispatch_get_main_queue()) {
-                        self.posterImageView!.image = image
+                    
+                        if self.isFavorite {
+                            self.toggleFavoriteButton.tintColor = nil
+                        } else {
+                            self.toggleFavoriteButton.tintColor = UIColor.blackColor()
+                        }
                     }
-                } else {
+                }
+                else {
                     print(error)
                 }
-            })
+                
+            }
+        
+            // Get watchlist movies, then update the watchlist button
+            TMDBClient.sharedInstance().getWatchlistMovies() {  (movies, error) in
+            
+                if let movies = movies {
+                    
+                    for movie in movies {
+                        if movie.id == self.movie!.id {
+                            self.isWatchlist = true
+                        }
+                        
+                        dispatch_async(dispatch_get_main_queue()){
+                            if self.isWatchlist {
+                                self.toggleWatchlistButton.tintColor = nil
+                            }
+                            else {
+                                self.toggleWatchlistButton.tintColor = UIColor.blackColor()
+                            }
+                        }
+                    }
+                } else {
+                    print("error")
+                }
+            }
+        
+       
+            // Get the poster image, then populate the poster image view
+            if let posterPath = movie.posterPath {
+                TMDBClient.sharedInstance().taskForGETImage(TMDBClient.PosterSizes.DetailPoster, filePath: posterPath, completionHandler: { (imageData, error) in
+                    if let image = UIImage(data: imageData!) {
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.activityIndicator.alpha = 0.0
+                            self.activityIndicator.stopAnimating()
+                            self.posterImageView!.image = image
+                        }
+                    }
+                })
+            }
+            else {
+                self.activityIndicator.alpha = 0.0
+                self.activityIndicator.stopAnimating()
+            }
         }
-    
     }
     
     // MARK: Actions
@@ -120,6 +137,8 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         } else {
+            print("in toggle function")
+            
             TMDBClient.sharedInstance().postToFavorites(movie!, favorite: true) { status_code, error in
                 if let err = error {
                     print(err)
@@ -135,14 +154,43 @@ class MovieDetailViewController: UIViewController {
                 }
             }
         }
-        // TODO: Add the movie to favorites, then update favorite button */
-        print("implement me: MovieDetailViewController toggleFavoriteButtonTouchUp()")
-        
+       
     }
     
     @IBAction func toggleWatchlistButtonTouchUp(sender: AnyObject) {
-        
-        // TODO: Add the movie to watchlist, then update watchlist button */
-        print("implement me: MovieDetailViewController toggleWatchlistButtonTouchUp()")
+        if isWatchlist {
+            TMDBClient.sharedInstance().postToWatchlist(movie!, watchlist: false){  status_code, error in
+                if let err = error {
+                    print(err)
+                } else {
+                    if status_code == 13 {
+                        self.isWatchlist = false
+                        dispatch_async(dispatch_get_main_queue()){
+                            self.toggleWatchlistButton.tintColor = UIColor.blackColor()
+                        }
+                    } else {
+                        print("Unexpected status code \(status_code)")
+                    }
+                }
+            
+            }
+        } else {
+            TMDBClient.sharedInstance().postToWatchlist(movie!, watchlist: true) { status_code, error in
+                
+                if let err = error {
+                    print(err)
+                } else {
+                    if status_code == 1 || status_code == 12 {
+                        self.isWatchlist  = true
+                        dispatch_async(dispatch_get_main_queue()) {
+                            self.toggleWatchlistButton.tintColor = nil
+                        }
+                    } else {
+                        print("Unexpected status code \(status_code)")
+                    }
+                }
+            }
+        }
     }
+    
 }

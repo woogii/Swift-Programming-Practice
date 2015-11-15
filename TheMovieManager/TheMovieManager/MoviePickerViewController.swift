@@ -99,7 +99,6 @@ extension MoviePickerViewController: UISearchBarDelegate {
                 }
             }
         })
-
     }
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
