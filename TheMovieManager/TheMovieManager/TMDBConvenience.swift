@@ -59,7 +59,9 @@ extension TMDBClient {
                             } else {
                                 completionHandler(success: success, errorString: errorString)
                             }
+                            
                         }
+                        
                     } else {
                         completionHandler(success: success, errorString: errorString)
                     }
@@ -314,7 +316,6 @@ extension TMDBClient {
             TMDBClient.JSONBodyKeys.Watchlist: watchlist as Bool
         ]
     
-        print("before post method")
         taskForPOSTMethod(mutableMethod, parameters: parameters, jsonBody: jsonBody) { JSONResult, error in
 
             if let error = error {

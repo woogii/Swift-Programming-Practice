@@ -43,7 +43,7 @@ class Artwork :NSObject, MKAnnotation {
         let longitude = (json[19].string! as NSString).doubleValue
         let coordinate = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
         
-        // 3
+        // 3    
         return Artwork(title: title, locationName: locationName!, discipline: discipline!, coordinate: coordinate)
     }
     

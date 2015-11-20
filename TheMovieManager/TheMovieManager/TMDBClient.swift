@@ -133,8 +133,6 @@ class TMDBClient : NSObject {
     // MARK: POST
     func taskForPOSTMethod(method: String, parameters: [String : AnyObject], jsonBody: [String:AnyObject], completionHandler: (result: AnyObject!, error: NSError?) -> Void) -> NSURLSessionDataTask {
         
-        print("convinient method")
-        
         /* 1. Set the parameters */
         var mutableParameters = parameters
         mutableParameters[ParameterKeys.ApiKey] = Constants.ApiKey
