@@ -20,7 +20,7 @@ class TMDBAuthViewController: UIViewController{
     var requestToken: String? = nil
     var completionHandler : ((success: Bool, errorString: String?) -> Void)? = nil
     
-    // MARK: Life Cycle
+  
     
     override func viewDidLoad() {
         super.viewDidLoad()
