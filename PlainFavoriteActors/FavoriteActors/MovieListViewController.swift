@@ -44,7 +44,9 @@ class MovieListViewController : UITableViewController {
                             
                             // We associate this movie with it's actor by appending it to the array
                             // In core data we use the relationship. We set the movie's actor property
-                            self.actor.movies.append(movie)
+                            movie.actor = self.actor
+                            
+                            // self.actor.movies.append(movie)
                             
                             return movie
                         }
@@ -53,6 +55,9 @@ class MovieListViewController : UITableViewController {
                         dispatch_async(dispatch_get_main_queue()) {
                             self.tableView.reloadData()
                         }
+                        
+                        CoreDataStackManager.sharedInstance().saveContext()
+                        
                     } else {
                         let error = NSError(domain: "Movie for Person Parsing. Cant find cast in \(JSONResult)", code: 0, userInfo: nil)
                         self.alertViewForError(error)
@@ -105,7 +110,7 @@ class MovieListViewController : UITableViewController {
             let size = TheMovieDB.sharedInstance().config.posterSizes[1]
             
             // Start the task that will eventually download the image
-            let task = TheMovieDB.sharedInstance().taskForImageWithSize(size, filePath: movie.posterPath) { data, error in
+            let task = TheMovieDB.sharedInstance().taskForImageWithSize(size, filePath: movie.posterPath!) { data, error in
                 
                 if let error = error {
                     print("Poster download error: \(error.localizedDescription)")

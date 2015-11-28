@@ -20,6 +20,8 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addActor")
+        
+        actors = fetchAllActors()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -33,6 +35,17 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }() 
     
+    func fetchAllActors()->[Person] {
+        
+        let fetchRequest = NSFetchRequest(entityName: "Person")
+        
+        do {
+            return try sharedContext.executeFetchRequest(fetchRequest) as! [Person]
+        } catch let error as NSError {
+            print("\(error.localizedDescription)")
+            return [Person]()
+        }
+    }
     
     // Mark: - Actions
     
@@ -65,7 +78,19 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             // that we cannot do this directly once we incoporate Core Data. The ActorPickerViewController
             // uses a "scratch" context. It fills its table with actors that have not been picked. We 
             // need to create a new person object that is inserted into the shared context. 
-            self.actors.append(newActor)
+            let dictionary:[String : AnyObject] = [
+                Person.Keys.ID : newActor.id,
+                Person.Keys.Name : newActor.name,
+                Person.Keys.ProfilePath : newActor.imagePath ?? ""
+            ]
+            
+            let actor = Person(dictionary: dictionary, context: sharedContext)
+            
+            actors.append(actor)
+            
+            CoreDataStackManager.sharedInstance().saveContext()
+            
+            // self.actors.append(newActor)
         }
     }
     
@@ -87,7 +112,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         
         if let localImage = actor.image {
             cell.actorImageView.image = localImage
-        } else if actor.imagePath == "" || actor.imagePath == "" {
+        } else if actor.imagePath == nil || actor.imagePath == "" {
             cell.actorImageView.image = UIImage(named: "personNoImage")
         }
             
@@ -99,7 +124,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             cell.actorImageView.image = UIImage(named: "personPlaceholder")
             
             let size = TheMovieDB.sharedInstance().config.profileSizes[1]
-            let task = TheMovieDB.sharedInstance().taskForImageWithSize(size, filePath: actor.imagePath) { (imageData, error) -> Void in
+            let task = TheMovieDB.sharedInstance().taskForImageWithSize(size, filePath: actor.imagePath!) { (imageData, error) -> Void in
                 
                 if let data = imageData {
                     dispatch_async(dispatch_get_main_queue()) {

@@ -20,8 +20,8 @@ class Person : NSManagedObject {
 
     
     @NSManaged var name:String
-    @NSManaged var id:Int
-    @NSManaged var imagePath:String
+    @NSManaged var id:NSNumber
+    @NSManaged var imagePath:String?
     @NSManaged var movies:[Movie]
     
     //var name: String
@@ -43,11 +43,11 @@ class Person : NSManagedObject {
             
         name = dictionary[Keys.Name] as! String
         id = dictionary[Keys.ID] as! Int
-        imagePath = (dictionary[Keys.ProfilePath] as? String)!
+        imagePath = dictionary[Keys.ProfilePath] as? String
     }
 
     var image: UIImage? {
         get { return TheMovieDB.Caches.imageCache.imageWithIdentifier(imagePath) }
-        set { TheMovieDB.Caches.imageCache.storeImage(image, withIdentifier: imagePath) }
+        set { TheMovieDB.Caches.imageCache.storeImage(image, withIdentifier: imagePath!) }
     }
 }

@@ -35,6 +35,7 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     // MARK: - life Cycle
     override func viewDidLoad() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancel")
+        
     }
     
     override func viewDidAppear(animated: Bool) {
@@ -43,6 +44,11 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         self.searchBar.becomeFirstResponder()
     }
     
+    lazy var scratchContext: NSManagedObjectContext = {
+        var context = NSManagedObjectContext()
+        context.persistentStoreCoordinator = CoreDataStackManager.sharedInstance().persistentStoreCoordinator
+        return context
+    }()
     
     // MARK: - Actions
     
@@ -86,15 +92,18 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
             if let actorDictionaries = jsonResult.valueForKey("results") as? [[String : AnyObject]] {
                 self.searchTask = nil
                 
+                
                 // Create an array of Person instances from the JSON dictionaries
                 // If we change this so that it inserts into a context, which context should it be? 
-                self.actors = actorDictionaries.map() {
-                    Person(dictionary: $0, context: CoreDataStackManager.sharedInstance().managedObjectContext)
-                }
+                CoreDataStackManager.sharedInstance().managedObjectContext.performBlock {
+                    self.actors = actorDictionaries.map() {
+                        Person(dictionary: $0, context: self.scratchContext)
+                    }
                 
-                // Reload the table on the main thread
-                dispatch_async(dispatch_get_main_queue()) {
-                    self.tableView!.reloadData()
+                    // Reload the table on the main thread
+                    dispatch_async(dispatch_get_main_queue()) {
+                        self.tableView!.reloadData()
+                    }
                 }
                 
                 /*********************************************** NOTE ***********************************************

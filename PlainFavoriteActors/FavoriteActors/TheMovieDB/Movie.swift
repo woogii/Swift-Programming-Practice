@@ -17,29 +17,28 @@ class Movie : NSManagedObject {
     }
 
     @NSManaged var title:String
-    @NSManaged var posterPath:String
-    @NSManaged var releaseDate:NSDate
     @NSManaged var id:NSNumber
+    @NSManaged var posterPath:String?
+    @NSManaged var releaseDate:NSDate?
+    @NSManaged var actor:Person?
     
     //var title: String
     //var id: Int
     //var posterPath: String?
     //var releaseDate: NSDate?
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-       
-        super.init(entity : entity, insertIntoManagedObjectContext: context)
+       super.init(entity : entity, insertIntoManagedObjectContext: context)
     }
 
     init(dictionary: [String : AnyObject], context : NSManagedObjectContext) {
         
         let entity = NSEntityDescription.entityForName("Movie", inManagedObjectContext: context)!
-        
         super.init(entity: entity, insertIntoManagedObjectContext: context)
         
         // Dictionary
         title = dictionary[Keys.Title] as! String
         id = dictionary[TheMovieDB.Keys.ID] as! Int
-        posterPath = (dictionary[Keys.PosterPath] as? String)!
+        posterPath = dictionary[Keys.PosterPath] as? String
         
         if let dateString = dictionary[Keys.ReleaseDate] as? String {
             if let date = TheMovieDB.sharedDateFormatter.dateFromString(dateString) {
@@ -50,6 +49,6 @@ class Movie : NSManagedObject {
 
     var posterImage: UIImage? {
         get { return TheMovieDB.Caches.imageCache.imageWithIdentifier(posterPath) }
-        set { TheMovieDB.Caches.imageCache.storeImage(newValue, withIdentifier: posterPath) }
+        set { TheMovieDB.Caches.imageCache.storeImage(newValue, withIdentifier: posterPath!) }
     }
 }
