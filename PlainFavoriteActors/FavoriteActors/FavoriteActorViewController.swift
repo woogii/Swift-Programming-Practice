@@ -9,9 +9,9 @@
 import UIKit
 import CoreData
 
-class FavoriteActorViewController : UITableViewController, ActorPickerViewControllerDelegate {
+class FavoriteActorViewController : UITableViewController, ActorPickerViewControllerDelegate, NSFetchedResultsControllerDelegate {
     
-    var actors = [Person]()
+    // var actors = [Person]()
     
     // MARK: - Life Cycle
     
@@ -21,7 +21,14 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addActor")
         
-        actors = fetchAllActors()
+        //actors = fetchAllActors()
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {
+            print(error)
+        }
+        
+        fetchedResultsController.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -33,19 +40,24 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     // Mark: - Core Data Convenience 
     lazy var sharedContext : NSManagedObjectContext = {
         return CoreDataStackManager.sharedInstance().managedObjectContext
-    }() 
+    }()
     
-    func fetchAllActors()->[Person] {
+    // MARK: - Fetched Results Controller 
+    
+    lazy var fetchedResultsController: NSFetchedResultsController = {
         
+        // Create the fetch request
         let fetchRequest = NSFetchRequest(entityName: "Person")
         
-        do {
-            return try sharedContext.executeFetchRequest(fetchRequest) as! [Person]
-        } catch let error as NSError {
-            print("\(error.localizedDescription)")
-            return [Person]()
-        }
-    }
+        // Add a sort descriptor. This enforces a sort order on the results that are generated
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key:"name", ascending:true )]
+        
+        // Create the Fetched Results Controller 
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchedResultsController
+    }()
+    
     
     // Mark: - Actions
     
@@ -67,45 +79,92 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             // Debugging output
             print("picked actor with name: \(newActor.name),  id: \(newActor.id), profilePath: \(newActor.imagePath)")
 
-            // Check to see if we already have this actor. If so, return.
-            for a in actors {
-                if a.id == newActor.id {
-                    return
-                }
-            }
-            
-            // Here we add the actor object that comes from the ActorPickerViewController. Remember
-            // that we cannot do this directly once we incoporate Core Data. The ActorPickerViewController
-            // uses a "scratch" context. It fills its table with actors that have not been picked. We 
-            // need to create a new person object that is inserted into the shared context. 
             let dictionary:[String : AnyObject] = [
                 Person.Keys.ID : newActor.id,
                 Person.Keys.Name : newActor.name,
                 Person.Keys.ProfilePath : newActor.imagePath ?? ""
             ]
             
-            let actor = Person(dictionary: dictionary, context: sharedContext)
-            
-            actors.append(actor)
-            
+            _ = Person(dictionary: dictionary, context: sharedContext)
+    
             CoreDataStackManager.sharedInstance().saveContext()
-            
-            // self.actors.append(newActor)
         }
     }
     
+    // MARK: - NSFetchedResultsControllerDelegate Protocol Methods
+    // These four delegate methods are invoked when there is any change on this view controller
+    
+    /*
+    This invocation prepares the table to receive a number of changes. It will store them up until
+    it receives endUpdates(), and then perform them all at once.
+    */
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+    
+    func controller(controller: NSFetchedResultsController, didChangeSection sectionInfo: NSFetchedResultsSectionInfo, atIndex sectionIndex: Int, forChangeType type: NSFetchedResultsChangeType) {
+        
+        switch type {
+            case .Insert :
+                tableView.insertSections(NSIndexSet(index:sectionIndex), withRowAnimation: .Fade)
+            case .Delete :
+                tableView.deleteSections(NSIndexSet(index: sectionIndex), withRowAnimation: .Fade)
+            default:
+            
+            return
+        }
+    }
+    
+    // This method adds and removes rows in the table, in response to changes in the data
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
+        switch type {
+            case .Insert :
+                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            case .Delete :
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            case .Update :
+                let cell = tableView.cellForRowAtIndexPath(indexPath!) as! ActorTableViewCell
+                let actor = controller.objectAtIndexPath(indexPath!) as! Person
+                self.configureCell(cell, withActor: actor)
+            
+            case .Move:
+                tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+                tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+            default:
+                return
+        }
+    }
+
+    // When endUpdates is invoked, the table makes the changes visible
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
+    }
     // MARK: - Table View
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return actors.count
+        let sectionInfo = self.fetchedResultsController.sections![section] as NSFetchedResultsSectionInfo
+        return sectionInfo.numberOfObjects
     }
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let actor = actors[indexPath.row]
+        let actor = self.fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+        
         let CellIdentifier = "ActorCell"
         
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! ActorTableViewCell
         
+        configureCell(cell, withActor: actor)
+        return cell
+    }
+    
+    // MARK: - Configure Cell
+    
+    // This method is new. It contains the code that used to be in cellForRowAtIndexPath.
+    // Refactoring it into its own method allow the logic to be reused in the fetch results
+    // delegate methods
+    
+    func configureCell(cell: ActorTableViewCell, withActor actor: Person) {
         cell.nameLabel!.text = actor.name
         cell.frameImageView.image = UIImage(named: "personFrame")
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
@@ -123,6 +182,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             // Set the placeholder
             cell.actorImageView.image = UIImage(named: "personPlaceholder")
             
+            
             let size = TheMovieDB.sharedInstance().config.profileSizes[1]
             let task = TheMovieDB.sharedInstance().taskForImageWithSize(size, filePath: actor.imagePath!) { (imageData, error) -> Void in
                 
@@ -137,14 +197,14 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             
             cell.taskToCancelifCellIsReused = task
         }
-        
-        return cell
     }
+    
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         let controller = storyboard!.instantiateViewControllerWithIdentifier("MovieListViewController") as! MovieListViewController
         
-        controller.actor = actors[indexPath.row]
+        //controller.actor = actors[indexPath.row]
+        controller.actor = fetchedResultsController.objectAtIndexPath(indexPath) as! Person
         
         self.navigationController!.pushViewController(controller, animated: true)
     }
@@ -153,8 +213,11 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         
         switch (editingStyle) {
         case .Delete:
-            actors.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            let actor = fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+            sharedContext.deleteObject(actor)
+            
+            CoreDataStackManager.sharedInstance().saveContext()
+            //tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
         default:
             break
         }
@@ -200,3 +263,4 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
 
 
 
+    

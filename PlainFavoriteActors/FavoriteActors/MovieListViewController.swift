@@ -9,7 +9,7 @@
 import UIKit
 import CoreData
 
-class MovieListViewController : UITableViewController {
+class MovieListViewController : UITableViewController, NSFetchedResultsControllerDelegate  {
     
     var actor: Person!
     
@@ -19,8 +19,13 @@ class MovieListViewController : UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+        do {
+            try fetchedResultsController.performFetch()
+        } catch {}
+        
+        fetchedResultsController.delegate = self
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -46,8 +51,6 @@ class MovieListViewController : UITableViewController {
                             // In core data we use the relationship. We set the movie's actor property
                             movie.actor = self.actor
                             
-                            // self.actor.movies.append(movie)
-                            
                             return movie
                         }
                         
@@ -72,14 +75,68 @@ class MovieListViewController : UITableViewController {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }()
     
-
+    // MARK: - Fetched Results Controller
+    
+    lazy var fetchedResultsController: NSFetchedResultsController = {
+        
+        // Create the fetch request
+        let fetchRequest = NSFetchRequest(entityName: "Movie")
+        
+        // Add a sort descriptor. This enforces a sort order on the results that are generated
+        fetchRequest.sortDescriptors = [NSSortDescriptor(key:"title", ascending:false )]
+        fetchRequest.predicate = NSPredicate(format: "actor == %@", self.actor)
+        
+        // Create the Fetched Results Controller
+        let fetchedResultsController = NSFetchedResultsController(fetchRequest: fetchRequest, managedObjectContext: self.sharedContext, sectionNameKeyPath: nil, cacheName: nil)
+        
+        return fetchedResultsController
+    }()
 
     
+    // MARK: - NSFetchedResultsControllerDelegate Protocol Methods
+    // These four delegate methods are invoked when there is any change on this view controller
+    
+    /*
+    This invocation prepares the table to receive a number of changes. It will store them up until
+    it receives endUpdates(), and then perform them all at once.
+    */
+    func controllerWillChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.beginUpdates()
+    }
+    
+    // This method adds and removes rows in the table, in response to changes in the data
+    func controller(controller: NSFetchedResultsController, didChangeObject anObject: AnyObject, atIndexPath indexPath: NSIndexPath?, forChangeType type: NSFetchedResultsChangeType, newIndexPath: NSIndexPath?) {
+        
+        switch type {
+        case .Insert :
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        case .Delete :
+            tableView.insertRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+        case .Update :
+            let cell = tableView.cellForRowAtIndexPath(indexPath!) as! ActorTableViewCell
+            let movie = controller.objectAtIndexPath(indexPath!) as! Movie
+            configureCell(cell, movie: movie)
+        case .Move:
+            tableView.deleteRowsAtIndexPaths([indexPath!], withRowAnimation: .Fade)
+            tableView.insertRowsAtIndexPaths([newIndexPath!], withRowAnimation: .Fade)
+        default:
+            return
+        }
+    }
+    
+    // When endUpdates is invoked, the table makes the changes visible
+    func controllerDidChangeContent(controller: NSFetchedResultsController) {
+        self.tableView.endUpdates()
+    }
+
+
     // MARK: - Table View
     
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return actor.movies.count
+        let sectionInfo = self.fetchedResultsController.sections![section]
+        return sectionInfo.numberOfObjects
     }
+    
     
     /**
     The downloading of movie posters is handled here. Notice how the method uses a unique
@@ -87,18 +144,25 @@ class MovieListViewController : UITableViewController {
     */
     
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let movie = actor.movies[indexPath.row]
+    
         let CellIdentifier = "MovieCell"
-        var posterImage = UIImage(named: "posterPlaceHoldr")
-        
+        let movie = fetchedResultsController.objectAtIndexPath(indexPath) as! Movie
         let cell = tableView.dequeueReusableCellWithIdentifier(CellIdentifier) as! TaskCancelingTableViewCell
+        
+        configureCell(cell, movie: movie)
+        
+        return cell
+    }
+    
+    func configureCell( cell : TaskCancelingTableViewCell, movie:Movie) {
         
         cell.textLabel!.text = movie.title
         cell.imageView!.image = nil
-        
+
         // Set the Movie Poster Image
-        
-        if  movie.posterPath == "" || movie.posterPath == "" {
+        var posterImage = UIImage(named: "posterPlaceHoldr")
+    
+        if  movie.posterPath == nil || movie.posterPath == "" {
             posterImage = UIImage(named: "noImage")
         } else if movie.posterImage != nil {
             posterImage = movie.posterImage
@@ -137,7 +201,6 @@ class MovieListViewController : UITableViewController {
         
         cell.imageView!.image = posterImage
         
-        return cell
     }
     
     override func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
@@ -148,12 +211,16 @@ class MovieListViewController : UITableViewController {
         
         switch (editingStyle) {
         case .Delete:
-            actor.movies.removeAtIndex(indexPath.row)
-            tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: UITableViewRowAnimation.Fade)
+            let actor = fetchedResultsController.objectAtIndexPath(indexPath) as! Person
+            sharedContext.deleteObject(actor)
+            CoreDataStackManager.sharedInstance().saveContext()
         default:
             break
         }
     }
+    
+    
+    
     
     // MARK: - Alert View
     
