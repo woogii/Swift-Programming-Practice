@@ -1,0 +1,509 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2EBB9AD1C0DB64400983BAD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EBB9AC1C0DB64400983BAD /* AppDelegate.swift */; };
+		D2EBB9AF1C0DB64400983BAD /* MasterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EBB9AE1C0DB64400983BAD /* MasterViewController.swift */; };
+		D2EBB9B11C0DB64400983BAD /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EBB9B01C0DB64400983BAD /* DetailViewController.swift */; };
+		D2EBB9B41C0DB64400983BAD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EBB9B21C0DB64400983BAD /* Main.storyboard */; };
+		D2EBB9B61C0DB64400983BAD /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2EBB9B51C0DB64400983BAD /* Assets.xcassets */; };
+		D2EBB9B91C0DB64400983BAD /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2EBB9B71C0DB64400983BAD /* LaunchScreen.storyboard */; };
+		D2EBB9C41C0DB64400983BAD /* NSKeyedArchiverPracTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EBB9C31C0DB64400983BAD /* NSKeyedArchiverPracTests.swift */; };
+		D2EBB9CF1C0DB64400983BAD /* NSKeyedArchiverPracUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2EBB9CE1C0DB64400983BAD /* NSKeyedArchiverPracUITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2EBB9C01C0DB64400983BAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2EBB9A11C0DB64300983BAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2EBB9A81C0DB64400983BAD;
+			remoteInfo = NSKeyedArchiverPrac;
+		};
+		D2EBB9CB1C0DB64400983BAD /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2EBB9A11C0DB64300983BAD /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2EBB9A81C0DB64400983BAD;
+			remoteInfo = NSKeyedArchiverPrac;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D2EBB9A91C0DB64400983BAD /* NSKeyedArchiverPrac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = NSKeyedArchiverPrac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2EBB9AC1C0DB64400983BAD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2EBB9AE1C0DB64400983BAD /* MasterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MasterViewController.swift; sourceTree = "<group>"; };
+		D2EBB9B01C0DB64400983BAD /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		D2EBB9B31C0DB64400983BAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2EBB9B51C0DB64400983BAD /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2EBB9B81C0DB64400983BAD /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2EBB9BA1C0DB64400983BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2EBB9BF1C0DB64400983BAD /* NSKeyedArchiverPracTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSKeyedArchiverPracTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2EBB9C31C0DB64400983BAD /* NSKeyedArchiverPracTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSKeyedArchiverPracTests.swift; sourceTree = "<group>"; };
+		D2EBB9C51C0DB64400983BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2EBB9CA1C0DB64400983BAD /* NSKeyedArchiverPracUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = NSKeyedArchiverPracUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2EBB9CE1C0DB64400983BAD /* NSKeyedArchiverPracUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NSKeyedArchiverPracUITests.swift; sourceTree = "<group>"; };
+		D2EBB9D01C0DB64400983BAD /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2EBB9A61C0DB64400983BAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EBB9BC1C0DB64400983BAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EBB9C71C0DB64400983BAD /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2EBB9A01C0DB64300983BAD = {
+			isa = PBXGroup;
+			children = (
+				D2EBB9AB1C0DB64400983BAD /* NSKeyedArchiverPrac */,
+				D2EBB9C21C0DB64400983BAD /* NSKeyedArchiverPracTests */,
+				D2EBB9CD1C0DB64400983BAD /* NSKeyedArchiverPracUITests */,
+				D2EBB9AA1C0DB64400983BAD /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2EBB9AA1C0DB64400983BAD /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2EBB9A91C0DB64400983BAD /* NSKeyedArchiverPrac.app */,
+				D2EBB9BF1C0DB64400983BAD /* NSKeyedArchiverPracTests.xctest */,
+				D2EBB9CA1C0DB64400983BAD /* NSKeyedArchiverPracUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2EBB9AB1C0DB64400983BAD /* NSKeyedArchiverPrac */ = {
+			isa = PBXGroup;
+			children = (
+				D2EBB9AC1C0DB64400983BAD /* AppDelegate.swift */,
+				D2EBB9AE1C0DB64400983BAD /* MasterViewController.swift */,
+				D2EBB9B01C0DB64400983BAD /* DetailViewController.swift */,
+				D2EBB9B21C0DB64400983BAD /* Main.storyboard */,
+				D2EBB9B51C0DB64400983BAD /* Assets.xcassets */,
+				D2EBB9B71C0DB64400983BAD /* LaunchScreen.storyboard */,
+				D2EBB9BA1C0DB64400983BAD /* Info.plist */,
+			);
+			path = NSKeyedArchiverPrac;
+			sourceTree = "<group>";
+		};
+		D2EBB9C21C0DB64400983BAD /* NSKeyedArchiverPracTests */ = {
+			isa = PBXGroup;
+			children = (
+				D2EBB9C31C0DB64400983BAD /* NSKeyedArchiverPracTests.swift */,
+				D2EBB9C51C0DB64400983BAD /* Info.plist */,
+			);
+			path = NSKeyedArchiverPracTests;
+			sourceTree = "<group>";
+		};
+		D2EBB9CD1C0DB64400983BAD /* NSKeyedArchiverPracUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D2EBB9CE1C0DB64400983BAD /* NSKeyedArchiverPracUITests.swift */,
+				D2EBB9D01C0DB64400983BAD /* Info.plist */,
+			);
+			path = NSKeyedArchiverPracUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2EBB9A81C0DB64400983BAD /* NSKeyedArchiverPrac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2EBB9D31C0DB64400983BAD /* Build configuration list for PBXNativeTarget "NSKeyedArchiverPrac" */;
+			buildPhases = (
+				D2EBB9A51C0DB64400983BAD /* Sources */,
+				D2EBB9A61C0DB64400983BAD /* Frameworks */,
+				D2EBB9A71C0DB64400983BAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = NSKeyedArchiverPrac;
+			productName = NSKeyedArchiverPrac;
+			productReference = D2EBB9A91C0DB64400983BAD /* NSKeyedArchiverPrac.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2EBB9BE1C0DB64400983BAD /* NSKeyedArchiverPracTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2EBB9D61C0DB64400983BAD /* Build configuration list for PBXNativeTarget "NSKeyedArchiverPracTests" */;
+			buildPhases = (
+				D2EBB9BB1C0DB64400983BAD /* Sources */,
+				D2EBB9BC1C0DB64400983BAD /* Frameworks */,
+				D2EBB9BD1C0DB64400983BAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2EBB9C11C0DB64400983BAD /* PBXTargetDependency */,
+			);
+			name = NSKeyedArchiverPracTests;
+			productName = NSKeyedArchiverPracTests;
+			productReference = D2EBB9BF1C0DB64400983BAD /* NSKeyedArchiverPracTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D2EBB9C91C0DB64400983BAD /* NSKeyedArchiverPracUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2EBB9D91C0DB64400983BAD /* Build configuration list for PBXNativeTarget "NSKeyedArchiverPracUITests" */;
+			buildPhases = (
+				D2EBB9C61C0DB64400983BAD /* Sources */,
+				D2EBB9C71C0DB64400983BAD /* Frameworks */,
+				D2EBB9C81C0DB64400983BAD /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2EBB9CC1C0DB64400983BAD /* PBXTargetDependency */,
+			);
+			name = NSKeyedArchiverPracUITests;
+			productName = NSKeyedArchiverPracUITests;
+			productReference = D2EBB9CA1C0DB64400983BAD /* NSKeyedArchiverPracUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2EBB9A11C0DB64300983BAD /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = wook2;
+				TargetAttributes = {
+					D2EBB9A81C0DB64400983BAD = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					D2EBB9BE1C0DB64400983BAD = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = D2EBB9A81C0DB64400983BAD;
+					};
+					D2EBB9C91C0DB64400983BAD = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = D2EBB9A81C0DB64400983BAD;
+					};
+				};
+			};
+			buildConfigurationList = D2EBB9A41C0DB64300983BAD /* Build configuration list for PBXProject "NSKeyedArchiverPrac" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2EBB9A01C0DB64300983BAD;
+			productRefGroup = D2EBB9AA1C0DB64400983BAD /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2EBB9A81C0DB64400983BAD /* NSKeyedArchiverPrac */,
+				D2EBB9BE1C0DB64400983BAD /* NSKeyedArchiverPracTests */,
+				D2EBB9C91C0DB64400983BAD /* NSKeyedArchiverPracUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2EBB9A71C0DB64400983BAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2EBB9B91C0DB64400983BAD /* LaunchScreen.storyboard in Resources */,
+				D2EBB9B61C0DB64400983BAD /* Assets.xcassets in Resources */,
+				D2EBB9B41C0DB64400983BAD /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EBB9BD1C0DB64400983BAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EBB9C81C0DB64400983BAD /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2EBB9A51C0DB64400983BAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2EBB9B11C0DB64400983BAD /* DetailViewController.swift in Sources */,
+				D2EBB9AF1C0DB64400983BAD /* MasterViewController.swift in Sources */,
+				D2EBB9AD1C0DB64400983BAD /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EBB9BB1C0DB64400983BAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2EBB9C41C0DB64400983BAD /* NSKeyedArchiverPracTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2EBB9C61C0DB64400983BAD /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2EBB9CF1C0DB64400983BAD /* NSKeyedArchiverPracUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2EBB9C11C0DB64400983BAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2EBB9A81C0DB64400983BAD /* NSKeyedArchiverPrac */;
+			targetProxy = D2EBB9C01C0DB64400983BAD /* PBXContainerItemProxy */;
+		};
+		D2EBB9CC1C0DB64400983BAD /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2EBB9A81C0DB64400983BAD /* NSKeyedArchiverPrac */;
+			targetProxy = D2EBB9CB1C0DB64400983BAD /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2EBB9B21C0DB64400983BAD /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2EBB9B31C0DB64400983BAD /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D2EBB9B71C0DB64400983BAD /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2EBB9B81C0DB64400983BAD /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2EBB9D11C0DB64400983BAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D2EBB9D21C0DB64400983BAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2EBB9D41C0DB64400983BAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NSKeyedArchiverPrac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.NSKeyedArchiverPrac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D2EBB9D51C0DB64400983BAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = NSKeyedArchiverPrac/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.NSKeyedArchiverPrac;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D2EBB9D71C0DB64400983BAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = NSKeyedArchiverPracTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.NSKeyedArchiverPracTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSKeyedArchiverPrac.app/NSKeyedArchiverPrac";
+			};
+			name = Debug;
+		};
+		D2EBB9D81C0DB64400983BAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = NSKeyedArchiverPracTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.NSKeyedArchiverPracTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/NSKeyedArchiverPrac.app/NSKeyedArchiverPrac";
+			};
+			name = Release;
+		};
+		D2EBB9DA1C0DB64400983BAD /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NSKeyedArchiverPracUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.NSKeyedArchiverPracUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NSKeyedArchiverPrac;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		D2EBB9DB1C0DB64400983BAD /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = NSKeyedArchiverPracUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.NSKeyedArchiverPracUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = NSKeyedArchiverPrac;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2EBB9A41C0DB64300983BAD /* Build configuration list for PBXProject "NSKeyedArchiverPrac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2EBB9D11C0DB64400983BAD /* Debug */,
+				D2EBB9D21C0DB64400983BAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2EBB9D31C0DB64400983BAD /* Build configuration list for PBXNativeTarget "NSKeyedArchiverPrac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2EBB9D41C0DB64400983BAD /* Debug */,
+				D2EBB9D51C0DB64400983BAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2EBB9D61C0DB64400983BAD /* Build configuration list for PBXNativeTarget "NSKeyedArchiverPracTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2EBB9D71C0DB64400983BAD /* Debug */,
+				D2EBB9D81C0DB64400983BAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		D2EBB9D91C0DB64400983BAD /* Build configuration list for PBXNativeTarget "NSKeyedArchiverPracUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2EBB9DA1C0DB64400983BAD /* Debug */,
+				D2EBB9DB1C0DB64400983BAD /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2EBB9A11C0DB64300983BAD /* Project object */;
+}
