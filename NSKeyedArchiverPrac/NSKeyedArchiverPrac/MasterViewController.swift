@@ -26,8 +26,8 @@ class MasterViewController: UITableViewController {
             self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
         }
         
-        if let array = NSKeyedUnarchiver.unarchiveObjectWithFile(actorsFilePath) as! [AnyObject] {
-            objects = array 
+        if let array = NSKeyedUnarchiver.unarchiveObjectWithFile(actorsFilePath) as? [AnyObject] {
+            objects = array
         }
         
     }
