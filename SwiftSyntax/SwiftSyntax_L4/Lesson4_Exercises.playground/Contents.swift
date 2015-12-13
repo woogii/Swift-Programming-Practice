@@ -7,17 +7,20 @@ import UIKit
 //: For each title in the array print the following string: "title + with Puppets", e.g "Point Break with Puppets!"
 var movieTitleArray = ["Point Break", "The Dark Knight", "Star Wars", "When Harry Met Sally"]
 
-for title in movieTitleArray {
-    print( "\(title) with Puppets" )
+let addedPhrase = " with Puppets"
+
+for movie in movieTitleArray {
+    print(movie+addedPhrase)
 }
 //: ### Exercise 2
 //: Rent is increasing by 20% this year. Use a for-in loop to apply this increase to each item in the oldMountainViewRent array.  Store the new values in the array newMountainViewRent.
 var oldMountainViewRent:[Double] = [2150, 1775, 2221, 1261, 1325, 2110, 1870]
 var newMountainViewRent = [Double]()
 
-for oldrent in oldMountainViewRent {
-    newMountainViewRent.append(oldrent + oldrent * 0.2)
+for rent in oldMountainViewRent {
+    newMountainViewRent.append(rent*1.2)
 }
+
 print(newMountainViewRent)
 //: ### Exercise 3
 //: For each food with a true value, print out "<food>, yum!" For each food with a false value print out, "<food>, yuck!"
@@ -25,19 +28,23 @@ var polarizingFoods = ["Anchovies":true, "Coconut":true, "Cilantro":true, "Liver
 
 for (food,preference) in polarizingFoods {
     if preference == true {
-        print( "\(food), yum!")
-    }
-    else {
-        print( "\(food), yuck!" )
+        print( food + ",yum!")
+    } else {
+        print( food + ", yuck!")
     }
 }
+    
+
 //: ### Exercise 4
 //: The Oakland area code is changing from 415 to 510. Replace all occurrences of the area code 415 with 510 in the dictionary below.
 var rapperPhoneNumbers = ["Azealia Banks":"(212)548-8777", "Boots Riley":"(415)755-9887", "MC Hammer":"(415)533-9899", "Missy Elliot":"(757)488-5552", "Shock G":"(415)499-7676", "Sir Mix-a-lot":"(206)123-4567", "Snoop Dogg":"(213)760-6664"]
 
-for (area, code) in rapperPhoneNumbers {
-    rapperPhoneNumbers[area] = code.stringByReplacingOccurrencesOfString("415", withString: "510")
+for (rapper, phoneNumber) in rapperPhoneNumbers {
+    
+    rapperPhoneNumbers[rapper] = phoneNumber.stringByReplacingOccurrencesOfString("415", withString: "510")
 }
+print(rapperPhoneNumbers)
+
 //: ## Switch Statements
 //: Translate the following if-else statements into switch statements. Feel free to modify print statements as desired.
 //: ### Exercise 5
@@ -61,16 +68,18 @@ if sport == .Baseball {
 }
 
 switch sport {
+
 case .Baseball:
     print("Go A's!")
 case .Basketball:
-     print("Go Warriors!")
+    print("Go Warriors!")
 case .Football:
-    print("Go Warriors!")
+    print( "Go Raiders!")
 case .Hockey:
-    print("Go Warriors!")
-default:
+    print("Go Sharks!")
+case .Soccer:
     print("Go Earthquakes!")
+ 
 }
 //: ### Exercise 6
 //: Below is an enum and an if-else statement for implementing the game Rock-Paper-Scissors.
@@ -93,15 +102,17 @@ if myMove == .Rock && yourMove == .Paper || myMove == .Paper && yourMove == .Roc
     resultsMessage = "Scissors cut Paper."
 }
 
-switch (myMove, yourMove){
+
+// Solution
+switch (myMove, yourMove) {
 case (.Rock, .Paper), (.Paper, .Rock):
     resultsMessage = "Paper covers Rock."
+case (.Rock, .Rock), (.Paper, .Paper), (.Scissors, .Scissors):
+    resultsMessage = "It's a tie!"
+case (.Rock, .Scissors), (.Scissors, .Rock):
+    resultsMessage = "Rock crushes Scissors."
 case (.Paper, .Scissors), (.Scissors, .Paper):
     resultsMessage = "Scissors cut Paper."
-case (.Rock, .Scissors), (.Scissors, .Rock):
-    resultsMessage = "Rock crushes Scissors. "
-default:
-    resultsMessage = "It's a tie!"
 }
 
 //: ### Exercise 7
@@ -121,38 +132,40 @@ if 90...100 ~= score {
     letterGrade = "Incomplete"
 }
 
+// Solution
 switch score {
-    case 90...100 :
-        letterGrade = "A"
-    case 80...89 :
-        letterGrade = "B"
-    case 70...79 :
-        letterGrade = "C"
-    case 60...69 :
-        letterGrade = "D"
-    default:
-        letterGrade = "Incomplete"
+case 90...100:
+    letterGrade = "A"
+case 80...89:
+    letterGrade = "B"
+case 70...79:
+    letterGrade = "C"
+case 60...69:
+    letterGrade = "D"
+default:
+    letterGrade = "Incomplete"
 }
+
 //: ### Exercise 8
 //: The if-else statement below translates a word into Pig Latin. Without using the "vowels" array, write an equivalent switch statement.
 var word = "can"
 var firstLetter = Array(word.characters)[0]
-firstLetter.dynamicType
-
 var newWord = ""
 var vowels: [Character] = ["a", "e", "i", "o", "u"]
 
-//if vowels.contains(firstLetter) {
-//    newWord = word + "yay"
-//} else {
-//    word.removeAtIndex(word.startIndex)
-//    newWord = "\(word)\(firstLetter)ay"
-//}
+if vowels.contains(firstLetter) {
+    newWord = word + "yay"
+} else {
+    word.removeAtIndex(word.startIndex)
+    newWord = "\(word)\(firstLetter)ay"
+}
 
+
+// Solution
 switch firstLetter {
 case "a", "e", "i", "o", "u":
-    print("\(newWord) yay")
-default :
+    newWord = word + "yay"
+default:
     word.removeAtIndex(word.startIndex)
     newWord = "\(word)\(firstLetter)ay"
 }
