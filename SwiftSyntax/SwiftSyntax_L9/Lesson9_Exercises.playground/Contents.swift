@@ -70,6 +70,11 @@ let sizesAsStrings = particleSizesInMicrons.map({ (size: Int) -> String in
 //: Ben just got back from India and he is tallying what he spent on gifts for his customs form.
 //: Use the map() method to transform this array of prices into dollars. Round to the nearest dollar.
 let pricesInRupees = [750, 825, 2000, 725]
+let dollarInRupees = pricesInRupees.map( { (price: Int) -> String in
+    var dollars = price/64
+    return "$(dollars)"
+})
+
 
 //: __Problem 6__
 //:
@@ -91,3 +96,15 @@ func timeStringFromInterval(timeInterval: Int) -> NSString {
 }
 
 var oldTimes = ["5:18", "5:45", "5:56", "5:25", "5:27"]
+
+var goalTimes = oldTimes.map( { (time:String)->String in
+    var goalTime = timeIntervalFromString(time)
+    goalTime += 13
+    return timeStringFromInterval(goalTime) as String
+})
+
+
+
+
+
+
