@@ -102,9 +102,8 @@ if myMove == .Rock && yourMove == .Paper || myMove == .Paper && yourMove == .Roc
     resultsMessage = "Scissors cut Paper."
 }
 
-
-// Solution
 switch (myMove, yourMove) {
+    
 case (.Rock, .Paper), (.Paper, .Rock):
     resultsMessage = "Paper covers Rock."
 case (.Rock, .Rock), (.Paper, .Paper), (.Scissors, .Scissors):
@@ -112,7 +111,7 @@ case (.Rock, .Rock), (.Paper, .Paper), (.Scissors, .Scissors):
 case (.Rock, .Scissors), (.Scissors, .Rock):
     resultsMessage = "Rock crushes Scissors."
 case (.Paper, .Scissors), (.Scissors, .Paper):
-    resultsMessage = "Scissors cut Paper."
+    resultsMessage = "Rock crushes Scissors."
 }
 
 //: ### Exercise 7
@@ -132,41 +131,45 @@ if 90...100 ~= score {
     letterGrade = "Incomplete"
 }
 
-// Solution
 switch score {
-case 90...100:
+    
+case 90...100 :
     letterGrade = "A"
-case 80...89:
+case 80...89 :
     letterGrade = "B"
-case 70...79:
+case 70...79 :
     letterGrade = "C"
-case 60...69:
+case 60...69 :
     letterGrade = "D"
 default:
     letterGrade = "Incomplete"
+    
 }
-
 //: ### Exercise 8
 //: The if-else statement below translates a word into Pig Latin. Without using the "vowels" array, write an equivalent switch statement.
 var word = "can"
+
 var firstLetter = Array(word.characters)[0]
 var newWord = ""
 var vowels: [Character] = ["a", "e", "i", "o", "u"]
 
-if vowels.contains(firstLetter) {
-    newWord = word + "yay"
-} else {
-    word.removeAtIndex(word.startIndex)
-    newWord = "\(word)\(firstLetter)ay"
-}
+//if vowels.contains(firstLetter) {
+//    newWord = word + "yay"
+//} else {
+//    word.removeAtIndex(word.startIndex)
+//    newWord = "\(word)\(firstLetter)ay"
+//}
 
-
-// Solution
 switch firstLetter {
-case "a", "e", "i", "o", "u":
-    newWord = word + "yay"
-default:
-    word.removeAtIndex(word.startIndex)
-    newWord = "\(word)\(firstLetter)ay"
+    
+    case "a", "e", "i", "o", "u":
+        newWord = word + "yay"
+    default:
+        word.removeAtIndex(word.startIndex)
+        newWord = "\(word)\(firstLetter)ay"
+
+
 }
+
+
 

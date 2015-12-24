@@ -11,6 +11,8 @@ import AVFoundation
 
 class PlaySoundsViewController: UIViewController {
     
+    // Mark : - Properties 
+    
     let SliderValueKey = "Slider Value Key"
     
     var audioPlayer:AVAudioPlayer!
@@ -18,15 +20,23 @@ class PlaySoundsViewController: UIViewController {
     
     var audioEngine:AVAudioEngine!
     var audioFile:AVAudioFile!
+    var filePathUrl : NSURL!
     
     @IBOutlet weak var sliderView: UISlider!
     @IBOutlet weak var startButton: UIButton!
     @IBOutlet weak var stopButton: UIButton!
     
+    // Mark : - View Cycle
+    
+    override func viewWillAppear(animated: Bool) {
+        let slideValue =  NSUserDefaults.standardUserDefaults().objectForKey(SliderValueKey) as? Float
+        if let slideValue = slideValue {
+            sliderView.value = slideValue
+        }
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        sliderView.value = NSUserDefaults.standardUserDefaults().floatForKey(SliderValueKey)
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOfURL: receivedAudio.filePathUrl)
@@ -45,12 +55,16 @@ class PlaySoundsViewController: UIViewController {
         setUserInterfaceToPlayMode(false)
     }
     
+
+    // Mark : - UI components setting 
+    
     func setUserInterfaceToPlayMode(isPlayMode: Bool) {
         startButton.hidden = isPlayMode
         stopButton.hidden = !isPlayMode
         sliderView.enabled = !isPlayMode
     }
-
+    
+    // Mark : - Action
     @IBAction func playAudio(sender: UIButton) {
         
         // Get the pitch from the slider
@@ -61,9 +75,6 @@ class PlaySoundsViewController: UIViewController {
         
         // Set the UI
         setUserInterfaceToPlayMode(true)
-        
-        // Store the value of slider iin NSUserDefaults object
-        NSUserDefaults.standardUserDefaults().setFloat(sliderView.value, forKey: SliderValueKey)
     }
     
     @IBAction func stopAudio(sender: UIButton) {
@@ -71,6 +82,20 @@ class PlaySoundsViewController: UIViewController {
         audioEngine.stop()
         audioEngine.reset()
     }
+    
+    @IBAction func sliderDidMove(sender: UISlider) {
+        // Do nothing?
+        print("Slider value: \(sliderView.value)")
+        // Sets the value of the specified default key in the standard application domain
+        NSUserDefaults.standardUserDefaults().setObject(sliderView.value, forKey: SliderValueKey)
+        
+    }
+    
+    @IBAction func deleteAudioFile(sender: UIButton) {
+        
+        
+    }
+    // Mark : - Play Audio 
     
     func playAudioWithVariablePitch(pitch: Float){
         audioPlayer.stop()
@@ -100,8 +125,5 @@ class PlaySoundsViewController: UIViewController {
         audioPlayerNode.play()
     }
     
-    @IBAction func sliderDidMove(sender: UISlider) {
-        // Do nothing?
-        print("Slider value: \(sliderView.value)")
-    }
+
 }
