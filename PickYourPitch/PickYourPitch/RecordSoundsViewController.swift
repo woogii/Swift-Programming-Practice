@@ -39,6 +39,10 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
     // MARK : - View Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if NSFileManager.defaultManager().fileExistsAtPath(fileURL.path!) {
+            shouldSegueToSoundPlayer = true
+        }
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -47,9 +51,9 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
         recordButton.enabled = true
     
         // if the recorded file exists
-        if NSFileManager().fileExistsAtPath(fileURL.path!) {
+        if shouldSegueToSoundPlayer {
             print("Recorded file already exists!")
-            shouldSegueToSoundPlayer = true
+            shouldSegueToSoundPlayer = false
             // Create audio instance based on information from an existing file
             recordedAudio = RecordedAudio(filePathUrl: fileURL, title: fileName)
             // Perform segue without recording in this view 
@@ -131,6 +135,7 @@ class RecordSoundsViewController: UIViewController, AVAudioRecorderDelegate {
             let playSoundsVC:PlaySoundsViewController = segue.destinationViewController as! PlaySoundsViewController
             let data = recordedAudio
             playSoundsVC.receivedAudio = data
+            playSoundsVC.filePathUrl = fileURL
         }
     }
  }

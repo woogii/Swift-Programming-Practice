@@ -93,7 +93,9 @@ class PlaySoundsViewController: UIViewController {
     
     @IBAction func deleteAudioFile(sender: UIButton) {
         
-        
+        if let filePathUrl = filePathUrl {
+            print("There is no existing file")
+        }
     }
     // Mark : - Play Audio 
     

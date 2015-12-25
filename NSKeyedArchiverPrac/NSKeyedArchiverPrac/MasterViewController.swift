@@ -9,101 +9,91 @@
 import UIKit
 
 class MasterViewController: UITableViewController {
-
+ 
+    var objects : [AnyObject] = []
+    let cellIdentifier = "Cell"
+    let segueIdentifier = "showDetail"
     var detailViewController: DetailViewController? = nil
-    var objects = [AnyObject]()
-
-
+    
+    var filePath : String {
+        
+        let defaultManager = NSFileManager.defaultManager()
+        let dirPath = defaultManager.URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        return dirPath.URLByAppendingPathComponent("object array").path!
+    }
+    
+    // MARK : - Life Cycle
     override func viewDidLoad() {
-        super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-        self.navigationItem.leftBarButtonItem = self.editButtonItem()
-
-        let addButton = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "insertNewObject:")
-        self.navigationItem.rightBarButtonItem = addButton
-        if let split = self.splitViewController {
-            let controllers = split.viewControllers
-            self.detailViewController = (controllers[controllers.count-1] as! UINavigationController).topViewController as? DetailViewController
-        }
+        let buttonItem = UIBarButtonItem(barButtonSystemItem: .Add, target: self, action: "InsertObject:")
+        navigationItem.rightBarButtonItem = buttonItem
+        navigationItem.leftBarButtonItem = editButtonItem()
         
-        if let array = NSKeyedUnarchiver.unarchiveObjectWithFile(actorsFilePath) as? [AnyObject] {
-            objects = array
+        // print(filePath)
+        if let unarchivedArray = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [AnyObject] {
+            objects = unarchivedArray
         }
-        
     }
-
+    
     override func viewWillAppear(animated: Bool) {
-        self.clearsSelectionOnViewWillAppear = self.splitViewController!.collapsed
+        
         super.viewWillAppear(animated)
-        
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-
-    var actorsFilePath : String {
-        
-        let url = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first
-        return (url?.URLByAppendingPathComponent("objectsArray").path)!
     }
     
-    
-    func insertNewObject(sender: AnyObject) {
-        objects.insert(NSDate(), atIndex: 0)
+    // MARK : - Insert Object 
+    func InsertObject(sender:AnyObject?) {
+        let item = NSDate()
+        objects.insert(item, atIndex: 0)
         let indexPath = NSIndexPath(forRow: 0, inSection: 0)
-        self.tableView.insertRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+        tableView.insertRowsAtIndexPaths( [indexPath] , withRowAnimation: .Automatic)
+        NSKeyedArchiver.archiveRootObject(objects, toFile: filePath)
         
-        NSKeyedArchiver.archiveRootObject(objects, toFile: actorsFilePath)
     }
-
-    // MARK: - Segues
-
+    
+    // MARK : - Prepare Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        if segue.identifier == "showDetail" {
+        
+        if( segue.identifier == segueIdentifier) {
+            
             if let indexPath = self.tableView.indexPathForSelectedRow {
                 let object = objects[indexPath.row] as! NSDate
-                let controller = (segue.destinationViewController as! UINavigationController).topViewController as! DetailViewController
-                controller.detailItem = object
-                controller.navigationItem.leftBarButtonItem = self.splitViewController?.displayModeButtonItem()
-                controller.navigationItem.leftItemsSupplementBackButton = true
+                
+                let navigationVC = segue.destinationViewController as! UINavigationController
+                // topViewController refers to the view controller at the top of 
+                // the navigation stack. It is read-only property
+                let destinationVC = navigationVC.topViewController as! DetailViewController
+            
+                destinationVC.detailItem = object
             }
         }
     }
-
-    // MARK: - Table View
-
-    override func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-
+    
+    // MARK : - UITableViewDataSource Protocol Methods
+    
+    // Tells the data source to return the number of rows in a given section of a table view
+    
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return objects.count
     }
 
-    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("Cell", forIndexPath: indexPath)
-
-        let object = objects[indexPath.row] as! NSDate
-        cell.textLabel!.text = object.description
-        return cell
-    }
-
-    override func tableView(tableView: UITableView, canEditRowAtIndexPath indexPath: NSIndexPath) -> Bool {
-        // Return false if you do not want the specified item to be editable.
-        return true
-    }
-
+    // Asks the data source to commit the insertion or deletion of a specified row in the receiver.
     override func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
-        if editingStyle == .Delete {
+        
+        if(editingStyle == .Delete) {
             objects.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
-        } else if editingStyle == .Insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
+        } else if ( editingStyle == .Insert ) {
+            
         }
     }
 
-
-}
-
+    // Asks the data source for a cell to insert in a particular location of the table view
+    override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+        let object = objects[indexPath.row] as! NSDate
+        cell.textLabel!.text = object.description
+        
+        return cell
+    }
+    
+ }

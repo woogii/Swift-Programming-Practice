@@ -14,6 +14,7 @@ class DetailViewController: UIViewController {
 
 
     var detailItem: AnyObject? {
+        
         didSet {
             // Update the view.
             self.configureView()
