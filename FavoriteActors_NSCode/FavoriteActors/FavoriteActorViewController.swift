@@ -20,7 +20,10 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addActor")
         
-        NSKeyedUnarchiver.unarchiveObjectWithFile(actorArrayURL.path!)
+        if let actors = NSKeyedUnarchiver.unarchiveObjectWithFile(actorArrayURL.path!) as? [Person]{
+            self.actors = actors
+        }
+        
     }
     
     // Mark: - Actions

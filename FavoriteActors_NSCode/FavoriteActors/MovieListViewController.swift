@@ -21,6 +21,8 @@ class MovieListViewController : UITableViewController {
         super.viewDidLoad()
         
         self.navigationItem.rightBarButtonItem = self.editButtonItem()
+        
+       
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -45,7 +47,7 @@ class MovieListViewController : UITableViewController {
                         
                         // Save the result
                         self.actor.movies = movies
-
+                        
                         // Update the table on the main thread
                         dispatch_async(dispatch_get_main_queue()) {
                             self.tableView.reloadData()
@@ -142,6 +144,8 @@ class MovieListViewController : UITableViewController {
         // A real live AlertViewController would be better...
         print(error.localizedDescription)
     }
+    
+  
 }
 
 
