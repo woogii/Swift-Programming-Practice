@@ -20,10 +20,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addActor")
         
-        if let actors = NSKeyedUnarchiver.unarchiveObjectWithFile(actorArrayURL.path!) as? [Person]{
-            self.actors = actors
-        }
-        
+        actors = NSKeyedUnarchiver.unarchiveObjectWithFile(actorArrayPath) as? [Person] ?? [Person]()
     }
     
     // Mark: - Actions
@@ -52,7 +49,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
             // If we didn't find any, then add
             self.actors.append(newActor)
             
-            NSKeyedArchiver.archiveRootObject(actors, toFile: actorArrayURL.path!)
+            NSKeyedArchiver.archiveRootObject(actors, toFile: actorArrayPath)
 
             // And reload the table
             self.tableView.reloadData()
@@ -127,11 +124,11 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     
     // MARK: - Saving the array
     
-    var actorArrayURL: NSURL {
+    var actorArrayPath: String {
         let filename = "favoriteActorsArray"
         let documentsDirectoryURL: NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         
-        return documentsDirectoryURL.URLByAppendingPathComponent(filename)
+        return documentsDirectoryURL.URLByAppendingPathComponent(filename).path!
     }
 }
 
