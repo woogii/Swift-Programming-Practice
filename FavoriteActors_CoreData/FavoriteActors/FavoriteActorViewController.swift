@@ -16,8 +16,9 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
     
     
     var sharedContext : NSManagedObjectContext {
-        let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return appDelegate.managedObjectContext
+        //let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //return appDelegate.managedObjectContext
+        return CoreDataStackManager.sharedInstance().managedObjectContext!
     }
     
     // MARK: - Life Cycle
@@ -27,6 +28,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         
         self.navigationItem.leftBarButtonItem = self.editButtonItem()
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Add, target: self, action: "addActor")
+        
         
         actors = fetchAllActors()
     }
@@ -98,7 +100,7 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
                 } catch let error as NSError {
                     print("Error while saving context \(error)")
                 }
-                tableView.reloadData()
+                self.tableView.reloadData()
             }
         }
     }

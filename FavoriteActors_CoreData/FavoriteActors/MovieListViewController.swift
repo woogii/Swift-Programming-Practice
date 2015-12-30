@@ -69,8 +69,9 @@ class MovieListViewController : UITableViewController {
     // MARK: - Core Data Convenience
     
     var sharedContext: NSManagedObjectContext {
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
-        return delegate.managedObjectContext
+        //let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        //return delegate.managedObjectContext
+        return CoreDataStackManager.sharedInstance().managedObjectContext!
     }
     
     

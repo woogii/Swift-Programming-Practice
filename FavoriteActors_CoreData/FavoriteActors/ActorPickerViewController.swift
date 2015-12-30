@@ -45,11 +45,11 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     override func viewDidLoad() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancel")
         
-        let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
+        // let delegate = UIApplication.sharedApplication().delegate as! AppDelegate
         
         // Set the temporary context
         temporaryContext = NSManagedObjectContext(concurrencyType: NSManagedObjectContextConcurrencyType.MainQueueConcurrencyType)
-        temporaryContext.persistentStoreCoordinator = delegate.managedObjectContext.persistentStoreCoordinator
+        temporaryContext.persistentStoreCoordinator = CoreDataStackManager.sharedInstance().managedObjectContext!.persistentStoreCoordinator
     }
     
     override func viewDidAppear(animated: Bool) {
