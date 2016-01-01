@@ -32,6 +32,16 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     var searchTask: NSURLSessionDataTask?
     
     
+    var sharedContext : NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+
+    lazy var scratchContext : NSManagedObjectContext = {
+        var context = NSManagedObjectContext()
+        context.persistentStoreCoordinator = CoreDataStackManager.sharedInstance().persistentStoreCoordinator
+        return context
+    }()
+    
     // MARK: - life Cycle
     override func viewDidLoad() {
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.Cancel, target: self, action: "cancel")
@@ -41,10 +51,6 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
         super.viewDidAppear(animated)
         
         self.searchBar.becomeFirstResponder()
-    }
-    
-    var sharedContext : NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext!
     }
     
     
@@ -61,10 +67,12 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
     // Each time the search text changes we want to cancel any current download and start a new one
     func searchBar(searchBar: UISearchBar, textDidChange searchText: String) {
         
+        // Cancel the last task
         if let task = searchTask {
             task.cancel()
         }
         
+        // If the text is empty we are done
         if searchText == "" {
             actors = [Person]()
             tableView?.reloadData()
@@ -72,44 +80,40 @@ class ActorPickerViewController: UIViewController, UITableViewDelegate, UITableV
             return
         }
         
-        // Start a new one download 
+        // Start a new one download
         let resource = TheMovieDB.Resources.SearchPerson
         let parameters = ["query" : searchText]
         
         searchTask = TheMovieDB.sharedInstance().taskForResource(resource, parameters: parameters) { [unowned self] jsonResult, error in
             
+            // Handle the error case
             if let error = error {
-                print("Error searching for actors : \(error.localizedDescription)")
+                print("Error searching for actors: \(error.localizedDescription)")
                 return
             }
             
             // Get a Swift dictionary from the JSON data
-            if let actorDictionaries = jsonResult.valueForKey("results") as? [[String:AnyObject]] {
+            if let actorDictionaries = jsonResult.valueForKey("results") as? [[String : AnyObject]] {
                 self.searchTask = nil
-
-                //  In order for this new change to execute safely on the main thread, you'll need to surroud the above 
-                //  two statements (starting before "self.actors = ") with a performBlock function. 
-                //   performBlock is a function of NSManagedObjectContext, you can see how it's used here: 
-                // https://developer.apple.com/library/prerelease/ios/documentation/Cocoa/Reference/CoreDataFramework/Classes/NSManagedObjectContext_Class/index.html#//apple_ref/occ/instm/NSManagedObjectContext/performBlock:
-                // (Use the same context that you used in the init Person call above.)
-                //
-
+                
+                // Create an array of Person instances from the JSON dictionaries
+                // If we change this so that it inserts into a context, which context should it be? 
                 self.actors = actorDictionaries.map() {
-                    Person(dictionary: $0, context: self.sharedContext)
+                    Person(dictionary: $0, context: self.scratchContext)
                 }
+                
+                // Reload the table on the main thread
+                dispatch_async(dispatch_get_main_queue()) {
+                    self.tableView!.reloadData()
+                }
+                
+                /*********************************************** NOTE ***********************************************
+                In order for this new change to execute safely on the main thread, you'll need to surroud the above two statements (starting before "self.actors = ") with a performBlock function. performBlock is a function of NSManagedObjectContext, you can see how it's used here: https://developer.apple.com/library/prerelease/ios/documentation/Cocoa/Reference/CoreDataFramework/Classes/NSManagedObjectContext_Class/index.html#//apple_ref/occ/instm/NSManagedObjectContext/performBlock:
+                    (Use the same context that you used in the init Person call above.)
+                */
             }
-            
-            
-            dispatch_async(dispatch_get_main_queue()) {
-                self.tableView!.reloadData()
-            }
-        
         }
     }
-    
-
-
-
     
     func searchBarSearchButtonClicked(searchBar: UISearchBar) {
         searchBar.resignFirstResponder()

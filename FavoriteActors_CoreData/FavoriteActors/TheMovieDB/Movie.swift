@@ -20,18 +20,19 @@ class Movie : NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var posterPath: String?
     @NSManaged var releaseDate: NSDate?
-    @NSManaged var actor:Person
-
+    @NSManaged var actor:Person?
+   
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init(dictionary : [String:AnyObject], insertIntoManagedObjectContext context: NSManagedObjectContext?) {
-    
-        let entity = NSEntityDescription.entityForName("Movie", inManagedObjectContext: context!)!
+    init(dictionary : [String:AnyObject],  context: NSManagedObjectContext?) {
         
-        super.init(entity: entity, insertIntoManagedObjectContext: context)
+        let entity = NSEntityDescription.entityForName("Movie", inManagedObjectContext: context!)
         
+        super.init(entity: entity!, insertIntoManagedObjectContext: context)
+        
+        // Dictionary
         title = dictionary[Keys.Title] as! String
         id = dictionary[TheMovieDB.Keys.ID] as! Int
         posterPath = dictionary[Keys.PosterPath] as? String

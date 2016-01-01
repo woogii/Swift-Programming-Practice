@@ -21,15 +21,14 @@ class Person : NSManagedObject {
     @NSManaged var id: NSNumber
     @NSManaged var imagePath: String?
     @NSManaged var movies: [Movie]
-    
 
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context: NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }
     
-    init( dictionary:[String: AnyObject], context: NSManagedObjectContext ) {
+    init( dictionary : [String:AnyObject], context: NSManagedObjectContext?) {
         
-        let entity = NSEntityDescription.entityForName("Person", inManagedObjectContext: context)
+        let entity = NSEntityDescription.entityForName("Person", inManagedObjectContext: context!)
         
         super.init(entity: entity!, insertIntoManagedObjectContext: context)
         
@@ -37,6 +36,7 @@ class Person : NSManagedObject {
         id = dictionary[Keys.ID] as! Int
         imagePath = dictionary[Keys.ProfilePath] as? String
 
+        
     }
     
     var image: UIImage? {

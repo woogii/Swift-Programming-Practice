@@ -15,6 +15,10 @@ class MovieListViewController : UITableViewController {
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     
+    var sharedContext : NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
+    }
+    
     // MARK: - Life Cycle
     
     override func viewDidLoad() {
@@ -30,36 +34,34 @@ class MovieListViewController : UITableViewController {
             
             let resource = TheMovieDB.Resources.PersonIDMovieCredits
             let parameters = [TheMovieDB.Keys.ID : actor.id]
-        
-    
-
-            TheMovieDB.sharedInstance().taskForResource(resource, parameters: parameters){ JSONResult, error  in
-                
-                if let _ = error {
-                    // self.alertViewForError(error)
-                } else {
             
+            TheMovieDB.sharedInstance().taskForResource(resource, parameters: parameters){ JSONResult, error  in
+                if let error = error {
+                    self.alertViewForError(error)
+                } else {
+                    
                     if let moviesDictionaries = JSONResult.valueForKey("cast") as? [[String : AnyObject]] {
                         
                         // Parse the array of movies dictionaries
                         _ = moviesDictionaries.map() { (dictionary: [String : AnyObject]) -> Movie in
-                            let movie = Movie(dictionary: dictionary, insertIntoManagedObjectContext : self.sharedContext)
+                            let movie = Movie(dictionary: dictionary, context: self.sharedContext)
                             
                             // We associate this movie with it's actor by appending it to the array
                             // In core data we use the relationship. We set the movie's actor property
-                            // self.actor.movies.append(movie)
+                            //self.actor.movies.append(movie)
                             movie.actor = self.actor
                             
                             return movie
                         }
-                    
+                        
                         // Update the table on the main thread
                         dispatch_async(dispatch_get_main_queue()) {
                             self.tableView.reloadData()
                         }
                         
-                    }
-                    else {
+                        CoreDataStackManager.sharedInstance().saveContext()
+                        
+                    } else {
                         let error = NSError(domain: "Movie for Person Parsing. Cant find cast in \(JSONResult)", code: 0, userInfo: nil)
                         self.alertViewForError(error)
                     }
@@ -69,11 +71,6 @@ class MovieListViewController : UITableViewController {
     }
     
     
-    // MARK: - Convenience Method for CoreDataStack
-    
-    var sharedContext : NSManagedObjectContext {
-        return CoreDataStackManager.sharedInstance().managedObjectContext!
-    }
     
     // MARK: - Table View
     
