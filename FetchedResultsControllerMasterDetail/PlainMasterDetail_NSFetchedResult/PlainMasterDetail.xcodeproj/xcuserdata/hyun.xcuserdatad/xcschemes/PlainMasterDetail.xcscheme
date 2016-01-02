@@ -14,10 +14,10 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4DE87E321AC1F4AE008B9A12"
-               BuildableName = "FetchedResultsControllerMasterDetail.app"
-               BlueprintName = "FetchedResultsControllerMasterDetail"
-               ReferencedContainer = "container:FetchedResultsControllerMasterDetail.xcodeproj">
+               BlueprintIdentifier = "4D155D491ABA5997001664B9"
+               BuildableName = "PlainMasterDetail.app"
+               BlueprintName = "PlainMasterDetail"
+               ReferencedContainer = "container:PlainMasterDetail.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
@@ -32,20 +32,20 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "4DE87E4C1AC1F4AE008B9A12"
-               BuildableName = "FetchedResultsControllerMasterDetailTests.xctest"
-               BlueprintName = "FetchedResultsControllerMasterDetailTests"
-               ReferencedContainer = "container:FetchedResultsControllerMasterDetail.xcodeproj">
+               BlueprintIdentifier = "4D155D631ABA5998001664B9"
+               BuildableName = "PlainMasterDetailTests.xctest"
+               BlueprintName = "PlainMasterDetailTests"
+               ReferencedContainer = "container:PlainMasterDetail.xcodeproj">
             </BuildableReference>
          </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DE87E321AC1F4AE008B9A12"
-            BuildableName = "FetchedResultsControllerMasterDetail.app"
-            BlueprintName = "FetchedResultsControllerMasterDetail"
-            ReferencedContainer = "container:FetchedResultsControllerMasterDetail.xcodeproj">
+            BlueprintIdentifier = "4D155D491ABA5997001664B9"
+            BuildableName = "PlainMasterDetail.app"
+            BlueprintName = "PlainMasterDetail"
+            ReferencedContainer = "container:PlainMasterDetail.xcodeproj">
          </BuildableReference>
       </MacroExpansion>
       <AdditionalOptions>
@@ -65,10 +65,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DE87E321AC1F4AE008B9A12"
-            BuildableName = "FetchedResultsControllerMasterDetail.app"
-            BlueprintName = "FetchedResultsControllerMasterDetail"
-            ReferencedContainer = "container:FetchedResultsControllerMasterDetail.xcodeproj">
+            BlueprintIdentifier = "4D155D491ABA5997001664B9"
+            BuildableName = "PlainMasterDetail.app"
+            BlueprintName = "PlainMasterDetail"
+            ReferencedContainer = "container:PlainMasterDetail.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
       <AdditionalOptions>
@@ -84,10 +84,10 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "4DE87E321AC1F4AE008B9A12"
-            BuildableName = "FetchedResultsControllerMasterDetail.app"
-            BlueprintName = "FetchedResultsControllerMasterDetail"
-            ReferencedContainer = "container:FetchedResultsControllerMasterDetail.xcodeproj">
+            BlueprintIdentifier = "4D155D491ABA5997001664B9"
+            BuildableName = "PlainMasterDetail.app"
+            BlueprintName = "PlainMasterDetail"
+            ReferencedContainer = "container:PlainMasterDetail.xcodeproj">
          </BuildableReference>
       </BuildableProductRunnable>
    </ProfileAction>

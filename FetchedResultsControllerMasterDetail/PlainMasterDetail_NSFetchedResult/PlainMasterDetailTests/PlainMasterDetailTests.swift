@@ -1,15 +1,15 @@
 //
-//  FetchedResultsControllerMasterDetailTests.swift
-//  FetchedResultsControllerMasterDetailTests
+//  PlainMasterDetailTests.swift
+//  PlainMasterDetailTests
 //
-//  Created by Jason on 3/24/15.
+//  Created by Jason on 3/18/15.
 //  Copyright (c) 2015 Udacity. All rights reserved.
 //
 
 import UIKit
 import XCTest
 
-class FetchedResultsControllerMasterDetailTests: XCTestCase {
+class PlainMasterDetailTests: XCTestCase {
     
     override func setUp() {
         super.setUp()
