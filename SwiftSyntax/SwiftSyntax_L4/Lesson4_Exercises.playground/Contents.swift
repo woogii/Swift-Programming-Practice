@@ -102,6 +102,8 @@ if myMove == .Rock && yourMove == .Paper || myMove == .Paper && yourMove == .Roc
     resultsMessage = "Scissors cut Paper."
 }
 
+print(roshamboMove.Rock)
+
 switch (myMove, yourMove) {
     
 case (.Rock, .Paper), (.Paper, .Rock):
@@ -113,6 +115,8 @@ case (.Rock, .Scissors), (.Scissors, .Rock):
 case (.Paper, .Scissors), (.Scissors, .Paper):
     resultsMessage = "Rock crushes Scissors."
 }
+
+
 
 //: ### Exercise 7
 //: Below is an if-else statement matching an assignment score to a letter grade.

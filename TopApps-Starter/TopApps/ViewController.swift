@@ -50,8 +50,7 @@ class ViewController: UIViewController {
                 print(apps)
             }
             
-
-        
+            
         
         #if false
             
