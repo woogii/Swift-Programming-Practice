@@ -15,7 +15,7 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var rockButton: UIButton!
     @IBOutlet weak var scissorButton: UIButton!
     
-    var result = false
+    var matchResult: String!
     var resultMessage: String!
     var imageName: String!
     
@@ -32,22 +32,21 @@ class PlayViewController: UIViewController {
         
         let nextViewController = segue.destinationViewController as! ResultViewController
 
-        nextViewController.resultMessage = resultMessage
+        nextViewController.resultMessage = resultMessage + matchResult
         nextViewController.imageName = imageName
-        
-            
     
     }
     
     @IBAction func buttonClick(sender: UIButton) {
         
         playGame(sender)
+
         
         switch sender {
             case paperButton:
                 var controller : ResultViewController
                 controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController") as! ResultViewController
-                controller.resultMessage = resultMessage
+                controller.resultMessage = resultMessage + matchResult
                 controller.imageName = imageName
         
                 self.presentViewController(controller, animated: true, completion: nil)
@@ -79,19 +78,30 @@ class PlayViewController: UIViewController {
             
             case (paperButton, .Rock), (rockButton, .Paper):
                 imageName = "PaperCoversRock"
-                resultMessage = "Paper covers rock"
+                resultMessage = "Paper covers rock."
             case (scissorButton, .Rock), (rockButton, .Scissor):
                 imageName = "RockCrushesScissors"
-                resultMessage = "Rock crushes scissors"
+                resultMessage = "Rock crushes scissors."
             case (paperButton, .Paper), (scissorButton, .Scissor), (rockButton, .Rock):
                 imageName = "itsATie"
-                resultMessage = "It is a tie"
+                resultMessage = "It is a tie."
             default :
                 break
         }
         
-    }
+        switch(myMove, yourMove) {
+            case (paperButton, .Rock), (scissorButton, .Paper), (rockButton, .Scissor):
+                matchResult = " You win"
+            case (paperButton, .Scissor), (scissorButton, .Rock),(rockButton, .Paper) :
+                matchResult = " You Lose"
+            default :
+                matchResult = " "
+                break
+        }
+
         
+    }
+    
     
 
    
