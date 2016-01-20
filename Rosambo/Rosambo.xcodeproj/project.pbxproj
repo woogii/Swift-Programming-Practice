@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D2330F7F1C4F94EB009EA888 /* RPS.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2330F7E1C4F94EB009EA888 /* RPS.swift */; };
+		D2330F811C4F94F8009EA888 /* RPSMatch.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2330F801C4F94F7009EA888 /* RPSMatch.swift */; };
 		D2BF8D181C48D7320024EDC4 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF8D171C48D7320024EDC4 /* AppDelegate.swift */; };
 		D2BF8D1A1C48D7320024EDC4 /* PlayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF8D191C48D7320024EDC4 /* PlayViewController.swift */; };
 		D2BF8D1D1C48D7320024EDC4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2BF8D1B1C48D7320024EDC4 /* Main.storyboard */; };
@@ -35,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D2330F7E1C4F94EB009EA888 /* RPS.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPS.swift; sourceTree = "<group>"; };
+		D2330F801C4F94F7009EA888 /* RPSMatch.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RPSMatch.swift; sourceTree = "<group>"; };
 		D2BF8D141C48D7320024EDC4 /* Rosambo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Rosambo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2BF8D171C48D7320024EDC4 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2BF8D191C48D7320024EDC4 /* PlayViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayViewController.swift; sourceTree = "<group>"; };
@@ -101,6 +105,8 @@
 			children = (
 				D2BF8D171C48D7320024EDC4 /* AppDelegate.swift */,
 				D2BF8D191C48D7320024EDC4 /* PlayViewController.swift */,
+				D2330F7E1C4F94EB009EA888 /* RPS.swift */,
+				D2330F801C4F94F7009EA888 /* RPSMatch.swift */,
 				D2BF8D451C48E3050024EDC4 /* ResultViewController.swift */,
 				D2BF8D1B1C48D7320024EDC4 /* Main.storyboard */,
 				D2BF8D1E1C48D7320024EDC4 /* Assets.xcassets */,
@@ -260,8 +266,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				D2BF8D1A1C48D7320024EDC4 /* PlayViewController.swift in Sources */,
+				D2330F7F1C4F94EB009EA888 /* RPS.swift in Sources */,
 				D2BF8D181C48D7320024EDC4 /* AppDelegate.swift in Sources */,
 				D2BF8D461C48E3050024EDC4 /* ResultViewController.swift in Sources */,
+				D2330F811C4F94F8009EA888 /* RPSMatch.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
