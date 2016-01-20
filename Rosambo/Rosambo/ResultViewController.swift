@@ -14,20 +14,15 @@ class ResultViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var textLabel: UILabel!
     
-    var resultMessage: String?
-    var imageName: String?
+
+    
+    var match: RPSMatch!
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(true)
         
-        if let resultMessage = self.resultMessage {
-            textLabel.text = resultMessage
-        }
         
-        if let imageName = self.imageName {
-            imageView.image = UIImage(named:imageName)
-        }
-    
+        
     }
     
     override func viewDidLoad() {

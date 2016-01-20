@@ -15,7 +15,6 @@ enum RPS {
     
     
     init() {
-        
         // Randomly generate the number between 0 and 2
         switch arc4random() % 3 {
             
@@ -26,16 +25,18 @@ enum RPS {
         default:
             self = .Scissors
         }
+        
     }
     
+    // Decide whether current RPS wins against the opponent
     func defeats(opponent: RPS)->Bool {
         
         switch(self, opponent) {
             
             case(.Paper, .Rock), (.Scissors, .Paper), (.Rock, .Scissors):
-                return true;
+                return true
             default:
-                return false;
+                return false
         }
     }
     
@@ -61,4 +62,6 @@ extension RPS: CustomStringConvertible {
             
         }
     }
+    
+    
 }

@@ -18,46 +18,46 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bwD-po-5fR">
-                                <rect key="frame" x="50" y="84" width="250" height="464"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bwD-po-5fR">
+                                <rect key="frame" x="50" y="84" width="250" height="508"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Md2-fq-QAf">
-                                        <rect key="frame" x="0.0" y="0.0" width="250" height="155"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Md2-fq-QAf">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="169"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ma-z0-lgb">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="155"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4Ma-z0-lgb">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="169"/>
                                                 <state key="normal" title="Button" image="paper"/>
                                                 <connections>
-                                                    <action selector="buttonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7S3-1T-YgP"/>
+                                                    <action selector="makeYourMove:" destination="BYZ-38-t0r" eventType="touchUpInside" id="k7X-ky-6uc"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1GX-uY-zuz">
-                                        <rect key="frame" x="0.0" y="155" width="250" height="154"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" distribution="fillEqually" alignment="center" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="1GX-uY-zuz">
+                                        <rect key="frame" x="0.0" y="169" width="250" height="170"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eo0-be-7O2">
-                                                <rect key="frame" x="0.0" y="45" width="115" height="65"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eo0-be-7O2">
+                                                <rect key="frame" x="0.0" y="53" width="115" height="65"/>
                                                 <state key="normal" title="Button" image="rock"/>
                                                 <connections>
-                                                    <action selector="buttonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="8Da-dL-w0m"/>
+                                                    <action selector="makeYourMove:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5xS-nE-Gtp"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7r-Bo-HMA">
-                                                <rect key="frame" x="135" y="45" width="115" height="65"/>
+                                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="P7r-Bo-HMA">
+                                                <rect key="frame" x="135" y="53" width="115" height="65"/>
                                                 <state key="normal" title="Button" image="scissors"/>
                                                 <connections>
-                                                    <action selector="buttonClick:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Y8I-ht-n82"/>
+                                                    <action selector="makeYourMove:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vwi-hJ-dex"/>
                                                     <segue destination="ze6-Fh-P4z" kind="presentation" identifier="scissorSegue" id="hvt-8Z-YuD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
-                                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BMw-iU-yZG">
-                                        <rect key="frame" x="0.0" y="309" width="250" height="155"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="BMw-iU-yZG">
+                                        <rect key="frame" x="0.0" y="339" width="250" height="169"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Let's play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGZ-Or-VC9">
-                                                <rect key="frame" x="0.0" y="0.0" width="250" height="155"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Let's play" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JGZ-Or-VC9">
+                                                <rect key="frame" x="0.0" y="0.0" width="250" height="169"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                 <nil key="highlightedColor"/>
@@ -78,6 +78,7 @@
                     <navigationItem key="navigationItem" id="V7y-nn-SMK"/>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="makeYourMove" destination="4Ma-z0-lgb" id="hh7-LR-Nrf"/>
                         <outlet property="paperButton" destination="4Ma-z0-lgb" id="YWL-HX-Js4"/>
                         <outlet property="rockButton" destination="eo0-be-7O2" id="i9T-lF-59Z"/>
                         <outlet property="scissorButton" destination="P7r-Bo-HMA" id="dcj-Jo-ilk"/>

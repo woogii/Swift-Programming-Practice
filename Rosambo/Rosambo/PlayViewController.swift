@@ -15,7 +15,7 @@ class PlayViewController: UIViewController {
     @IBOutlet weak var rockButton: UIButton!
     @IBOutlet weak var scissorButton: UIButton!
     
-    var matchResult: String!
+    var match: RPSMatch!
     var resultMessage: String!
     var imageName: String!
     
@@ -23,38 +23,53 @@ class PlayViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    enum roshamboMove : Int {
-        case Rock = 1, Scissor, Paper
-    }
-
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
      
-        
         let nextViewController = segue.destinationViewController as! ResultViewController
-
-        nextViewController.resultMessage = resultMessage + matchResult
-        nextViewController.imageName = imageName
+        nextViewController.match = match
     
     }
     
-    @IBAction func buttonClick(sender: UIButton) {
-        
-        playGame(sender)
-
+    @IBAction func makeYourMove(sender: UIButton) {
         
         switch sender {
-            case paperButton:
+            
+        case paperButton :
+            throwDown(RPS.Paper)
+            break
+        case scissorButton :
+            throwDown(RPS.Scissors)
+            break
+        case rockButton :
+            throwDown(RPS.Rock)
+            break
+        default:
+            break
+        }
+        
+    }
+
+    
+    func throwDown(myMove: RPS) {
+    
+        let opponent = RPS()
+        match = RPSMatch(p1: myMove, p2: opponent)
+        
+        switch myMove {
+        
+            case RPS.Paper:
+            
+                let match = RPSMatch(p1: RPS.Paper, p2: opponent)
+                
                 var controller : ResultViewController
                 controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController") as! ResultViewController
-                controller.resultMessage = resultMessage + matchResult
-                controller.imageName = imageName
-        
-                self.presentViewController(controller, animated: true, completion: nil)
+                controller.match = match
                 
+                self.presentViewController(controller, animated: true, completion: nil)
                 break
-            case rockButton:
-                print("rockButton in switch")
-                performSegueWithIdentifier("rockSegue", sender: sender)
+    
+            case RPS.Rock:
+                performSegueWithIdentifier("rockSegue", sender: self)
                 break
             
             default:
@@ -63,50 +78,5 @@ class PlayViewController: UIViewController {
     }
     
   
-    func playGame(sender: UIButton) {
-        
-        let randomPick = Int(arc4random_uniform(3)+1)
-        
-        let yourMove = roshamboMove(rawValue: randomPick)!
-        let myMove = sender
-        
-        switch(myMove, yourMove) {
-            
-            case (paperButton, .Scissor), (scissorButton, .Paper):
-                imageName = "ScissorsCutPaper"
-                resultMessage = "Scissors cuts paper."
-            
-            case (paperButton, .Rock), (rockButton, .Paper):
-                imageName = "PaperCoversRock"
-                resultMessage = "Paper covers rock."
-            case (scissorButton, .Rock), (rockButton, .Scissor):
-                imageName = "RockCrushesScissors"
-                resultMessage = "Rock crushes scissors."
-            case (paperButton, .Paper), (scissorButton, .Scissor), (rockButton, .Rock):
-                imageName = "itsATie"
-                resultMessage = "It is a tie."
-            default :
-                break
-        }
-        
-        switch(myMove, yourMove) {
-            case (paperButton, .Rock), (scissorButton, .Paper), (rockButton, .Scissor):
-                matchResult = " You win"
-            case (paperButton, .Scissor), (scissorButton, .Rock),(rockButton, .Paper) :
-                matchResult = " You Lose"
-            default :
-                matchResult = " "
-                break
-        }
-
-        
-    }
-    
-    
-
-   
-    
-    
-    
 }
 
