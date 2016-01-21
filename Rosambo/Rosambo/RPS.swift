@@ -55,7 +55,7 @@ extension RPS: CustomStringConvertible {
             case .Rock:
                 return "Rock"
             case .Scissors:
-                return "Scissor"
+                return "Scissors"
             case .Paper:
                 return "Paper"
             }
