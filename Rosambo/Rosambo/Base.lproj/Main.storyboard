@@ -18,8 +18,8 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bwD-po-5fR">
-                                <rect key="frame" x="50" y="84" width="250" height="508"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="bwD-po-5fR">
+                                <rect key="frame" x="50" y="40" width="250" height="508"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="Md2-fq-QAf">
                                         <rect key="frame" x="0.0" y="0.0" width="250" height="169"/>
@@ -48,7 +48,7 @@
                                                 <state key="normal" title="Button" image="scissors"/>
                                                 <connections>
                                                     <action selector="makeYourMove:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vwi-hJ-dex"/>
-                                                    <segue destination="ze6-Fh-P4z" kind="presentation" identifier="scissorSegue" id="hvt-8Z-YuD"/>
+                                                    <segue destination="ze6-Fh-P4z" kind="presentation" identifier="throwScissors" id="hvt-8Z-YuD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -81,7 +81,7 @@
                         <outlet property="paperButton" destination="4Ma-z0-lgb" id="YWL-HX-Js4"/>
                         <outlet property="rockButton" destination="eo0-be-7O2" id="i9T-lF-59Z"/>
                         <outlet property="scissorButton" destination="P7r-Bo-HMA" id="dcj-Jo-ilk"/>
-                        <segue destination="ze6-Fh-P4z" kind="presentation" identifier="rockSegue" id="NeH-3b-HYW"/>
+                        <segue destination="ze6-Fh-P4z" kind="presentation" identifier="throwPaper" id="LKS-wS-KWF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -100,17 +100,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="pub-lr-5Ah">
-                                <rect key="frame" x="40" y="133" width="240" height="236"/>
+                            <imageView userInteractionEnabled="NO" alpha="0.20000000000000001" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="pub-lr-5Ah">
+                                <rect key="frame" x="32" y="89" width="255" height="203"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="203" id="kbN-Ls-gVT"/>
+                                </constraints>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6q6-vh-iMy">
-                                <rect key="frame" x="39" y="434" width="247" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6q6-vh-iMy">
+                                <rect key="frame" x="35" y="437" width="229" height="18"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="15"/>
                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1e-jS-lyS">
-                                <rect key="frame" x="103" y="497" width="83" height="30"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1e-jS-lyS">
+                                <rect key="frame" x="119" y="497" width="83" height="30"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="83" id="hpa-aQ-4uu"/>
                                 </constraints>
@@ -123,21 +126,21 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="trailingMargin" secondItem="6q6-vh-iMy" secondAttribute="trailing" constant="40" id="6VA-fs-WLH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pub-lr-5Ah" secondAttribute="trailing" constant="20" id="ATj-UI-Gq3"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="pub-lr-5Ah" secondAttribute="trailing" constant="17" id="ATj-UI-Gq3"/>
                             <constraint firstItem="J3u-0O-a0n" firstAttribute="top" secondItem="D1e-jS-lyS" secondAttribute="bottom" constant="41" id="FmG-X0-lpm"/>
                             <constraint firstItem="J3u-0O-a0n" firstAttribute="top" secondItem="6q6-vh-iMy" secondAttribute="bottom" constant="113" id="HTe-9a-BfX"/>
                             <constraint firstItem="D1e-jS-lyS" firstAttribute="centerX" secondItem="cuh-8l-Mej" secondAttribute="centerX" id="SJ9-OW-8x9"/>
                             <constraint firstItem="pub-lr-5Ah" firstAttribute="top" secondItem="Pjk-qY-PuM" secondAttribute="bottom" constant="69" id="XHe-bm-hBB"/>
                             <constraint firstItem="6q6-vh-iMy" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leadingMargin" constant="19" id="b8m-kp-6N1"/>
-                            <constraint firstItem="6q6-vh-iMy" firstAttribute="top" secondItem="pub-lr-5Ah" secondAttribute="bottom" constant="65" id="bey-5a-435"/>
+                            <constraint firstItem="6q6-vh-iMy" firstAttribute="top" secondItem="pub-lr-5Ah" secondAttribute="bottom" constant="145" id="bey-5a-435"/>
                             <constraint firstItem="D1e-jS-lyS" firstAttribute="top" secondItem="6q6-vh-iMy" secondAttribute="bottom" constant="42" id="qfs-Ci-U1m"/>
-                            <constraint firstItem="pub-lr-5Ah" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leadingMargin" constant="20" id="tEX-fH-dqA"/>
+                            <constraint firstItem="pub-lr-5Ah" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leadingMargin" constant="16" id="tEX-fH-dqA"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="imageView" destination="pub-lr-5Ah" id="hws-aK-RiY"/>
-                        <outlet property="textLabel" destination="6q6-vh-iMy" id="77t-dI-Xy6"/>
+                        <outlet property="messageLabel" destination="6q6-vh-iMy" id="1jA-qA-zC5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="qFp-D8-bkE" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -151,6 +154,6 @@
         <image name="scissors" width="75" height="65"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="hvt-8Z-YuD"/>
+        <segue reference="LKS-wS-KWF"/>
     </inferredMetricsTieBreakers>
 </document>

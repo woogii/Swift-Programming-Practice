@@ -12,67 +12,76 @@ import UIKit
 class ResultViewController: UIViewController {
     
     @IBOutlet weak var imageView: UIImageView!
-    @IBOutlet weak var textLabel: UILabel!
 
+
+    @IBOutlet weak var messageLabel: UILabel!
     
     var match: RPSMatch!
     var matchResult :String!
-    
-    // PaperCoversRock
-    // RockCrushesScissors
-    // ScissorsCutPaper
-    // itsATie
-    
+ 
     override func viewWillAppear(animated: Bool) {
         
-        super.viewWillAppear(true)
+        super.viewWillAppear(animated)
         
-        showImage()
-        showMatchResult()
+        messageLabel.text = messageForMatch(match)
+        imageView.image = imageForMatch(match)
     }
     
-    func showMatchResult() {
-        var result = match.p1.defeats(match.p2) ? "You Win!" : "You Lose!"
-        textLabel.text = result
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        UIView.animateWithDuration(1.5) {
+            self.imageView.alpha = 1
+        }
     }
     
-    func showImage() {
+    
+    func messageForMatch(match: RPSMatch) -> String {
         
-        print("my move : \(match.p1.description)")
-        print("opponent move: \(match.p2.description)")
-
-        if(match.winner.description != match.loser.description) {
-
-            var imageName:String!
-            
-            switch match.winner.description {
-                
-                case "Paper" :
-                    imageName = "\(match.winner.description)Covers\(match.loser.description)"
-                break
-                case "Scissors":
-                    imageName = "\(match.winner.description)Cut\(match.loser.description)"
-                break
-                case "Rock" :
-                    imageName = "\(match.winner.description)Crushes\(match.loser.description)"
-                break
-            default:
-                break
-            }
-            print(imageName)
-            imageView.image = UIImage(named: imageName)
-        } else {
-            imageView.image = UIImage(named:"itsATie")
+        // Handle the tie
+        if match.p1 == match.p2 {
+            return "It's a tie!"
         }
         
-        print("=====================")
+        // Here we build up the results message "RockCrushesScissors. You Win!" etc.
+        return match.winner.description + " " + victoryModeString(match.winner) + " " + match.loser.description + ". " + resultString(match)
     }
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+    func resultString(match: RPSMatch) -> String {
+        return match.p1.defeats(match.p2) ? "You Win!" : "You Lose!"
     }
-
+    
+    
+    func victoryModeString(gesture: RPS) -> String {
+        switch (gesture) {
+        case .Rock:
+            return "crushes"
+        case .Scissors:
+            return "cuts"
+        case .Paper:
+            return "covers"
+        }
+    }
+    
+    func imageForMatch(match: RPSMatch) -> UIImage {
+        
+        var name = ""
+        
+        switch (match.winner) {
+        case .Rock:
+            name = "RockCrushesScissors"
+        case .Paper:
+            name = "PaperCoversRock"
+        case .Scissors:
+            name = "ScissorsCutPaper"
+        }
+        
+        if match.p1 == match.p2 {
+            name = "itsATie"
+        }
+        return UIImage(named: name)!
+    }
+   
     @IBAction func playAgainButton(sender: AnyObject) {
         
         self.dismissViewControllerAnimated(true, completion: nil)

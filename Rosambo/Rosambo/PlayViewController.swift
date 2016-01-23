@@ -26,7 +26,7 @@ class PlayViewController: UIViewController {
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
      
         let nextViewController = segue.destinationViewController as! ResultViewController
-        nextViewController.match = match
+        nextViewController.match = self.match
     
     }
     
@@ -57,19 +57,16 @@ class PlayViewController: UIViewController {
         
         switch myMove {
         
-            case RPS.Paper:
-            
-                let match = RPSMatch(p1: RPS.Paper, p2: opponent)
-                
-                var controller : ResultViewController
-                controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController") as! ResultViewController
+            case RPS.Rock:
+        
+                let controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController") as! ResultViewController
                 controller.match = match
                 
                 self.presentViewController(controller, animated: true, completion: nil)
                 break
     
-            case RPS.Rock:
-                performSegueWithIdentifier("rockSegue", sender: self)
+            case RPS.Paper:
+                performSegueWithIdentifier("throwPaper", sender: self)
                 break
             
             default:
