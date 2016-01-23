@@ -1,11 +1,27 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="aay-hg-Bfg">
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="n5L-GQ-1zo">
+            <objects>
+                <navigationController id="aay-hg-Bfg" sceneMemberID="viewController">
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="tE9-YA-U4y">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="lrE-8n-jcZ"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dpV-pj-Di7" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="353" y="477"/>
+        </scene>
         <!--Play View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
@@ -48,7 +64,7 @@
                                                 <state key="normal" title="Button" image="scissors"/>
                                                 <connections>
                                                     <action selector="makeYourMove:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Vwi-hJ-dex"/>
-                                                    <segue destination="ze6-Fh-P4z" kind="presentation" identifier="throwScissors" id="hvt-8Z-YuD"/>
+                                                    <segue destination="ze6-Fh-P4z" kind="show" identifier="throwScissors" id="hvt-8Z-YuD"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -81,7 +97,7 @@
                         <outlet property="paperButton" destination="4Ma-z0-lgb" id="YWL-HX-Js4"/>
                         <outlet property="rockButton" destination="eo0-be-7O2" id="i9T-lF-59Z"/>
                         <outlet property="scissorButton" destination="P7r-Bo-HMA" id="dcj-Jo-ilk"/>
-                        <segue destination="ze6-Fh-P4z" kind="presentation" identifier="throwPaper" id="LKS-wS-KWF"/>
+                        <segue destination="ze6-Fh-P4z" kind="show" identifier="throwPaper" id="LKS-wS-KWF"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -115,6 +131,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D1e-jS-lyS">
                                 <rect key="frame" x="119" y="497" width="83" height="30"/>
                                 <constraints>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="83" id="TKG-GT-Wd2"/>
                                     <constraint firstAttribute="width" constant="83" id="hpa-aQ-4uu"/>
                                 </constraints>
                                 <state key="normal" title="Play again"/>
@@ -125,16 +142,16 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="trailingMargin" secondItem="6q6-vh-iMy" secondAttribute="trailing" constant="40" id="6VA-fs-WLH"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="pub-lr-5Ah" secondAttribute="trailing" constant="17" id="ATj-UI-Gq3"/>
-                            <constraint firstItem="J3u-0O-a0n" firstAttribute="top" secondItem="D1e-jS-lyS" secondAttribute="bottom" constant="41" id="FmG-X0-lpm"/>
-                            <constraint firstItem="J3u-0O-a0n" firstAttribute="top" secondItem="6q6-vh-iMy" secondAttribute="bottom" constant="113" id="HTe-9a-BfX"/>
-                            <constraint firstItem="D1e-jS-lyS" firstAttribute="centerX" secondItem="cuh-8l-Mej" secondAttribute="centerX" id="SJ9-OW-8x9"/>
-                            <constraint firstItem="pub-lr-5Ah" firstAttribute="top" secondItem="Pjk-qY-PuM" secondAttribute="bottom" constant="69" id="XHe-bm-hBB"/>
-                            <constraint firstItem="6q6-vh-iMy" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leadingMargin" constant="19" id="b8m-kp-6N1"/>
-                            <constraint firstItem="6q6-vh-iMy" firstAttribute="top" secondItem="pub-lr-5Ah" secondAttribute="bottom" constant="145" id="bey-5a-435"/>
-                            <constraint firstItem="D1e-jS-lyS" firstAttribute="top" secondItem="6q6-vh-iMy" secondAttribute="bottom" constant="42" id="qfs-Ci-U1m"/>
-                            <constraint firstItem="pub-lr-5Ah" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leadingMargin" constant="16" id="tEX-fH-dqA"/>
+                            <constraint firstItem="6q6-vh-iMy" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leading" constant="35" id="3l9-v1-EAi"/>
+                            <constraint firstAttribute="trailing" secondItem="6q6-vh-iMy" secondAttribute="trailing" constant="56" id="4kG-BG-NTs"/>
+                            <constraint firstItem="D1e-jS-lyS" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leading" constant="119" id="4rT-pJ-Tfz"/>
+                            <constraint firstItem="D1e-jS-lyS" firstAttribute="top" secondItem="6q6-vh-iMy" secondAttribute="bottom" constant="42" id="5kn-99-qeo"/>
+                            <constraint firstAttribute="trailing" secondItem="pub-lr-5Ah" secondAttribute="trailing" constant="33" id="6Fe-5o-m8r"/>
+                            <constraint firstItem="J3u-0O-a0n" firstAttribute="top" secondItem="D1e-jS-lyS" secondAttribute="bottom" constant="41" id="G1n-1l-mfh"/>
+                            <constraint firstItem="pub-lr-5Ah" firstAttribute="top" secondItem="Pjk-qY-PuM" secondAttribute="bottom" constant="25" id="JXq-dd-VpP"/>
+                            <constraint firstAttribute="trailing" secondItem="D1e-jS-lyS" secondAttribute="trailing" constant="118" id="cqJ-hA-961"/>
+                            <constraint firstItem="pub-lr-5Ah" firstAttribute="leading" secondItem="cuh-8l-Mej" secondAttribute="leading" constant="32" id="lMx-tu-AZd"/>
+                            <constraint firstItem="6q6-vh-iMy" firstAttribute="top" secondItem="pub-lr-5Ah" secondAttribute="bottom" constant="145" id="lmE-KG-McG"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>

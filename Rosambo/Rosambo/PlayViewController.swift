@@ -62,7 +62,8 @@ class PlayViewController: UIViewController {
                 let controller = self.storyboard?.instantiateViewControllerWithIdentifier("ResultViewController") as! ResultViewController
                 controller.match = match
                 
-                self.presentViewController(controller, animated: true, completion: nil)
+                //self.presentViewController(controller, animated: true, completion: nil)
+                self.navigationController?.pushViewController(controller, animated: true)
                 break
     
             case RPS.Paper:

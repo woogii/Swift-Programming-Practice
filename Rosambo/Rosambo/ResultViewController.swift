@@ -84,7 +84,8 @@ class ResultViewController: UIViewController {
    
     @IBAction func playAgainButton(sender: AnyObject) {
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+        //self.dismissViewControllerAnimated(true, completion: nil)
+        navigationController?.popViewControllerAnimated(true)
     }
     
 }
