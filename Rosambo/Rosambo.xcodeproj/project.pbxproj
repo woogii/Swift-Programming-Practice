@@ -17,6 +17,7 @@
 		D2BF8D2D1C48D7330024EDC4 /* RosamboTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF8D2C1C48D7330024EDC4 /* RosamboTests.swift */; };
 		D2BF8D381C48D7330024EDC4 /* RosamboUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF8D371C48D7330024EDC4 /* RosamboUITests.swift */; };
 		D2BF8D461C48E3050024EDC4 /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BF8D451C48E3050024EDC4 /* ResultViewController.swift */; };
+		D2F54B011C565F5500838D0E /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B001C565F5500838D0E /* HistoryViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -53,6 +54,7 @@
 		D2BF8D371C48D7330024EDC4 /* RosamboUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RosamboUITests.swift; sourceTree = "<group>"; };
 		D2BF8D391C48D7330024EDC4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2BF8D451C48E3050024EDC4 /* ResultViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		D2F54B001C565F5500838D0E /* HistoryViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +107,7 @@
 			children = (
 				D2BF8D171C48D7320024EDC4 /* AppDelegate.swift */,
 				D2BF8D191C48D7320024EDC4 /* PlayViewController.swift */,
+				D2F54B001C565F5500838D0E /* HistoryViewController.swift */,
 				D2330F7E1C4F94EB009EA888 /* RPS.swift */,
 				D2330F801C4F94F7009EA888 /* RPSMatch.swift */,
 				D2BF8D451C48E3050024EDC4 /* ResultViewController.swift */,
@@ -268,6 +271,7 @@
 				D2BF8D1A1C48D7320024EDC4 /* PlayViewController.swift in Sources */,
 				D2330F7F1C4F94EB009EA888 /* RPS.swift in Sources */,
 				D2BF8D181C48D7320024EDC4 /* AppDelegate.swift in Sources */,
+				D2F54B011C565F5500838D0E /* HistoryViewController.swift in Sources */,
 				D2BF8D461C48E3050024EDC4 /* ResultViewController.swift in Sources */,
 				D2330F811C4F94F8009EA888 /* RPSMatch.swift in Sources */,
 			);

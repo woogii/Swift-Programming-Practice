@@ -18,7 +18,8 @@ class PlayViewController: UIViewController {
     var match: RPSMatch!
     var resultMessage: String!
     var imageName: String!
-    
+    var matchHistory = [RPSMatch]()
+
     override func viewDidLoad() {
         super.viewDidLoad()
     }
@@ -54,6 +55,7 @@ class PlayViewController: UIViewController {
     
         let opponent = RPS()
         match = RPSMatch(p1: myMove, p2: opponent)
+        matchHistory.append(match)
         
         switch myMove {
         
@@ -75,6 +77,13 @@ class PlayViewController: UIViewController {
         }
     }
     
+
+    @IBAction func showHistory(sender: UIButton) {
+        
+        let historyVC = storyboard?.instantiateViewControllerWithIdentifier("HistoryViewController") as! HistoryViewController
+        presentViewController(historyVC, animated: true, completion: nil)
+        historyVC.history = matchHistory
+    }
   
 }
 
