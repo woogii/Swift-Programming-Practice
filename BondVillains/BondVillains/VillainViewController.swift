@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class VillainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
 
     var villainArray = [Villain]()
     let cellIdentifier = "villainCell"
@@ -37,5 +37,13 @@ class ViewController: UIViewController, UITableViewDelegate, UITableViewDataSour
         return cell
     }
 
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let detailViewController = self.storyboard?.instantiateViewControllerWithIdentifier("VillainDetailViewController") as! VillainDetailViewController
+        let villain = villainArray[indexPath.row]
+        detailViewController.selectedVillain = villain 
+    
+        navigationController?.pushViewController(detailViewController, animated: true)
+    }
 }
 

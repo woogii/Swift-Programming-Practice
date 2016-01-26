@@ -8,13 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		D2F54AD11C563D2B00838D0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54AD01C563D2B00838D0E /* AppDelegate.swift */; };
-		D2F54AD31C563D2B00838D0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54AD21C563D2B00838D0E /* ViewController.swift */; };
+		D2F54AD31C563D2B00838D0E /* VillainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54AD21C563D2B00838D0E /* VillainViewController.swift */; };
 		D2F54AD61C563D2B00838D0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F54AD41C563D2B00838D0E /* Main.storyboard */; };
 		D2F54AD81C563D2B00838D0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2F54AD71C563D2B00838D0E /* Assets.xcassets */; };
 		D2F54ADB1C563D2B00838D0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F54AD91C563D2B00838D0E /* LaunchScreen.storyboard */; };
 		D2F54AE61C563D2B00838D0E /* BondVillainsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54AE51C563D2B00838D0E /* BondVillainsTests.swift */; };
 		D2F54AF11C563D2B00838D0E /* BondVillainsUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54AF01C563D2B00838D0E /* BondVillainsUITests.swift */; };
 		D2F54AFF1C563D5B00838D0E /* Villain.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54AFE1C563D5B00838D0E /* Villain.swift */; };
+		D2F54B031C57B20200838D0E /* VillainDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B021C57B20200838D0E /* VillainDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -37,7 +38,7 @@
 /* Begin PBXFileReference section */
 		D2F54ACD1C563D2B00838D0E /* BondVillains.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BondVillains.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2F54AD01C563D2B00838D0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2F54AD21C563D2B00838D0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D2F54AD21C563D2B00838D0E /* VillainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VillainViewController.swift; sourceTree = "<group>"; };
 		D2F54AD51C563D2B00838D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2F54AD71C563D2B00838D0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2F54ADA1C563D2B00838D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -49,6 +50,7 @@
 		D2F54AF01C563D2B00838D0E /* BondVillainsUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BondVillainsUITests.swift; sourceTree = "<group>"; };
 		D2F54AF21C563D2B00838D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D2F54AFE1C563D5B00838D0E /* Villain.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Villain.swift; sourceTree = "<group>"; };
+		D2F54B021C57B20200838D0E /* VillainDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = VillainDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,7 +102,8 @@
 			isa = PBXGroup;
 			children = (
 				D2F54AD01C563D2B00838D0E /* AppDelegate.swift */,
-				D2F54AD21C563D2B00838D0E /* ViewController.swift */,
+				D2F54AD21C563D2B00838D0E /* VillainViewController.swift */,
+				D2F54B021C57B20200838D0E /* VillainDetailViewController.swift */,
 				D2F54AFE1C563D5B00838D0E /* Villain.swift */,
 				D2F54AD41C563D2B00838D0E /* Main.storyboard */,
 				D2F54AD71C563D2B00838D0E /* Assets.xcassets */,
@@ -259,9 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D2F54AD31C563D2B00838D0E /* ViewController.swift in Sources */,
+				D2F54AD31C563D2B00838D0E /* VillainViewController.swift in Sources */,
 				D2F54AD11C563D2B00838D0E /* AppDelegate.swift in Sources */,
 				D2F54AFF1C563D5B00838D0E /* Villain.swift in Sources */,
+				D2F54B031C57B20200838D0E /* VillainDetailViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -486,6 +490,7 @@
 				D2F54AF71C563D2B00838D0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2F54AF81C563D2B00838D0E /* Build configuration list for PBXNativeTarget "BondVillainsTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +499,7 @@
 				D2F54AFA1C563D2B00838D0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2F54AFB1C563D2B00838D0E /* Build configuration list for PBXNativeTarget "BondVillainsUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +508,7 @@
 				D2F54AFD1C563D2B00838D0E /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
