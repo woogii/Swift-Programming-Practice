@@ -1,0 +1,617 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		D2F54B111C59CB9500838D0E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B101C59CB9500838D0E /* AppDelegate.swift */; };
+		D2F54B131C59CB9500838D0E /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B121C59CB9500838D0E /* ViewController.swift */; };
+		D2F54B161C59CB9500838D0E /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B141C59CB9500838D0E /* Main.storyboard */; };
+		D2F54B181C59CB9500838D0E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B171C59CB9500838D0E /* Assets.xcassets */; };
+		D2F54B1B1C59CB9500838D0E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B191C59CB9500838D0E /* LaunchScreen.storyboard */; };
+		D2F54B261C59CB9500838D0E /* MYOATests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B251C59CB9500838D0E /* MYOATests.swift */; };
+		D2F54B311C59CB9500838D0E /* MYOAUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B301C59CB9500838D0E /* MYOAUITests.swift */; };
+		D2F54B531C59D84100838D0E /* Tiger.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B401C59D84100838D0E /* Tiger.plist */; };
+		D2F54B541C59D84100838D0E /* Tiger.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B411C59D84100838D0E /* Tiger.png */; };
+		D2F54B551C59D84100838D0E /* Harp.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B421C59D84100838D0E /* Harp.plist */; };
+		D2F54B561C59D84100838D0E /* Harp.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B431C59D84100838D0E /* Harp.png */; };
+		D2F54B571C59D84100838D0E /* Stranger.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B441C59D84100838D0E /* Stranger.plist */; };
+		D2F54B581C59D84100838D0E /* Stranger.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B451C59D84100838D0E /* Stranger.png */; };
+		D2F54B5A1C59D84100838D0E /* HauntedHouse.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B471C59D84100838D0E /* HauntedHouse.png */; };
+		D2F54B5B1C59D84100838D0E /* World@29w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B481C59D84100838D0E /* World@29w.png */; };
+		D2F54B5C1C59D84100838D0E /* World@40w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B491C59D84100838D0E /* World@40w.png */; };
+		D2F54B5D1C59D84100838D0E /* World@58w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B4A1C59D84100838D0E /* World@58w.png */; };
+		D2F54B5E1C59D84100838D0E /* World@76w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B4B1C59D84100838D0E /* World@76w.png */; };
+		D2F54B5F1C59D84100838D0E /* World@80w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B4C1C59D84100838D0E /* World@80w.png */; };
+		D2F54B601C59D84100838D0E /* World@87w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B4D1C59D84100838D0E /* World@87w.png */; };
+		D2F54B611C59D84100838D0E /* World@120w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B4E1C59D84100838D0E /* World@120w.png */; };
+		D2F54B621C59D84100838D0E /* World@152w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B4F1C59D84100838D0E /* World@152w.png */; };
+		D2F54B631C59D84100838D0E /* World@180w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B501C59D84100838D0E /* World@180w.png */; };
+		D2F54B641C59D84100838D0E /* World@512w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B511C59D84100838D0E /* World@512w.png */; };
+		D2F54B651C59D84100838D0E /* World@1024w.png in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B521C59D84100838D0E /* World@1024w.png */; };
+		D2F54B671C59F8A600838D0E /* Adventure.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B661C59F8A600838D0E /* Adventure.swift */; };
+		D2F54B691C59F8B500838D0E /* Credits.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B681C59F8B500838D0E /* Credits.swift */; };
+		D2F54B6B1C59F8C100838D0E /* StoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B6A1C59F8C100838D0E /* StoryNode.swift */; };
+		D2F54B6D1C59F8D000838D0E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B6C1C59F8D000838D0E /* Connection.swift */; };
+		D2F54B6F1C5A070F00838D0E /* HauntedHouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B6E1C5A070F00838D0E /* HauntedHouse.plist */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		D2F54B221C59CB9500838D0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2F54B051C59CB9500838D0E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2F54B0C1C59CB9500838D0E;
+			remoteInfo = MYOA;
+		};
+		D2F54B2D1C59CB9500838D0E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = D2F54B051C59CB9500838D0E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = D2F54B0C1C59CB9500838D0E;
+			remoteInfo = MYOA;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		D2F54B0D1C59CB9500838D0E /* MYOA.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MYOA.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F54B101C59CB9500838D0E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		D2F54B121C59CB9500838D0E /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		D2F54B151C59CB9500838D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		D2F54B171C59CB9500838D0E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D2F54B1A1C59CB9500838D0E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		D2F54B1C1C59CB9500838D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2F54B211C59CB9500838D0E /* MYOATests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MYOATests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F54B251C59CB9500838D0E /* MYOATests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYOATests.swift; sourceTree = "<group>"; };
+		D2F54B271C59CB9500838D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2F54B2C1C59CB9500838D0E /* MYOAUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MYOAUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		D2F54B301C59CB9500838D0E /* MYOAUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MYOAUITests.swift; sourceTree = "<group>"; };
+		D2F54B321C59CB9500838D0E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D2F54B401C59D84100838D0E /* Tiger.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Tiger.plist; sourceTree = "<group>"; };
+		D2F54B411C59D84100838D0E /* Tiger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Tiger.png; sourceTree = "<group>"; };
+		D2F54B421C59D84100838D0E /* Harp.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Harp.plist; sourceTree = "<group>"; };
+		D2F54B431C59D84100838D0E /* Harp.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Harp.png; sourceTree = "<group>"; };
+		D2F54B441C59D84100838D0E /* Stranger.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Stranger.plist; sourceTree = "<group>"; };
+		D2F54B451C59D84100838D0E /* Stranger.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Stranger.png; sourceTree = "<group>"; };
+		D2F54B471C59D84100838D0E /* HauntedHouse.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = HauntedHouse.png; sourceTree = "<group>"; };
+		D2F54B481C59D84100838D0E /* World@29w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@29w.png"; sourceTree = "<group>"; };
+		D2F54B491C59D84100838D0E /* World@40w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@40w.png"; sourceTree = "<group>"; };
+		D2F54B4A1C59D84100838D0E /* World@58w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@58w.png"; sourceTree = "<group>"; };
+		D2F54B4B1C59D84100838D0E /* World@76w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@76w.png"; sourceTree = "<group>"; };
+		D2F54B4C1C59D84100838D0E /* World@80w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@80w.png"; sourceTree = "<group>"; };
+		D2F54B4D1C59D84100838D0E /* World@87w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@87w.png"; sourceTree = "<group>"; };
+		D2F54B4E1C59D84100838D0E /* World@120w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@120w.png"; sourceTree = "<group>"; };
+		D2F54B4F1C59D84100838D0E /* World@152w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@152w.png"; sourceTree = "<group>"; };
+		D2F54B501C59D84100838D0E /* World@180w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@180w.png"; sourceTree = "<group>"; };
+		D2F54B511C59D84100838D0E /* World@512w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@512w.png"; sourceTree = "<group>"; };
+		D2F54B521C59D84100838D0E /* World@1024w.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "World@1024w.png"; sourceTree = "<group>"; };
+		D2F54B661C59F8A600838D0E /* Adventure.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Adventure.swift; sourceTree = "<group>"; };
+		D2F54B681C59F8B500838D0E /* Credits.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Credits.swift; sourceTree = "<group>"; };
+		D2F54B6A1C59F8C100838D0E /* StoryNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryNode.swift; sourceTree = "<group>"; };
+		D2F54B6C1C59F8D000838D0E /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
+		D2F54B6E1C5A070F00838D0E /* HauntedHouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HauntedHouse.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		D2F54B0A1C59CB9500838D0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F54B1E1C59CB9500838D0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F54B291C59CB9500838D0E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		D2F54B041C59CB9500838D0E = {
+			isa = PBXGroup;
+			children = (
+				D2F54B0F1C59CB9500838D0E /* MYOA */,
+				D2F54B3F1C59D81E00838D0E /* Supporting File */,
+				D2F54B241C59CB9500838D0E /* MYOATests */,
+				D2F54B2F1C59CB9500838D0E /* MYOAUITests */,
+				D2F54B0E1C59CB9500838D0E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		D2F54B0E1C59CB9500838D0E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				D2F54B0D1C59CB9500838D0E /* MYOA.app */,
+				D2F54B211C59CB9500838D0E /* MYOATests.xctest */,
+				D2F54B2C1C59CB9500838D0E /* MYOAUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		D2F54B0F1C59CB9500838D0E /* MYOA */ = {
+			isa = PBXGroup;
+			children = (
+				D2F54B3E1C59D80E00838D0E /* Model */,
+				D2F54B101C59CB9500838D0E /* AppDelegate.swift */,
+				D2F54B121C59CB9500838D0E /* ViewController.swift */,
+				D2F54B141C59CB9500838D0E /* Main.storyboard */,
+				D2F54B171C59CB9500838D0E /* Assets.xcassets */,
+				D2F54B191C59CB9500838D0E /* LaunchScreen.storyboard */,
+			);
+			path = MYOA;
+			sourceTree = "<group>";
+		};
+		D2F54B241C59CB9500838D0E /* MYOATests */ = {
+			isa = PBXGroup;
+			children = (
+				D2F54B251C59CB9500838D0E /* MYOATests.swift */,
+				D2F54B271C59CB9500838D0E /* Info.plist */,
+			);
+			path = MYOATests;
+			sourceTree = "<group>";
+		};
+		D2F54B2F1C59CB9500838D0E /* MYOAUITests */ = {
+			isa = PBXGroup;
+			children = (
+				D2F54B301C59CB9500838D0E /* MYOAUITests.swift */,
+				D2F54B321C59CB9500838D0E /* Info.plist */,
+			);
+			path = MYOAUITests;
+			sourceTree = "<group>";
+		};
+		D2F54B3E1C59D80E00838D0E /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				D2F54B661C59F8A600838D0E /* Adventure.swift */,
+				D2F54B681C59F8B500838D0E /* Credits.swift */,
+				D2F54B6A1C59F8C100838D0E /* StoryNode.swift */,
+				D2F54B6C1C59F8D000838D0E /* Connection.swift */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		D2F54B3F1C59D81E00838D0E /* Supporting File */ = {
+			isa = PBXGroup;
+			children = (
+				D2F54B1C1C59CB9500838D0E /* Info.plist */,
+				D2F54B401C59D84100838D0E /* Tiger.plist */,
+				D2F54B411C59D84100838D0E /* Tiger.png */,
+				D2F54B421C59D84100838D0E /* Harp.plist */,
+				D2F54B431C59D84100838D0E /* Harp.png */,
+				D2F54B441C59D84100838D0E /* Stranger.plist */,
+				D2F54B451C59D84100838D0E /* Stranger.png */,
+				D2F54B471C59D84100838D0E /* HauntedHouse.png */,
+				D2F54B481C59D84100838D0E /* World@29w.png */,
+				D2F54B491C59D84100838D0E /* World@40w.png */,
+				D2F54B4A1C59D84100838D0E /* World@58w.png */,
+				D2F54B6E1C5A070F00838D0E /* HauntedHouse.plist */,
+				D2F54B4B1C59D84100838D0E /* World@76w.png */,
+				D2F54B4C1C59D84100838D0E /* World@80w.png */,
+				D2F54B4D1C59D84100838D0E /* World@87w.png */,
+				D2F54B4E1C59D84100838D0E /* World@120w.png */,
+				D2F54B4F1C59D84100838D0E /* World@152w.png */,
+				D2F54B501C59D84100838D0E /* World@180w.png */,
+				D2F54B511C59D84100838D0E /* World@512w.png */,
+				D2F54B521C59D84100838D0E /* World@1024w.png */,
+			);
+			name = "Supporting File";
+			path = MYOA;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		D2F54B0C1C59CB9500838D0E /* MYOA */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2F54B351C59CB9500838D0E /* Build configuration list for PBXNativeTarget "MYOA" */;
+			buildPhases = (
+				D2F54B091C59CB9500838D0E /* Sources */,
+				D2F54B0A1C59CB9500838D0E /* Frameworks */,
+				D2F54B0B1C59CB9500838D0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MYOA;
+			productName = MYOA;
+			productReference = D2F54B0D1C59CB9500838D0E /* MYOA.app */;
+			productType = "com.apple.product-type.application";
+		};
+		D2F54B201C59CB9500838D0E /* MYOATests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2F54B381C59CB9500838D0E /* Build configuration list for PBXNativeTarget "MYOATests" */;
+			buildPhases = (
+				D2F54B1D1C59CB9500838D0E /* Sources */,
+				D2F54B1E1C59CB9500838D0E /* Frameworks */,
+				D2F54B1F1C59CB9500838D0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2F54B231C59CB9500838D0E /* PBXTargetDependency */,
+			);
+			name = MYOATests;
+			productName = MYOATests;
+			productReference = D2F54B211C59CB9500838D0E /* MYOATests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		D2F54B2B1C59CB9500838D0E /* MYOAUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = D2F54B3B1C59CB9500838D0E /* Build configuration list for PBXNativeTarget "MYOAUITests" */;
+			buildPhases = (
+				D2F54B281C59CB9500838D0E /* Sources */,
+				D2F54B291C59CB9500838D0E /* Frameworks */,
+				D2F54B2A1C59CB9500838D0E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				D2F54B2E1C59CB9500838D0E /* PBXTargetDependency */,
+			);
+			name = MYOAUITests;
+			productName = MYOAUITests;
+			productReference = D2F54B2C1C59CB9500838D0E /* MYOAUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		D2F54B051C59CB9500838D0E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0710;
+				LastUpgradeCheck = 0710;
+				ORGANIZATIONNAME = wook2;
+				TargetAttributes = {
+					D2F54B0C1C59CB9500838D0E = {
+						CreatedOnToolsVersion = 7.1;
+					};
+					D2F54B201C59CB9500838D0E = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = D2F54B0C1C59CB9500838D0E;
+					};
+					D2F54B2B1C59CB9500838D0E = {
+						CreatedOnToolsVersion = 7.1;
+						TestTargetID = D2F54B0C1C59CB9500838D0E;
+					};
+				};
+			};
+			buildConfigurationList = D2F54B081C59CB9500838D0E /* Build configuration list for PBXProject "MYOA" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = D2F54B041C59CB9500838D0E;
+			productRefGroup = D2F54B0E1C59CB9500838D0E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				D2F54B0C1C59CB9500838D0E /* MYOA */,
+				D2F54B201C59CB9500838D0E /* MYOATests */,
+				D2F54B2B1C59CB9500838D0E /* MYOAUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		D2F54B0B1C59CB9500838D0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F54B651C59D84100838D0E /* World@1024w.png in Resources */,
+				D2F54B5D1C59D84100838D0E /* World@58w.png in Resources */,
+				D2F54B631C59D84100838D0E /* World@180w.png in Resources */,
+				D2F54B541C59D84100838D0E /* Tiger.png in Resources */,
+				D2F54B641C59D84100838D0E /* World@512w.png in Resources */,
+				D2F54B6F1C5A070F00838D0E /* HauntedHouse.plist in Resources */,
+				D2F54B601C59D84100838D0E /* World@87w.png in Resources */,
+				D2F54B531C59D84100838D0E /* Tiger.plist in Resources */,
+				D2F54B1B1C59CB9500838D0E /* LaunchScreen.storyboard in Resources */,
+				D2F54B5A1C59D84100838D0E /* HauntedHouse.png in Resources */,
+				D2F54B621C59D84100838D0E /* World@152w.png in Resources */,
+				D2F54B5C1C59D84100838D0E /* World@40w.png in Resources */,
+				D2F54B5F1C59D84100838D0E /* World@80w.png in Resources */,
+				D2F54B561C59D84100838D0E /* Harp.png in Resources */,
+				D2F54B5B1C59D84100838D0E /* World@29w.png in Resources */,
+				D2F54B611C59D84100838D0E /* World@120w.png in Resources */,
+				D2F54B551C59D84100838D0E /* Harp.plist in Resources */,
+				D2F54B181C59CB9500838D0E /* Assets.xcassets in Resources */,
+				D2F54B581C59D84100838D0E /* Stranger.png in Resources */,
+				D2F54B5E1C59D84100838D0E /* World@76w.png in Resources */,
+				D2F54B571C59D84100838D0E /* Stranger.plist in Resources */,
+				D2F54B161C59CB9500838D0E /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F54B1F1C59CB9500838D0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F54B2A1C59CB9500838D0E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		D2F54B091C59CB9500838D0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F54B131C59CB9500838D0E /* ViewController.swift in Sources */,
+				D2F54B6D1C59F8D000838D0E /* Connection.swift in Sources */,
+				D2F54B6B1C59F8C100838D0E /* StoryNode.swift in Sources */,
+				D2F54B671C59F8A600838D0E /* Adventure.swift in Sources */,
+				D2F54B691C59F8B500838D0E /* Credits.swift in Sources */,
+				D2F54B111C59CB9500838D0E /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F54B1D1C59CB9500838D0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F54B261C59CB9500838D0E /* MYOATests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		D2F54B281C59CB9500838D0E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				D2F54B311C59CB9500838D0E /* MYOAUITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		D2F54B231C59CB9500838D0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2F54B0C1C59CB9500838D0E /* MYOA */;
+			targetProxy = D2F54B221C59CB9500838D0E /* PBXContainerItemProxy */;
+		};
+		D2F54B2E1C59CB9500838D0E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = D2F54B0C1C59CB9500838D0E /* MYOA */;
+			targetProxy = D2F54B2D1C59CB9500838D0E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		D2F54B141C59CB9500838D0E /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2F54B151C59CB9500838D0E /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		D2F54B191C59CB9500838D0E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				D2F54B1A1C59CB9500838D0E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		D2F54B331C59CB9500838D0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		D2F54B341C59CB9500838D0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		D2F54B361C59CB9500838D0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MYOA/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.MYOA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		D2F54B371C59CB9500838D0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				INFOPLIST_FILE = MYOA/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.MYOA;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
+		D2F54B391C59CB9500838D0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MYOATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.MYOATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MYOA.app/MYOA";
+			};
+			name = Debug;
+		};
+		D2F54B3A1C59CB9500838D0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = MYOATests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.MYOATests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/MYOA.app/MYOA";
+			};
+			name = Release;
+		};
+		D2F54B3C1C59CB9500838D0E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MYOAUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.MYOAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MYOA;
+				USES_XCTRUNNER = YES;
+			};
+			name = Debug;
+		};
+		D2F54B3D1C59CB9500838D0E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				INFOPLIST_FILE = MYOAUITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.wook2.MYOAUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_TARGET_NAME = MYOA;
+				USES_XCTRUNNER = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		D2F54B081C59CB9500838D0E /* Build configuration list for PBXProject "MYOA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F54B331C59CB9500838D0E /* Debug */,
+				D2F54B341C59CB9500838D0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2F54B351C59CB9500838D0E /* Build configuration list for PBXNativeTarget "MYOA" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F54B361C59CB9500838D0E /* Debug */,
+				D2F54B371C59CB9500838D0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2F54B381C59CB9500838D0E /* Build configuration list for PBXNativeTarget "MYOATests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F54B391C59CB9500838D0E /* Debug */,
+				D2F54B3A1C59CB9500838D0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		D2F54B3B1C59CB9500838D0E /* Build configuration list for PBXNativeTarget "MYOAUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D2F54B3C1C59CB9500838D0E /* Debug */,
+				D2F54B3D1C59CB9500838D0E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = D2F54B051C59CB9500838D0E /* Project object */;
+}
