@@ -37,6 +37,7 @@
 		D2F54B6B1C59F8C100838D0E /* StoryNode.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B6A1C59F8C100838D0E /* StoryNode.swift */; };
 		D2F54B6D1C59F8D000838D0E /* Connection.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B6C1C59F8D000838D0E /* Connection.swift */; };
 		D2F54B6F1C5A070F00838D0E /* HauntedHouse.plist in Resources */ = {isa = PBXBuildFile; fileRef = D2F54B6E1C5A070F00838D0E /* HauntedHouse.plist */; };
+		D2F54B711C5A66C200838D0E /* StoryNodeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2F54B701C5A66C200838D0E /* StoryNodeViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -93,6 +94,7 @@
 		D2F54B6A1C59F8C100838D0E /* StoryNode.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryNode.swift; sourceTree = "<group>"; };
 		D2F54B6C1C59F8D000838D0E /* Connection.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Connection.swift; sourceTree = "<group>"; };
 		D2F54B6E1C5A070F00838D0E /* HauntedHouse.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HauntedHouse.plist; sourceTree = "<group>"; };
+		D2F54B701C5A66C200838D0E /* StoryNodeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoryNodeViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -147,6 +149,7 @@
 				D2F54B3E1C59D80E00838D0E /* Model */,
 				D2F54B101C59CB9500838D0E /* AppDelegate.swift */,
 				D2F54B121C59CB9500838D0E /* RootViewController.swift */,
+				D2F54B701C5A66C200838D0E /* StoryNodeViewController.swift */,
 				D2F54B141C59CB9500838D0E /* Main.storyboard */,
 				D2F54B171C59CB9500838D0E /* Assets.xcassets */,
 				D2F54B191C59CB9500838D0E /* LaunchScreen.storyboard */,
@@ -361,6 +364,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2F54B711C5A66C200838D0E /* StoryNodeViewController.swift in Sources */,
 				D2F54B131C59CB9500838D0E /* RootViewController.swift in Sources */,
 				D2F54B6D1C59F8D000838D0E /* Connection.swift in Sources */,
 				D2F54B6B1C59F8C100838D0E /* StoryNode.swift in Sources */,

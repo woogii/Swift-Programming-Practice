@@ -27,7 +27,7 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
                 
                 numberOfAdventure++
                 if let contents = NSDictionary(contentsOfFile: pathName) as? [String:AnyObject] {
-                    print(contents)
+                    
                     adventures.append(Adventure(dictionary: contents))
                 }
             }
@@ -50,6 +50,23 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         return cell
         
+    }
+    
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        
+        let item = adventures[indexPath.row]
+        
+        let storyController = storyboard?.instantiateViewControllerWithIdentifier("StoryNodeViewController") as!
+            StoryNodeViewController
+        print(item.credits.key)
+        print(item.startNode.message)
+        
+        storyController.story = item.startNode.message
+        
+        storyController.imageName = item.credits.imageName
+        
+        self.navigationController?.pushViewController(storyController, animated: true)
+    
     }
 }
 
