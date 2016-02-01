@@ -40,14 +40,15 @@ struct StoryNode {
         self.adventure = adventure
         
         message = dictionary["message"] as! String
+        print(message)
         connections = [Connection]()
         
-        message = message.stringByReplacingOccurrencesOfString("\n", withString: "\n\n")
+        // \n is a literally in the file and not as a newline character, then we need to escape the \, like \\n
+        message = message.stringByReplacingOccurrencesOfString("\\n", withString: "\n\n")
         
         if let connectionDictArray = dictionary["connections"] as? [[String:String]] {
         
-            for connectionDict in connectionDictArray {
-                
+            for connectionDict:[String:String] in connectionDictArray {
                 connections.append(Connection(dictionary: connectionDict))
             }
         

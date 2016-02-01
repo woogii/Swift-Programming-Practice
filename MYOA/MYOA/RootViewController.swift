@@ -10,10 +10,11 @@ import UIKit
 
 class RootViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
+    // MARK : - Property
     let cellIdentifier = "AdventureCell"
     var adventures = [Adventure]()
-    var numberOfAdventure = 0
-    
+
+    // MARK : - View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -21,11 +22,9 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
         
         for pathName in pathNameArray {
             
-            // print((pathName as NSString).lastPathComponent)
-            
             if (pathName as NSString).lastPathComponent != "Info.plist" {
                 
-                numberOfAdventure++
+                // Initializes a newly allocated dictionary using the keys and values found in a file at a given path
                 if let contents = NSDictionary(contentsOfFile: pathName) as? [String:AnyObject] {
                     
                     adventures.append(Adventure(dictionary: contents))
@@ -35,8 +34,9 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
 
 
+    // MARK : - UITableViewDelegate Methods
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return numberOfAdventure
+        return adventures.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -54,17 +54,18 @@ class RootViewController: UIViewController, UITableViewDataSource, UITableViewDe
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         
-        let item = adventures[indexPath.row]
+        // Get the selected adventure
+        let adventure = adventures[indexPath.row]
         
         let storyController = storyboard?.instantiateViewControllerWithIdentifier("StoryNodeViewController") as!
             StoryNodeViewController
-        print(item.credits.key)
-        print(item.startNode.message)
+    
+        // Set the current node as a start node so that 
+        // we will start with a first story node in each 
+        // adventure
+        storyController.currentNode = adventure.startNode
         
-        storyController.story = item.startNode.message
-        
-        storyController.imageName = item.credits.imageName
-        
+        // Push the new controller onto the stack
         self.navigationController?.pushViewController(storyController, animated: true)
     
     }

@@ -20,10 +20,11 @@ class Adventure {
         let creditDictionary = dictionary["credits"] as! [String:String]
         let storyNodeDictionary = dictionary["nodes"] as! [String:AnyObject]
         
+
         credits = Credits(dictionary: creditDictionary)
       
         for (key, dictionary) in storyNodeDictionary {
-            storyNodes[key] = StoryNode(dictionary: dictionary as! [String : AnyObject], adventure: self)
+            self.storyNodes[key] = StoryNode(dictionary: dictionary as! [String : AnyObject], adventure: self)
         }
         
         let startNodeKey = dictionary["startNodeKey"] as! String

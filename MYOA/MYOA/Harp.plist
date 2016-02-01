@@ -39,7 +39,7 @@
 				</dict>
 			</array>
 			<key>message</key>
-			<string>You awake in a castle dungeon.\n&quot;You will never get out of here,&quot; says Smeemog, the clumsy Dragon.\n&quot;I will show you!&quot; you say, but deep down, you are worried he is right.</string>
+			<string>You awake in a castle dungeon. \n You will never get out of here, says Smeemog, the clumsy Dragon. \n I will show you! you say, but deep down, you are worried he is right.</string>
 			<key>title</key>
 			<string>Page 1</string>
 		</dict>
@@ -48,7 +48,7 @@
 			<key>result</key>
 			<string>lose</string>
 			<key>message</key>
-			<string>Maybe if I wait, someone will come to rescue me!\n(You wait, and wait)\nBut nobody ever comes...</string>
+			<string>Maybe if I wait, someone will come to rescue me! \n (You wait, and wait) \n But nobody ever comes...</string>
 			<key>title</key>
 			<string>Page 2</string>
 		</dict>
@@ -70,7 +70,7 @@
 				</dict>
 			</array>
 			<key>message</key>
-			<string>I know I can find a way out!\nYou notice an open door and a wandering bird.</string>
+			<string>I know I can find a way out! \n You notice an open door and a wandering bird.</string>
 			<key>title</key>
 			<string>Page 3</string>
 		</dict>
@@ -79,7 +79,7 @@
 			<key>result</key>
 			<string>lose</string>
 			<key>message</key>
-			<string>You walk through the door and come upon a couryard and old tree with a carving on the trunk.\nThe carving depicts a horrible monster.\n&quot;A horrible monster! What a bunch of... ahh!&quot;\nYou turn around and are captured by the monster.</string>
+			<string>You walk through the door and come upon a couryard and old tree with a carving on the trunk.\nThe carving depicts a horrible monster.\n A horrible monster! What a bunch of... ahh! \nYou turn around and are captured by the monster.</string>
 			<key>title</key>
 			<string>Page 4</string>
 		</dict>
@@ -101,7 +101,7 @@
 				</dict>
 			</array>
 			<key>message</key>
-			<string>You try talking to the bird, but it seems to ignore you.\nSuddenly, it turns around, and points towards an old tree.\nYou walk to the tree, reach inside, and pull out a harp.</string>
+			<string>You try talking to the bird, but it seems to ignore you. \n Suddenly, it turns around, and points towards an old tree. \nYou walk to the tree, reach inside, and pull out a harp.</string>
 			<key>title</key>
 			<string>Page 5</string>
 		</dict>
@@ -117,7 +117,7 @@
 				</dict>
 			</array>
 			<key>message</key>
-			<string>After a short time, you find an exit and a bridge connecting to the woods. As you are crossing, a fearsome troll climbs out from under the bridge.\n&quot;Who dares to cross me bridge!?!&quot; he bellows.</string>
+			<string>After a short time, you find an exit and a bridge connecting to the woods. As you are crossing, a fearsome troll climbs out from under the bridge.\n Who dares to cross me bridge!? he bellows.</string>
 			<key>title</key>
 			<string>Page 6</string>
 		</dict>
@@ -139,7 +139,7 @@
 				</dict>
 			</array>
 			<key>message</key>
-			<string>After a short time, you find an exit and a bridge connecting to the woods. As you are crossing, a fearsome troll climbs out from under the bridge.\n&quot;Who dares to cross me bridge!?!&quot; he bellows.</string>
+			<string>After a short time, you find an exit and a bridge connecting to the woods. As you are crossing, a fearsome troll climbs out from under the bridge.\n Who dares to cross me bridge!?! he bellows.</string>
 			<key>title</key>
 			<string>Page 7</string>
 		</dict>
@@ -148,7 +148,7 @@
 			<key>result</key>
 			<string>lose</string>
 			<key>message</key>
-			<string>&quot;It is I,&quot; you say.\n&quot;I do not care! I demand yer bones as payment for trespassin!&quot; yells the troll.</string>
+			<string>It is I, you say.\n I do not care! I demand yer bones as payment for trespassin! yells the troll.</string>
 			<key>title</key>
 			<string>Page 8</string>
 		</dict>
@@ -157,7 +157,7 @@
 			<key>result</key>
 			<string>win</string>
 			<key>message</key>
-			<string>&quot;It is I, the great harpist!&quot;\nYou begin to play a hideous sounding chord that pleases the troll.\n&quot;What a wonderful song! Here, take this as payment for your performance,&quot; says the troll.\nThen, the troll hands over his treasure.</string>
+			<string>It is I, the great harpist!\nYou begin to play a hideous sounding chord that pleases the troll.\n What a wonderful song! Here, take this as payment for your performance, says the troll.\nThen, the troll hands over his treasure.</string>
 			<key>title</key>
 			<string>Page 9</string>
 		</dict>

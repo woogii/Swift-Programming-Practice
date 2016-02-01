@@ -179,9 +179,9 @@
 			isa = PBXGroup;
 			children = (
 				D2F54B661C59F8A600838D0E /* Adventure.swift */,
-				D2F54B681C59F8B500838D0E /* Credits.swift */,
 				D2F54B6A1C59F8C100838D0E /* StoryNode.swift */,
 				D2F54B6C1C59F8D000838D0E /* Connection.swift */,
+				D2F54B681C59F8B500838D0E /* Credits.swift */,
 			);
 			name = Model;
 			sourceTree = "<group>";
