@@ -63,10 +63,10 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Ihj-Py-iGZ">
-                                <rect key="frame" x="13" y="380" width="336" height="30"/>
+                                <rect key="frame" x="13" y="380" width="406" height="100"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="e38-kz-glh">
-                                        <rect key="frame" x="0.0" y="0.0" width="106" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="106" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="106" id="uGX-MH-CvQ"/>
                                         </constraints>
@@ -74,7 +74,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="lNE-51-f1v">
-                                        <rect key="frame" x="126" y="0.0" width="106" height="30"/>
+                                        <rect key="frame" x="126" y="0.0" width="106" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="106" id="2Q5-jv-MhL"/>
                                         </constraints>
@@ -82,7 +82,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="qtW-UW-ePn">
-                                        <rect key="frame" x="252" y="0.0" width="84" height="30"/>
+                                        <rect key="frame" x="252" y="0.0" width="154" height="100"/>
                                         <state key="normal" title="Button" image="Image"/>
                                         <connections>
                                             <action selector="searchPhotosByLatLonButtonTouchUp:" destination="BYZ-38-t0r" eventType="touchUpInside" id="okA-wo-fBk"/>
@@ -91,10 +91,10 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="o4f-tj-Mb7">
-                                <rect key="frame" x="13" y="331" width="282" height="30"/>
+                                <rect key="frame" x="13" y="331" width="282" height="100"/>
                                 <subviews>
                                     <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" horizontalHuggingPriority="249" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="7Ol-xK-BHq">
-                                        <rect key="frame" x="0.0" y="0.0" width="230" height="30"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="230" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="230" id="SEP-Sg-xr4"/>
                                         </constraints>
@@ -102,7 +102,7 @@
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9bd-Mr-6kq">
-                                        <rect key="frame" x="250" y="0.0" width="32" height="30"/>
+                                        <rect key="frame" x="250" y="0.0" width="32" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="32" id="b2C-OB-CeH"/>
                                         </constraints>
