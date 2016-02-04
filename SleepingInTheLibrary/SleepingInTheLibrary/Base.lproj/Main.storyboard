@@ -63,6 +63,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="descriptionLabel" destination="4pU-gc-u8Z" id="sae-4T-9HQ"/>
+                        <outlet property="grabButton" destination="5jM-oA-f7s" id="rv4-RA-bWD"/>
                         <outlet property="imageView" destination="txM-rZ-KOX" id="130-Vs-dAG"/>
                     </connections>
                 </viewController>

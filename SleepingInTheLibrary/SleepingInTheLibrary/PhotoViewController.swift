@@ -8,20 +8,15 @@
 
 import UIKit
 
-let BASE_URL = "https://api.flickr.com/services/rest/"
-let METHOD_NAME = "flickr.galleries.getPhotos"
-let API_KEY = "fc32b10bb0a2f30416fb38f74c18846a"
-let GALLERY_ID = "5704-72157622566655097"
-let EXTRAS = "url_m"
-let DATA_FORMAT = "json"
-let NO_JSON_CALLBACK = "1"
-
-
 class PhotoViewController: UIViewController {
 
+    // MARK : - Properties
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var descriptionLabel: UILabel!
+    @IBOutlet weak var grabButton: UIButton!
     
+    
+    // MARK : - View life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view, typically from a nib.
@@ -31,95 +26,128 @@ class PhotoViewController: UIViewController {
 
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
     }
     
     
-
+    // MARK : - UIButton action method
+    
     @IBAction func grabNewImage(sender: UIButton) {
+        setUIEnabled(false)
+        getImageFromFlick()
+      
+    }
+    
+    // MARK : - UIView objects configurations
+    func setUIEnabled(enabled: Bool) {
+        descriptionLabel.enabled = enabled
+        grabButton.enabled = enabled
+        
+        if enabled {
+            grabButton.alpha = 1.0
+        } else {
+            grabButton.alpha = 0.5
+        }
+    }
+    
+    
+    // MARK : - Get images from Flick
+    
+    func getImageFromFlick() {
         
         let methodArguments = [
-            "method"  : METHOD_NAME,
-            "api_key" : API_KEY,
-            "gallery_id" : GALLERY_ID,
-            "extras" : EXTRAS,
-            "format" : DATA_FORMAT,
-            "nojsoncallback" : NO_JSON_CALLBACK
+            Constants.FlickrAPIKeyParams.Method : Constants.FlickrAPIValuesParams.MethodValue,
+            Constants.FlickrAPIKeyParams.APIKey : Constants.FlickrAPIValuesParams.APIKeyValue,
+            Constants.FlickrAPIKeyParams.GalleryId : Constants.FlickrAPIValuesParams.GallerIdValue,
+            Constants.FlickrAPIKeyParams.Extras : Constants.FlickrAPIValuesParams.UrlValue,
+            Constants.FlickrAPIKeyParams.Format : Constants.FlickrAPIValuesParams.FormatValue,
+            Constants.FlickrAPIKeyParams.NoJSONCallback : Constants.FlickrAPIValuesParams.DisableJSONCallback
         ]
-        
-        var parsedResult:AnyObject!
-        
+                
         let session = NSURLSession.sharedSession()
-        let urlString = BASE_URL + escapedParameters(methodArguments)
-        print(urlString)
+        let urlString = Constants.FlickrAPI.BaseURL + escapedParameters(methodArguments)
+        
+
         let url = NSURL(string: urlString)!
-        print(url)
         let request = NSURLRequest(URL: url)
         
         
-        let task = session.dataTaskWithRequest(request) {
-                                    (data, response, error)-> Void  in
+        let task = session.dataTaskWithRequest(request) { (data, response, error)-> Void  in
+            
+            // MARK : - Display an error
+            func displayError(error: String) {
+                print(error)
+                print("URL at time of error: \(url)")
+                performUIUpdatesOnMain {
+                    self.setUIEnabled(true)
+                }
+            }
             
             guard error == nil else {
-                print(error?.description)
+                displayError((error?.description)!)
                 return
             }
             
-            guard response != nil else {
-                print("Response error")
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError((error?.description)!)
                 return
             }
             
             guard data != nil else {
-                print("There is not a data from url request")
+                displayError((error?.description)!)
                 return
             }
             
+            let parsedResult:AnyObject!
             do {
                 // AllowFragments: Specifies that the parser should allow top-level objects that are not an instance of NSArray or NSDictionary.
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data!, options: .AllowFragments)
                 
-            } catch _  {
-                print(error!.description)
-            }
-            
-            guard let photoInfo = parsedResult.valueForKey("photos") as? NSDictionary else{
-                print("Flickr API returned an error. See error code and message in \(parsedResult)")
+            } catch  {
+                displayError("\(data)")
                 return
             }
             
-            let photoCount = photoInfo["total"] as! Int
-            let randomCount = Int(arc4random_uniform(UInt32(photoCount)))
-            
-            guard let photoArray = photoInfo["photo"] as? [[String:AnyObject]] else {
-                print("Cannot find a key 'photo' in \(parsedResult)")
+            guard let photosDictionary = parsedResult[Constants.FlickrAPIResponseKeys.Photos] as? [String:AnyObject],
+                photoArray = photosDictionary[Constants.FlickrAPIResponseKeys.Photo] as? [[String:AnyObject]] else {
+                    
+                displayError((error?.description)!)
                 return
             }
             
-            let photo = photoArray[randomCount] as [String:AnyObject]
-            let title = photo["title"] as? String
+            // Select a random photo
+            let randomIndex = Int(arc4random_uniform(UInt32(photoArray.count)))
+            let photoDictionary = photoArray[randomIndex] as [String:AnyObject]
+            let photoTitle = photoDictionary[Constants.FlickrAPIResponseKeys.Title] as? String
             
-            guard let imageURL = photo["url_m"] as? String else{
-                print("Cannot find a key 'url_m' in \(photo)")
+            
+            guard let imageURLString = photoDictionary[Constants.FlickrAPIResponseKeys.MediumURL] as? String else{
+                print("Cannot find a key 'url_m' in \(photoDictionary)")
                 return
             }
             
-            let url = NSURL(string: imageURL)
+            let imageURL = NSURL(string: imageURLString)
             
-            if let data = NSData(contentsOfURL: url!) {
-                                    
-                dispatch_async(dispatch_get_main_queue()) {
+            if let data = NSData(contentsOfURL: imageURL!) {
+                
+                performUIUpdatesOnMain() {
+                    self.setUIEnabled(true)
                     self.imageView.image = UIImage(data:data)
-                    self.descriptionLabel.text = title
+                    self.descriptionLabel.text = photoTitle
                 }
                 
+            } else {
+                displayError((error?.description)!)
             }
-                    
+            
         }
         
         task.resume()
     }
+    
+  
 
+    // MARK : - Transfrom String value into safe ASCII code value
+    
     func escapedParameters(parameters: [String:AnyObject])->String {
         
         var urlStrings = [String]()
