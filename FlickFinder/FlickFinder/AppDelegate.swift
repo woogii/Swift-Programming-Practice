@@ -2,8 +2,8 @@
 //  AppDelegate.swift
 //  FlickFinder
 //
-//  Created by Hyun on 2015. 11. 6..
-//  Copyright © 2015년 wook2. All rights reserved.
+//  Created by Hyun on 2016. 2. 4..
+//  Copyright © 2016년 wook2. All rights reserved.
 //
 
 import UIKit

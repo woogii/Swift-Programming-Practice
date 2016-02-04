@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D26830F41BEC421D009062FA"
+               BlueprintIdentifier = "D20A2A431C6374B0006BB358"
                BuildableName = "FlickFinder.app"
                BlueprintName = "FlickFinder"
                ReferencedContainer = "container:FlickFinder.xcodeproj">
@@ -32,7 +32,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D26831081BEC421D009062FA"
+               BlueprintIdentifier = "D20A2A571C6374B0006BB358"
                BuildableName = "FlickFinderTests.xctest"
                BlueprintName = "FlickFinderTests"
                ReferencedContainer = "container:FlickFinder.xcodeproj">
@@ -42,7 +42,7 @@
             skipped = "NO">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "D26831131BEC421D009062FA"
+               BlueprintIdentifier = "D20A2A621C6374B0006BB358"
                BuildableName = "FlickFinderUITests.xctest"
                BlueprintName = "FlickFinderUITests"
                ReferencedContainer = "container:FlickFinder.xcodeproj">
@@ -52,7 +52,7 @@
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D26830F41BEC421D009062FA"
+            BlueprintIdentifier = "D20A2A431C6374B0006BB358"
             BuildableName = "FlickFinder.app"
             BlueprintName = "FlickFinder"
             ReferencedContainer = "container:FlickFinder.xcodeproj">
@@ -75,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D26830F41BEC421D009062FA"
+            BlueprintIdentifier = "D20A2A431C6374B0006BB358"
             BuildableName = "FlickFinder.app"
             BlueprintName = "FlickFinder"
             ReferencedContainer = "container:FlickFinder.xcodeproj">
@@ -94,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "D26830F41BEC421D009062FA"
+            BlueprintIdentifier = "D20A2A431C6374B0006BB358"
             BuildableName = "FlickFinder.app"
             BlueprintName = "FlickFinder"
             ReferencedContainer = "container:FlickFinder.xcodeproj">
