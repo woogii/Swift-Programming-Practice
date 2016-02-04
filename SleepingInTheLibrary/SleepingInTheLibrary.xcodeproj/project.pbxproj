@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D20A2A381C63224F006BB358 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A2A371C63224F006BB358 /* Constants.swift */; };
+		D20A2A3A1C632262006BB358 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A2A391C632262006BB358 /* GCDBlackBox.swift */; };
 		D2304FD81C4BB9170071341D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2304FD71C4BB9170071341D /* AppDelegate.swift */; };
 		D2304FDA1C4BB9170071341D /* PhotoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2304FD91C4BB9170071341D /* PhotoViewController.swift */; };
 		D2304FDD1C4BB9180071341D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2304FDB1C4BB9180071341D /* Main.storyboard */; };
@@ -34,6 +36,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D20A2A371C63224F006BB358 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D20A2A391C632262006BB358 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		D2304FD41C4BB9170071341D /* SleepingInTheLibrary.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SleepingInTheLibrary.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2304FD71C4BB9170071341D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2304FD91C4BB9170071341D /* PhotoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewController.swift; sourceTree = "<group>"; };
@@ -98,7 +102,9 @@
 			isa = PBXGroup;
 			children = (
 				D2304FD71C4BB9170071341D /* AppDelegate.swift */,
+				D20A2A371C63224F006BB358 /* Constants.swift */,
 				D2304FD91C4BB9170071341D /* PhotoViewController.swift */,
+				D20A2A391C632262006BB358 /* GCDBlackBox.swift */,
 				D2304FDB1C4BB9180071341D /* Main.storyboard */,
 				D2304FDE1C4BB9180071341D /* Assets.xcassets */,
 				D2304FE01C4BB9180071341D /* LaunchScreen.storyboard */,
@@ -256,8 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20A2A3A1C632262006BB358 /* GCDBlackBox.swift in Sources */,
 				D2304FDA1C4BB9170071341D /* PhotoViewController.swift in Sources */,
 				D2304FD81C4BB9170071341D /* AppDelegate.swift in Sources */,
+				D20A2A381C63224F006BB358 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -482,6 +490,7 @@
 				D2304FFE1C4BB9180071341D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2304FFF1C4BB9180071341D /* Build configuration list for PBXNativeTarget "SleepingInTheLibraryTests" */ = {
 			isa = XCConfigurationList;
@@ -490,6 +499,7 @@
 				D23050011C4BB9180071341D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D23050021C4BB9180071341D /* Build configuration list for PBXNativeTarget "SleepingInTheLibraryUITests" */ = {
 			isa = XCConfigurationList;
@@ -498,6 +508,7 @@
 				D23050041C4BB9180071341D /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -10,7 +10,7 @@ import UIKit
 
 let BASE_URL = "https://api.flickr.com/services/rest/"
 let METHOD_NAME = "flickr.galleries.getPhotos"
-let API_KEY = "9a00d835e032b9fe05b30215d22b5713"
+let API_KEY = "fc32b10bb0a2f30416fb38f74c18846a"
 let GALLERY_ID = "5704-72157622566655097"
 let EXTRAS = "url_m"
 let DATA_FORMAT = "json"
