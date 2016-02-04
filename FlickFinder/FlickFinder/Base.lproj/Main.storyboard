@@ -32,10 +32,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wYZ-lM-WOu">
-                                        <rect key="frame" x="0.0" y="51" width="285" height="207"/>
+                                        <rect key="frame" x="0.0" y="51" width="285" height="175"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JDw-5i-pPa">
-                                                <rect key="frame" x="0.0" y="0.0" width="285" height="207"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="285" height="175"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="285" id="WYh-fs-VYs"/>
                                                 </constraints>
@@ -43,10 +43,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="3De-gd-KcE">
-                                        <rect key="frame" x="0.0" y="283" width="293" height="32"/>
+                                        <rect key="frame" x="0.0" y="251" width="293" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ROW-G4-Yhg">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="guh-Ah-gOV"/>
                                                 </constraints>
@@ -54,7 +54,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1U5-aQ-qxk">
-                                                <rect key="frame" x="253" y="0.0" width="40" height="32"/>
+                                                <rect key="frame" x="253" y="0.0" width="40" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="UGJ-lF-ybH"/>
                                                 </constraints>
@@ -63,10 +63,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kuV-MU-eDz">
-                                        <rect key="frame" x="0.0" y="340" width="296" height="32"/>
+                                        <rect key="frame" x="0.0" y="324" width="296" height="48"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-3o-t7J">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="32"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="112" id="494-L8-URP"/>
                                                 </constraints>
@@ -74,7 +74,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Npi-VG-GxW">
-                                                <rect key="frame" x="128" y="0.0" width="112" height="32"/>
+                                                <rect key="frame" x="128" y="0.0" width="112" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="112" id="Crx-l6-ZnE"/>
                                                 </constraints>
@@ -82,7 +82,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2T-cL-bZV">
-                                                <rect key="frame" x="256" y="0.0" width="40" height="32"/>
+                                                <rect key="frame" x="256" y="0.0" width="40" height="48"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="837-HD-7Pk"/>
                                                 </constraints>
@@ -141,6 +141,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="SearchIcon" width="32" height="32"/>
+        <image name="SearchIcon" width="48" height="48"/>
     </resources>
 </document>

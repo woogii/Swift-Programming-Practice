@@ -1,6 +1,6 @@
 //
 //  Constants.swift
-//  SleepingInTheLibrary
+//  FlickFinder
 //
 //  Created by Hyun on 2016. 2. 4..
 //  Copyright © 2016년 wook2. All rights reserved.
@@ -10,40 +10,40 @@ import Foundation
 
 
 struct Constants {
-    
+
     struct FlickrAPI {
         static let BaseURL = "https://api.flickr.com/services/rest/"
+        static let APIScheme = "https"
+        static let APIHost =   "api.flickr.com"
+        static let APIPath =   "/services/rest"
     }
     
-    struct FlickrAPIKeyParams {
-        static let Method = "method"
+    struct FlickrAPIParamKeys {
         static let APIKey = "api_key"
-        static let GalleryId = "gallery_id"
+        static let Method = "method"
+        static let Text =   "text"
         static let Extras = "extras"
         static let Format = "format"
         static let NoJSONCallback = "nojsoncallback"
     }
     
-    struct FlickrAPIValuesParams {
-        static let MethodValue = "flickr.galleries.getPhotos"
-        static let APIKeyValue = "fc32b10bb0a2f30416fb38f74c18846a"
-        static let GallerIdValue = "5704-72157622566655097"
+    struct FlickrAPIParamValues {
+        static let APIKeyValue = "725c46bd47f3f0acc79e990bb7b5e451"
+        static let MethodValue = "flickr.photos.search"
+        static let TextValue = ""
         static let UrlValue = "url_m"
         static let FormatValue = "json"
         static let DisableJSONCallback = "1"
     }
     
     struct FlickrAPIResponseKeys {
-        static let Status = "stat"
         static let Photos = "photos"
-        static let Total  = "total"
         static let Photo = "photo"
         static let Title = "title"
         static let MediumURL = "url_m"
     }
     
-    // MARK: Flickr Response Values
-    struct FlickrResponseValues {
+    struct FlickrAPIResponseValues {
         static let OKStatus = "ok"
     }
 }

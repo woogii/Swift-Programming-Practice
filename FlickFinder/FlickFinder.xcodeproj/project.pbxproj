@@ -14,6 +14,8 @@
 		D20A2A521C6374B0006BB358 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20A2A501C6374B0006BB358 /* LaunchScreen.storyboard */; };
 		D20A2A5D1C6374B0006BB358 /* FlickFinderTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A2A5C1C6374B0006BB358 /* FlickFinderTests.swift */; };
 		D20A2A681C6374B0006BB358 /* FlickFinderUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A2A671C6374B0006BB358 /* FlickFinderUITests.swift */; };
+		D20A2A761C638E4B006BB358 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A2A751C638E4B006BB358 /* Constants.swift */; };
+		D20A2A781C638E71006BB358 /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20A2A771C638E71006BB358 /* GCDBlackBox.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -47,6 +49,8 @@
 		D20A2A631C6374B0006BB358 /* FlickFinderUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = FlickFinderUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20A2A671C6374B0006BB358 /* FlickFinderUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FlickFinderUITests.swift; sourceTree = "<group>"; };
 		D20A2A691C6374B0006BB358 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		D20A2A751C638E4B006BB358 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		D20A2A771C638E71006BB358 /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -99,6 +103,8 @@
 			children = (
 				D20A2A471C6374B0006BB358 /* AppDelegate.swift */,
 				D20A2A491C6374B0006BB358 /* FinderViewController.swift */,
+				D20A2A751C638E4B006BB358 /* Constants.swift */,
+				D20A2A771C638E71006BB358 /* GCDBlackBox.swift */,
 				D20A2A4B1C6374B0006BB358 /* Main.storyboard */,
 				D20A2A4E1C6374B0006BB358 /* Assets.xcassets */,
 				D20A2A501C6374B0006BB358 /* LaunchScreen.storyboard */,
@@ -256,8 +262,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D20A2A781C638E71006BB358 /* GCDBlackBox.swift in Sources */,
 				D20A2A4A1C6374B0006BB358 /* FinderViewController.swift in Sources */,
 				D20A2A481C6374B0006BB358 /* AppDelegate.swift in Sources */,
+				D20A2A761C638E4B006BB358 /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
