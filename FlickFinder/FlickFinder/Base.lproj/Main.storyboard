@@ -59,6 +59,9 @@
                                                     <constraint firstAttribute="width" constant="40" id="UGJ-lF-ybH"/>
                                                 </constraints>
                                                 <state key="normal" image="SearchIcon"/>
+                                                <connections>
+                                                    <action selector="phraseSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="OhV-Gk-Y8O"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -87,6 +90,9 @@
                                                     <constraint firstAttribute="width" constant="40" id="837-HD-7Pk"/>
                                                 </constraints>
                                                 <state key="normal" image="SearchIcon"/>
+                                                <connections>
+                                                    <action selector="latLonSearch:" destination="BYZ-38-t0r" eventType="touchUpInside" id="CSr-cm-eC3"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -134,6 +140,15 @@
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="imageView" destination="JDw-5i-pPa" id="R2X-0d-ebO"/>
+                        <outlet property="latLonSearchButton" destination="z2T-cL-bZV" id="2GV-X4-bsR"/>
+                        <outlet property="latitudeTextField" destination="Ei6-3o-t7J" id="OU8-uB-Lde"/>
+                        <outlet property="longitudeTextField" destination="Npi-VG-GxW" id="88S-Fe-hv6"/>
+                        <outlet property="photoInfoLabel" destination="KN1-Cl-Y0o" id="3Ws-MP-oRE"/>
+                        <outlet property="phraseSearchButton" destination="1U5-aQ-qxk" id="Yg1-eI-3dt"/>
+                        <outlet property="phraseTextField" destination="ROW-G4-Yhg" id="dp8-zA-yPv"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
