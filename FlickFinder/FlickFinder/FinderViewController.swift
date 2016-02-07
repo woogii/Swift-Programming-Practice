@@ -11,51 +11,128 @@ import Foundation
 
 class FinderViewController: UIViewController {
 
+    // MARK : - Properties
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var phraseTextField: UITextField!
     @IBOutlet weak var latitudeTextField: UITextField!
     @IBOutlet weak var longitudeTextField: UITextField!
     @IBOutlet weak var photoInfoLabel: UILabel!
     @IBOutlet weak var latLonSearchButton: UIButton!
-    
     @IBOutlet weak var phraseSearchButton: UIButton!
+    
+    // MARK : - View lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
-    }
-
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+        phraseTextField.delegate = self
+        longitudeTextField.delegate = self
+        latitudeTextField.delegate = self
+        
+        // Add tap gesture to dismiss keyboard when a user touches the screen
+        let tapGesture: UIGestureRecognizer = UITapGestureRecognizer(target: self, action: "dismissKeyboard")
+        view.addGestureRecognizer(tapGesture)
+        
+        // Adds an entry to the receiver's dispatch table
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyBoardWillShow:", name: UIKeyboardWillShowNotification , object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "keyBoardWillHide:", name: UIKeyboardWillHideNotification, object: nil)
     }
     
+    override func viewWillDisappear(animated: Bool) {
+        
+        // Removes matching entries from the receiver's dispatch table
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: UIKeyboardWillShowNotification, object: nil)
+        NSNotificationCenter.defaultCenter().removeObserver(self, name:UIKeyboardWillHideNotification, object: nil)
+        
+    }
+    
+    func dismissKeyboard() {
+        // Causes the view to resign the first responder status
+        view.endEditing(true)
+    }
+    
+    // UIKeyboardWillShowNotification message is posted immediately prior to the dismissal of the keyboard.
+    func keyBoardWillShow(notification: NSNotification) {
+        
+        // UIKeyboardFrameBeginUserInfoKey
+        // The key for an NSValue object containing a CGRect that identifies the start frame of the keyboard in screen coordinates.
+        if let userInfo = notification.userInfo {
+            let keyboardSize = (userInfo[UIKeyboardFrameBeginUserInfoKey] as! NSValue).CGRectValue()
+            self.view.frame.origin.y = -keyboardSize.height
+        }
+    }
+    
+    // UIKeyboardWillHideNotification message is posted after the display of the keyboard
+    func keyBoardWillHide(notification: NSNotification) {
+        self.view.frame.origin.y = 0
+    }
+    
+  
+    //
     func setUIEnabled(enabled:Bool) {
         phraseSearchButton.enabled = enabled
         latLonSearchButton.enabled = enabled
     }
 
     @IBAction func phraseSearch(sender: AnyObject) {
-
         setUIEnabled(false)
         displayImageFromFlickr()
     }
 
     @IBAction func latLonSearch(sender: AnyObject) {
+        
         setUIEnabled(false)
-        displayImageFromFlickr()
+        let isProperValue = checkLatLonValue()
+        
+        if isProperValue {
+            displayImageFromFlickr()
+        }
     }
     
+    func checkLatLonValue()->Bool{
+        
+        // static let SearchBBoxHalfWidth = 1.0
+        // static let SearchBBoxHalfHeight = 1.0
+        // static let SearchLatRange = (-90.0, 90.0)
+        // static let SearchLonRange = (-180.0, 180.0)
+        
+        let latitude = Double(latitudeTextField.text!)
+        let longitude = Double(longitudeTextField.text!)
+        print(latitude)
+        print(longitude)
+        
+        if latitude < Constants.FlickrAPI.SearchLatRange.0 &&  latitude > Constants.FlickrAPI.SearchLatRange.1 {
+            photoInfoLabel.text = "Latitude should be [-90.0, 90.0]\n\n Longitude should be [-180,180]"
+            return false
+        }
+        
+        if longitude < Constants.FlickrAPI.SearchLonRange.0 && longitude > Constants.FlickrAPI.SearchLonRange.1 {
+            photoInfoLabel.text = "Latitude should be [-90.0, 90.0]\n\n Longitude should be [-180,180]"
+            return false
+        }
+        return true
+    }
+    
+    func getBBoxValue()->String {
+        
+        let latitude = Double(latitudeTextField.text!)
+        let longitude = Double(longitudeTextField.text!)
+        
+        let min_lon = max(longitude! - Constants.FlickrAPI.SearchBBoxHalfHeight, Constants.FlickrAPI.SearchLonRange.0)
+        let min_lat = max(latitude! - Constants.FlickrAPI.SearchBBoxHalfWidth, Constants.FlickrAPI.SearchLatRange.0)
+        let max_lon = min(longitude! + Constants.FlickrAPI.SearchBBoxHalfHeight, Constants.FlickrAPI.SearchLonRange.1)
+        let max_lat = min(latitude! + Constants.FlickrAPI.SearchBBoxHalfWidth, Constants.FlickrAPI.SearchLatRange.1)
+        
+        return "\(min_lon),\(min_lat),\(max_lon),\(max_lat)"
+        
+    }
+
     func displayImageFromFlickr() {
         
         let methodArguments = [
             Constants.FlickrAPIParamKeys.Method:Constants.FlickrAPIParamValues.MethodValue,
             Constants.FlickrAPIParamKeys.APIKey:Constants.FlickrAPIParamValues.APIKeyValue,
-           Constants.FlickrAPIParamKeys.Text:phraseTextField.text!,
-            
-            Constants.FlickrAPIParamKeys.BoundingBox:Constants.FlickrAPIParamValues.BBoxValue,
-            
-            Constants.FlickrAPIParamKeys.SafeSearch:
-                Constants.FlickrAPIParamValues.UseSafeSearch,
+            Constants.FlickrAPIParamKeys.Text:phraseTextField.text!,
+            Constants.FlickrAPIParamKeys.BoundingBox: getBBoxValue(),
+            Constants.FlickrAPIParamKeys.SafeSearch:Constants.FlickrAPIParamValues.UseSafeSearch,
             Constants.FlickrAPIParamKeys.Extras:Constants.FlickrAPIParamValues.MediumURL,
             Constants.FlickrAPIParamKeys.Format:Constants.FlickrAPIParamValues.FormatValue,
             Constants.FlickrAPIParamKeys.NoJSONCallback:Constants.FlickrAPIParamValues.DisableJSONCallback
@@ -63,7 +140,7 @@ class FinderViewController: UIViewController {
         
         let session = NSURLSession.sharedSession()
         let urlValue = buildUrlValue(methodArguments)
-        
+        print(urlValue)
         let httpRequest = NSURLRequest(URL: urlValue)
       
         let task = session.dataTaskWithRequest(httpRequest, completionHandler: {
@@ -79,6 +156,12 @@ class FinderViewController: UIViewController {
                 return
             }
             
+            guard let response = response where (response as! NSHTTPURLResponse).statusCode >= 200 && (response as! NSHTTPURLResponse).statusCode <= 299 else {
+               
+                displayError("response error")
+                return
+            }
+            
             guard let data = data else {
                 displayError((error?.description)!)
                 return
@@ -90,12 +173,11 @@ class FinderViewController: UIViewController {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                 
                 print(parsedResult)
-            } catch  {
-               displayError("Parsing error")
+                
+                
+            } catch let error as NSError{
+               displayError((error.description))
             }
-            
-
-            
         })
         
         task.resume()
@@ -138,3 +220,12 @@ class FinderViewController: UIViewController {
     
 }
 
+extension FinderViewController : UITextFieldDelegate {
+    
+    func textFieldShouldReturn(textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
+    }
+    
+    
+}
