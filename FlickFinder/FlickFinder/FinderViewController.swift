@@ -65,8 +65,6 @@ class FinderViewController: UIViewController {
         self.view.frame.origin.y = 0
     }
     
-  
-    //
     func setUIEnabled(enabled:Bool) {
         phraseSearchButton.enabled = enabled
         latLonSearchButton.enabled = enabled
@@ -74,7 +72,8 @@ class FinderViewController: UIViewController {
 
     @IBAction func phraseSearch(sender: AnyObject) {
         setUIEnabled(false)
-        displayImageFromFlickr()
+        searchImagesByPhrase()
+        setUIEnabled(true)
     }
 
     @IBAction func latLonSearch(sender: AnyObject) {
@@ -83,16 +82,12 @@ class FinderViewController: UIViewController {
         let isProperValue = checkLatLonValue()
         
         if isProperValue {
-            displayImageFromFlickr()
+            searchImagesByLatLon()
         }
+        setUIEnabled(true)
     }
     
     func checkLatLonValue()->Bool{
-        
-        // static let SearchBBoxHalfWidth = 1.0
-        // static let SearchBBoxHalfHeight = 1.0
-        // static let SearchLatRange = (-90.0, 90.0)
-        // static let SearchLonRange = (-180.0, 180.0)
         
         let latitude = Double(latitudeTextField.text!)
         let longitude = Double(longitudeTextField.text!)
@@ -124,9 +119,24 @@ class FinderViewController: UIViewController {
         return "\(min_lon),\(min_lat),\(max_lon),\(max_lat)"
         
     }
-
-    func displayImageFromFlickr() {
+    
+    func searchImagesByPhrase() {
         
+        let methodArguments = [
+            Constants.FlickrAPIParamKeys.Method:Constants.FlickrAPIParamValues.MethodValue,
+            Constants.FlickrAPIParamKeys.APIKey:Constants.FlickrAPIParamValues.APIKeyValue,
+            Constants.FlickrAPIParamKeys.Text:phraseTextField.text!,
+            Constants.FlickrAPIParamKeys.SafeSearch:Constants.FlickrAPIParamValues.UseSafeSearch,
+            Constants.FlickrAPIParamKeys.Extras:Constants.FlickrAPIParamValues.MediumURL,
+            Constants.FlickrAPIParamKeys.Format:Constants.FlickrAPIParamValues.FormatValue,
+            Constants.FlickrAPIParamKeys.NoJSONCallback:Constants.FlickrAPIParamValues.DisableJSONCallback
+        ]
+        
+        getImagesFromFlickr(methodArguments)
+        
+    }
+    
+    func searchImagesByLatLon() {
         let methodArguments = [
             Constants.FlickrAPIParamKeys.Method:Constants.FlickrAPIParamValues.MethodValue,
             Constants.FlickrAPIParamKeys.APIKey:Constants.FlickrAPIParamValues.APIKeyValue,
@@ -137,6 +147,12 @@ class FinderViewController: UIViewController {
             Constants.FlickrAPIParamKeys.Format:Constants.FlickrAPIParamValues.FormatValue,
             Constants.FlickrAPIParamKeys.NoJSONCallback:Constants.FlickrAPIParamValues.DisableJSONCallback
         ]
+
+        getImagesFromFlickr(methodArguments)
+    }
+
+    
+    func getImagesFromFlickr(methodArguments:[String:String]) {
         
         let session = NSURLSession.sharedSession()
         let urlValue = buildUrlValue(methodArguments)
@@ -151,17 +167,18 @@ class FinderViewController: UIViewController {
                 print(error)
             }
             
-            guard error == nil  else {
+            // Check whether an error exists
+            guard error == nil   else {
                 displayError((error?.description)!)
                 return
             }
             
-            guard let response = response where (response as! NSHTTPURLResponse).statusCode >= 200 && (response as! NSHTTPURLResponse).statusCode <= 299 else {
-               
-                displayError("response error")
+            // Check whether http response code is between 200 and 299
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200  && statusCode <= 299 else {
+                displayError("http response code is not in a range between 200 and 299")
                 return
             }
-            
+            //
             guard let data = data else {
                 displayError((error?.description)!)
                 return
@@ -173,6 +190,20 @@ class FinderViewController: UIViewController {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                 
                 print(parsedResult)
+                
+                guard let photosDictionary = parsedResult["photos"] as? NSDictionary else {
+                    print("Cannot parse JSON object by using subscript \"photos\"")
+                    return
+                }
+                
+                guard let photoDict = photosDictionary["photo"] as? [[String:AnyObject]] else {
+                    print("Cannot parse JSON object by using subscript \"photos\"")
+                    return
+                }
+                
+                for photo in photoDict {
+                    print(photo)
+                }
                 
                 
             } catch let error as NSError{
