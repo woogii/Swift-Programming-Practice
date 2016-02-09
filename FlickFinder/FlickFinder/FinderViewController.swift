@@ -129,10 +129,12 @@ class FinderViewController: UIViewController {
             Constants.FlickrAPIParamKeys.SafeSearch:Constants.FlickrAPIParamValues.UseSafeSearch,
             Constants.FlickrAPIParamKeys.Extras:Constants.FlickrAPIParamValues.MediumURL,
             Constants.FlickrAPIParamKeys.Format:Constants.FlickrAPIParamValues.FormatValue,
-            Constants.FlickrAPIParamKeys.NoJSONCallback:Constants.FlickrAPIParamValues.DisableJSONCallback
+            Constants.FlickrAPIParamKeys.NoJSONCallback:Constants.FlickrAPIParamValues.DisableJSONCallback,
+            Constants.FlickrAPIParamKeys.Page: Constants.FlickrAPIParamValues.searchPage
         ]
         
-        getImagesFromFlickr(methodArguments)
+        getSearchPageFromFlickr(methodArguments)
+        // getImagesFromFlickr(methodArguments, searchPage: searchPage)
         
     }
     
@@ -145,18 +147,21 @@ class FinderViewController: UIViewController {
             Constants.FlickrAPIParamKeys.SafeSearch:Constants.FlickrAPIParamValues.UseSafeSearch,
             Constants.FlickrAPIParamKeys.Extras:Constants.FlickrAPIParamValues.MediumURL,
             Constants.FlickrAPIParamKeys.Format:Constants.FlickrAPIParamValues.FormatValue,
-            Constants.FlickrAPIParamKeys.NoJSONCallback:Constants.FlickrAPIParamValues.DisableJSONCallback
+            Constants.FlickrAPIParamKeys.NoJSONCallback:Constants.FlickrAPIParamValues.DisableJSONCallback,
+            Constants.FlickrAPIParamKeys.Page: Constants.FlickrAPIParamValues.searchPage
         ]
 
-        getImagesFromFlickr(methodArguments)
+        getSearchPageFromFlickr(methodArguments)
+        // getImagesFromFlickr(methodArguments, searchPage: searchPage)
     }
 
     
-    func getImagesFromFlickr(methodArguments:[String:String]) {
+    func getSearchPageFromFlickr(methodArguments:[String:String]) {
         
+        var randomPage = 0
         let session = NSURLSession.sharedSession()
         let urlValue = buildUrlValue(methodArguments)
-        print(urlValue)
+        
         let httpRequest = NSURLRequest(URL: urlValue)
       
         let task = session.dataTaskWithRequest(httpRequest, completionHandler: {
@@ -178,33 +183,35 @@ class FinderViewController: UIViewController {
                 displayError("http response code is not in a range between 200 and 299")
                 return
             }
-            //
+            // Check whether data exists
             guard let data = data else {
                 displayError((error?.description)!)
                 return
             }
             
             let parsedResult:AnyObject!
-            
             do {
+            
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                 
-                print(parsedResult)
-                
+                // print(parsedResult)
+            
                 guard let photosDictionary = parsedResult["photos"] as? NSDictionary else {
                     print("Cannot parse JSON object by using subscript \"photos\"")
                     return
                 }
                 
-                guard let photoDict = photosDictionary["photo"] as? [[String:AnyObject]] else {
-                    print("Cannot parse JSON object by using subscript \"photos\"")
+                guard let pages = photosDictionary["pages"] as? Int else {
+                    print("Cannot parse JSON object by using subscript \"pages\"")
                     return
                 }
                 
-                for photo in photoDict {
-                    print(photo)
-                }
+                print("pages: \(pages)")
                 
+                let pageLimit = min(pages, 40)
+                randomPage = Int(arc4random_uniform(UInt32(pageLimit)))+1
+                
+                self.getImagesFromFlickr(methodArguments, searchPage: randomPage)
                 
             } catch let error as NSError{
                displayError((error.description))
@@ -212,8 +219,82 @@ class FinderViewController: UIViewController {
         })
         
         task.resume()
-
     }
+    
+    func getImagesFromFlickr(var methodArguments:[String:String], searchPage:Int) {
+        
+        print("searchPage : \(searchPage)")
+        
+        methodArguments[Constants.FlickrAPIParamKeys.Page] = "\(searchPage)"
+        
+        let session = NSURLSession.sharedSession()
+        
+        let url = buildUrlValue(methodArguments)
+        let request = NSURLRequest(URL: url)
+        
+        
+        let task = session.dataTaskWithRequest(request) {  (data, response, error)-> Void in
+            
+            func displayError(error:String) {
+                print(error)
+            }
+            
+            guard error == nil else {
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("http response code is not in a range between 200 and 299")
+                return
+            }
+            
+            guard let data = data else {
+                displayError("Cannot receive data from Server")
+                return
+            }
+            
+            let parsedResult:AnyObject!
+            
+            do {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                print(parsedResult)
+                
+                guard let photosDictionary = parsedResult["photos"] as? NSDictionary else {
+                    print("Cannot parse JSON object by using subscript \"photos\"")
+                    return
+                }
+                
+                guard let photoDictArray = photosDictionary["photo"] as? [[String:AnyObject]], let photoCount = photosDictionary["perpage"] as? Int else {
+                    print("Cannot parse JSON object by using subscript \"photos\"")
+                    return
+                }
+                
+                let randomPage = Int(arc4random_uniform(UInt32(photoCount)))
+                
+                guard let photoDict = photoDictArray[randomPage] as? [String:AnyObject] else {
+                    return
+                }
+                
+                guard let urlString = photoDict[Constants.FlickrAPIParamValues.MediumURL] as? String else {
+                    return
+                }
+                
+                let url = NSURL(string: urlString)!
+                let data = NSData(contentsOfURL: url)
+                
+                perfromUIUpdatesOnMain() {
+                    self.imageView.image = UIImage(data: data!)
+                }
+
+        
+            } catch let error as NSError {
+                displayError((error.description))
+            }
+            
+        }
+        task.resume()
+    }
+
     
     func buildUrlValue(queryValuePairs:[String:String])->NSURL{
         
@@ -230,24 +311,6 @@ class FinderViewController: UIViewController {
         
         return urlComponents.URL!
     }
-    
-//        urlComponents.queryItems?.append(NSURLQueryItem(name: Constants.FlickrAPIParamKeys.Method, value: Constants.FlickrAPIParamValues.MethodValue))
-//        
-//        urlComponents.queryItems?.append(NSURLQueryItem(name: Constants.FlickrAPIParamKeys.APIKey, value: Constants.FlickrAPIParamValues.APIKeyValue))
-//        
-//        urlComponents.queryItems?.append(NSURLQueryItem(name: Constants.FlickrAPIParamKeys.Text, value: Constants.FlickrAPIParamValues.TextValue))
-//        
-//        urlComponents.queryItems?.append(NSURLQueryItem(name: Constants.FlickrAPIParamKeys.BoundingBox, value: Constants.FlickrAPIParamValues.BBoxValue))
-//        
-//        urlComponents.queryItems?.append(NSURLQueryItem(name: Constants.FlickrAPIParamKeys.Method, value: Constants.FlickrAPIParamValues.MethodValue))
-//        
-//        urlComponents.queryItems?.append(NSURLQueryItem(name:Constants.FlickrAPIParamKeys.SafeSearch, value:Constants.FlickrAPIParamValues.UseSafeSearch))
-//        
-//        urlComponents.queryItems?.append(NSURLQueryItem(name:Constants.FlickrAPIParamKeys.Extras, value:Constants.FlickrAPIParamValues.MediumURL))
-//        
-//        urlComponents.queryItems?.append(NSURLQueryItem(name: Constants.FlickrAPIParamKeys.Format, value: Constants.FlickrAPIParamValues.FormatValue))
-//
-//        urlComponents.queryItems?.append(NSURLQueryItem(name:Constants.FlickrAPIParamKeys.NoJSONCallback, value: Constants.FlickrAPIParamValues.DisableJSONCallback))
     
 }
 

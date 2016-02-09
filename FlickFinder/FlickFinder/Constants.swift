@@ -36,7 +36,7 @@ struct Constants {
     }
     
     struct FlickrAPIParamValues {
-        static let APIKeyValue = "e8ad823817d5fb181734156e65a29055"
+        static let APIKeyValue = "4f1f97505cac6c8e43932b9c2db835ad"
         static let MethodValue = "flickr.photos.search"
         static let TextValue = ""
         static let BBoxValue = ""
@@ -44,7 +44,7 @@ struct Constants {
         static let MediumURL = "url_m"
         static let FormatValue = "json"
         static let DisableJSONCallback = "1"
-        
+        static let searchPage = ""
     }
     
     struct FlickrAPIResponseKeys {
