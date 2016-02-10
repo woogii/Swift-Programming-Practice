@@ -44,14 +44,16 @@ struct Constants {
         static let MediumURL = "url_m"
         static let FormatValue = "json"
         static let DisableJSONCallback = "1"
-        static let searchPage = ""
     }
     
     struct FlickrAPIResponseKeys {
+        static let Status = "stat"
         static let Photos = "photos"
         static let Photo = "photo"
         static let Title = "title"
         static let MediumURL = "url_m"
+        static let Pages = "pages"
+        static let Total = "total"
     }
     
     struct FlickrAPIResponseValues {
