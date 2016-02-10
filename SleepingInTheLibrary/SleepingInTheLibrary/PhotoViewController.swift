@@ -50,7 +50,7 @@ class PhotoViewController: UIViewController {
     }
     
     
-    // MARK : - Get images from Flick
+    /// MARK : - Get images from Flick
     
     func getImageFromFlick() {
         

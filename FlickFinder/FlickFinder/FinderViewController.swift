@@ -12,6 +12,7 @@ import Foundation
 class FinderViewController: UIViewController {
 
     // MARK : - Properties
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var phraseTextField: UITextField!
     @IBOutlet weak var latitudeTextField: UITextField!
@@ -21,6 +22,7 @@ class FinderViewController: UIViewController {
     @IBOutlet weak var phraseSearchButton: UIButton!
     
     // MARK : - View lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         phraseTextField.delegate = self
@@ -44,12 +46,16 @@ class FinderViewController: UIViewController {
         
     }
     
+    /// Dismiss keyboard on the screen by removing first responder status 
+    
     func dismissKeyboard() {
         // Causes the view to resign the first responder status
         view.endEditing(true)
     }
     
-    // UIKeyboardWillShowNotification message is posted immediately prior to the dismissal of the keyboard.
+    /// UIKeyboardWillShowNotification message is posted immediately prior to the dismissal of the keyboard.
+    /// - parameter notification : NSNotification type variable that contains notification information
+    
     func keyBoardWillShow(notification: NSNotification) {
         
         // UIKeyboardFrameBeginUserInfoKey
@@ -60,7 +66,8 @@ class FinderViewController: UIViewController {
         }
     }
     
-    // UIKeyboardWillHideNotification message is posted after the display of the keyboard
+    /// UIKeyboardWillHideNotification message is posted after the display of the keyboard
+    /// - parameter notification : NSNotification type variable that contains notification information
     func keyBoardWillHide(notification: NSNotification) {
         self.view.frame.origin.y = 0
     }
@@ -72,22 +79,43 @@ class FinderViewController: UIViewController {
 
     @IBAction func phraseSearch(sender: AnyObject) {
         setUIEnabled(false)
-        searchImagesByPhrase()
-        setUIEnabled(true)
+        
+        let inputExist = checkInputValues()
+        
+        if inputExist {
+            searchImagesByPhrase()
+        }
     }
 
     @IBAction func latLonSearch(sender: AnyObject) {
         
         setUIEnabled(false)
-        let isProperValue = checkLatLonValue()
         
-        if isProperValue {
-            searchImagesByLatLon()
+        let inputExist = checkInputValues()
+        
+        if inputExist {
+            
+            let isProperValue = checkLatLonValue()
+        
+            if isProperValue {
+                searchImagesByLatLon()
+            }
         }
-        setUIEnabled(true)
+    }
+    
+    func checkInputValues()->Bool{
+        
+        if phraseTextField.text == ""  && latitudeTextField.text == "" && longitudeTextField.text == "" {
+            setUIEnabled(true)
+            photoInfoLabel.text = "Both phrase and location information are ommitted."
+            return false
+        } else {
+            return true
+        }
     }
     
     func checkLatLonValue()->Bool{
+        
         
         let latitude = Double(latitudeTextField.text!)
         let longitude = Double(longitudeTextField.text!)
@@ -134,8 +162,6 @@ class FinderViewController: UIViewController {
         ]
         
         getSearchPageFromFlickr(methodArguments)
-        // getImagesFromFlickr(methodArguments, searchPage: searchPage)
-        
     }
     
     func searchImagesByLatLon() {
@@ -152,7 +178,6 @@ class FinderViewController: UIViewController {
         ]
 
         getSearchPageFromFlickr(methodArguments)
-        // getImagesFromFlickr(methodArguments, searchPage: searchPage)
     }
 
     
@@ -169,6 +194,9 @@ class FinderViewController: UIViewController {
         
             
             func displayError(error:String) {
+                perfromUIUpdatesOnMain() {
+                    self.setUIEnabled(true)
+                }
                 print(error)
             }
             
@@ -194,15 +222,13 @@ class FinderViewController: UIViewController {
             
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
                 
-                // print(parsedResult)
-            
                 guard let photosDictionary = parsedResult["photos"] as? NSDictionary else {
-                    print("Cannot parse JSON object by using subscript \"photos\"")
+                    displayError("Cannot parse JSON object by using subscript \"photos\"")
                     return
                 }
                 
                 guard let pages = photosDictionary["pages"] as? Int else {
-                    print("Cannot parse JSON object by using subscript \"pages\"")
+                    displayError("Cannot parse JSON object by using subscript \"pages\"")
                     return
                 }
                 
@@ -236,6 +262,9 @@ class FinderViewController: UIViewController {
         let task = session.dataTaskWithRequest(request) {  (data, response, error)-> Void in
             
             func displayError(error:String) {
+                perfromUIUpdatesOnMain() {
+                    self.setUIEnabled(true)
+                }
                 print(error)
             }
             
@@ -257,35 +286,43 @@ class FinderViewController: UIViewController {
             
             do {
                 parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
-                print(parsedResult)
+                //print(parsedResult)
                 
                 guard let photosDictionary = parsedResult["photos"] as? NSDictionary else {
-                    print("Cannot parse JSON object by using subscript \"photos\"")
+                    displayError("Cannot parse JSON object by using subscript \"photos\"")
                     return
                 }
                 
-                guard let photoDictArray = photosDictionary["photo"] as? [[String:AnyObject]], let photoCount = photosDictionary["perpage"] as? Int else {
-                    print("Cannot parse JSON object by using subscript \"photos\"")
+                guard let photoDictArray = photosDictionary["photo"] as? [[String:AnyObject]] else {
+                    displayError("Cannot parse JSON object by using subscript \"photos\"")
                     return
                 }
                 
-                let randomPage = Int(arc4random_uniform(UInt32(photoCount)))
+                if photoDictArray.count == 0 {
+                    displayError("No Photos Found. Search Again.")
+                    perfromUIUpdatesOnMain() {
+                        self.photoInfoLabel.text = "No Photos Found. Search Again."
+                    }
+                } else {
+                    let randomPage = Int(arc4random_uniform(UInt32(photoDictArray.count)))
                 
-                guard let photoDict = photoDictArray[randomPage] as? [String:AnyObject] else {
-                    return
+                    let photoDict = photoDictArray[randomPage] as? [String:AnyObject]
+                    
+                    guard let urlString = photoDict![Constants.FlickrAPIResponseKeys.MediumURL] as? String,
+                        photoTitle = photoDict![Constants.FlickrAPIResponseKeys.Title] as? String else {
+                        return
+                    }
+                    
+                    let url = NSURL(string: urlString)!
+                    let data = NSData(contentsOfURL: url)
+                    
+                    print(url)
+                    perfromUIUpdatesOnMain() {
+                        self.imageView.image = UIImage(data: data!)
+                        self.photoInfoLabel.text = photoTitle
+                        self.setUIEnabled(true)
+                    }
                 }
-                
-                guard let urlString = photoDict[Constants.FlickrAPIParamValues.MediumURL] as? String else {
-                    return
-                }
-                
-                let url = NSURL(string: urlString)!
-                let data = NSData(contentsOfURL: url)
-                
-                perfromUIUpdatesOnMain() {
-                    self.imageView.image = UIImage(data: data!)
-                }
-
         
             } catch let error as NSError {
                 displayError((error.description))
