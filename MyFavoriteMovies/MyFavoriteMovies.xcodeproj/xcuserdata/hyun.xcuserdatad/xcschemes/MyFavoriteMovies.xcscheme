@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "A9DA8EEA1B9F82FC00FF1AC6"
+               BlueprintIdentifier = "D20283EC1C6CBF830041F458"
                BuildableName = "MyFavoriteMovies.app"
                BlueprintName = "MyFavoriteMovies"
                ReferencedContainer = "container:MyFavoriteMovies.xcodeproj">
@@ -28,11 +28,31 @@
       selectedLauncherIdentifier = "Xcode.DebuggerFoundation.Launcher.LLDB"
       shouldUseLaunchSchemeArgsEnv = "YES">
       <Testables>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D20284001C6CBF830041F458"
+               BuildableName = "MyFavoriteMoviesTests.xctest"
+               BlueprintName = "MyFavoriteMoviesTests"
+               ReferencedContainer = "container:MyFavoriteMovies.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
+         <TestableReference
+            skipped = "NO">
+            <BuildableReference
+               BuildableIdentifier = "primary"
+               BlueprintIdentifier = "D202840B1C6CBF830041F458"
+               BuildableName = "MyFavoriteMoviesUITests.xctest"
+               BlueprintName = "MyFavoriteMoviesUITests"
+               ReferencedContainer = "container:MyFavoriteMovies.xcodeproj">
+            </BuildableReference>
+         </TestableReference>
       </Testables>
       <MacroExpansion>
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9DA8EEA1B9F82FC00FF1AC6"
+            BlueprintIdentifier = "D20283EC1C6CBF830041F458"
             BuildableName = "MyFavoriteMovies.app"
             BlueprintName = "MyFavoriteMovies"
             ReferencedContainer = "container:MyFavoriteMovies.xcodeproj">
@@ -55,7 +75,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9DA8EEA1B9F82FC00FF1AC6"
+            BlueprintIdentifier = "D20283EC1C6CBF830041F458"
             BuildableName = "MyFavoriteMovies.app"
             BlueprintName = "MyFavoriteMovies"
             ReferencedContainer = "container:MyFavoriteMovies.xcodeproj">
@@ -74,7 +94,7 @@
          runnableDebuggingMode = "0">
          <BuildableReference
             BuildableIdentifier = "primary"
-            BlueprintIdentifier = "A9DA8EEA1B9F82FC00FF1AC6"
+            BlueprintIdentifier = "D20283EC1C6CBF830041F458"
             BuildableName = "MyFavoriteMovies.app"
             BlueprintName = "MyFavoriteMovies"
             ReferencedContainer = "container:MyFavoriteMovies.xcodeproj">
