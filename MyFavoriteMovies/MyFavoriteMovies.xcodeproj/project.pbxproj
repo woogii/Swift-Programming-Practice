@@ -16,6 +16,7 @@
 		D20284111C6CBF830041F458 /* MyFavoriteMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20284101C6CBF830041F458 /* MyFavoriteMoviesUITests.swift */; };
 		D202841F1C6CBF960041F458 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D202841E1C6CBF960041F458 /* Secret.swift */; };
 		D2698BA11C6DB543000E18DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2698BA01C6DB543000E18DF /* LoginViewController.swift */; };
+		D2DB61551C6DF7880099F350 /* TMDBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB61541C6DF7880099F350 /* TMDBConstants.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -51,6 +52,7 @@
 		D20284121C6CBF830041F458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D202841E1C6CBF960041F458 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secret.swift; path = ../Secret.swift; sourceTree = "<group>"; };
 		D2698BA01C6DB543000E18DF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D2DB61541C6DF7880099F350 /* TMDBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,11 +106,10 @@
 				D20283F01C6CBF830041F458 /* AppDelegate.swift */,
 				D202841E1C6CBF960041F458 /* Secret.swift */,
 				D20283F21C6CBF830041F458 /* ViewController.swift */,
-				D20283F41C6CBF830041F458 /* Main.storyboard */,
+				D2DB61541C6DF7880099F350 /* TMDBConstants.swift */,
 				D2698BA01C6DB543000E18DF /* LoginViewController.swift */,
-				D20283F71C6CBF830041F458 /* Assets.xcassets */,
-				D20283F91C6CBF830041F458 /* LaunchScreen.storyboard */,
-				D20283FC1C6CBF830041F458 /* Info.plist */,
+				D2DB61571C6E092C0099F350 /* Assets */,
+				D2DB61561C6E08A50099F350 /* Support Files */,
 			);
 			path = MyFavoriteMovies;
 			sourceTree = "<group>";
@@ -129,6 +130,24 @@
 				D20284121C6CBF830041F458 /* Info.plist */,
 			);
 			path = MyFavoriteMoviesUITests;
+			sourceTree = "<group>";
+		};
+		D2DB61561C6E08A50099F350 /* Support Files */ = {
+			isa = PBXGroup;
+			children = (
+				D20283FC1C6CBF830041F458 /* Info.plist */,
+			);
+			name = "Support Files";
+			sourceTree = "<group>";
+		};
+		D2DB61571C6E092C0099F350 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				D20283F41C6CBF830041F458 /* Main.storyboard */,
+				D20283F71C6CBF830041F458 /* Assets.xcassets */,
+				D20283F91C6CBF830041F458 /* LaunchScreen.storyboard */,
+			);
+			name = Assets;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -262,6 +281,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2DB61551C6DF7880099F350 /* TMDBConstants.swift in Sources */,
 				D2698BA11C6DB543000E18DF /* LoginViewController.swift in Sources */,
 				D20283F31C6CBF830041F458 /* ViewController.swift in Sources */,
 				D202841F1C6CBF960041F458 /* Secret.swift in Sources */,
