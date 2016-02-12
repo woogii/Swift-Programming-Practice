@@ -15,6 +15,7 @@
 		D20284061C6CBF830041F458 /* MyFavoriteMoviesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20284051C6CBF830041F458 /* MyFavoriteMoviesTests.swift */; };
 		D20284111C6CBF830041F458 /* MyFavoriteMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20284101C6CBF830041F458 /* MyFavoriteMoviesUITests.swift */; };
 		D202841F1C6CBF960041F458 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D202841E1C6CBF960041F458 /* Secret.swift */; };
+		D2698BA11C6DB543000E18DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2698BA01C6DB543000E18DF /* LoginViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -49,6 +50,7 @@
 		D20284101C6CBF830041F458 /* MyFavoriteMoviesUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyFavoriteMoviesUITests.swift; sourceTree = "<group>"; };
 		D20284121C6CBF830041F458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D202841E1C6CBF960041F458 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secret.swift; path = ../Secret.swift; sourceTree = "<group>"; };
+		D2698BA01C6DB543000E18DF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -103,6 +105,7 @@
 				D202841E1C6CBF960041F458 /* Secret.swift */,
 				D20283F21C6CBF830041F458 /* ViewController.swift */,
 				D20283F41C6CBF830041F458 /* Main.storyboard */,
+				D2698BA01C6DB543000E18DF /* LoginViewController.swift */,
 				D20283F71C6CBF830041F458 /* Assets.xcassets */,
 				D20283F91C6CBF830041F458 /* LaunchScreen.storyboard */,
 				D20283FC1C6CBF830041F458 /* Info.plist */,
@@ -259,6 +262,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2698BA11C6DB543000E18DF /* LoginViewController.swift in Sources */,
 				D20283F31C6CBF830041F458 /* ViewController.swift in Sources */,
 				D202841F1C6CBF960041F458 /* Secret.swift in Sources */,
 				D20283F11C6CBF830041F458 /* AppDelegate.swift in Sources */,
@@ -486,6 +490,7 @@
 				D20284171C6CBF830041F458 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D20284181C6CBF830041F458 /* Build configuration list for PBXNativeTarget "MyFavoriteMoviesTests" */ = {
 			isa = XCConfigurationList;
@@ -494,6 +499,7 @@
 				D202841A1C6CBF830041F458 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D202841B1C6CBF830041F458 /* Build configuration list for PBXNativeTarget "MyFavoriteMoviesUITests" */ = {
 			isa = XCConfigurationList;
@@ -502,6 +508,7 @@
 				D202841D1C6CBF830041F458 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
