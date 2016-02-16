@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D20283F11C6CBF830041F458 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20283F01C6CBF830041F458 /* AppDelegate.swift */; };
-		D20283F31C6CBF830041F458 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20283F21C6CBF830041F458 /* ViewController.swift */; };
 		D20283F61C6CBF830041F458 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20283F41C6CBF830041F458 /* Main.storyboard */; };
 		D20283F81C6CBF830041F458 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D20283F71C6CBF830041F458 /* Assets.xcassets */; };
 		D20283FB1C6CBF830041F458 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D20283F91C6CBF830041F458 /* LaunchScreen.storyboard */; };
@@ -39,7 +38,6 @@
 /* Begin PBXFileReference section */
 		D20283ED1C6CBF830041F458 /* MyFavoriteMovies.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MyFavoriteMovies.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D20283F01C6CBF830041F458 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D20283F21C6CBF830041F458 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		D20283F51C6CBF830041F458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D20283F71C6CBF830041F458 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D20283FA1C6CBF830041F458 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -105,7 +103,6 @@
 			children = (
 				D20283F01C6CBF830041F458 /* AppDelegate.swift */,
 				D202841E1C6CBF960041F458 /* Secret.swift */,
-				D20283F21C6CBF830041F458 /* ViewController.swift */,
 				D2DB61541C6DF7880099F350 /* TMDBConstants.swift */,
 				D2698BA01C6DB543000E18DF /* LoginViewController.swift */,
 				D2DB61571C6E092C0099F350 /* Assets */,
@@ -283,7 +280,6 @@
 			files = (
 				D2DB61551C6DF7880099F350 /* TMDBConstants.swift in Sources */,
 				D2698BA11C6DB543000E18DF /* LoginViewController.swift in Sources */,
-				D20283F31C6CBF830041F458 /* ViewController.swift in Sources */,
 				D202841F1C6CBF960041F458 /* Secret.swift in Sources */,
 				D20283F11C6CBF830041F458 /* AppDelegate.swift in Sources */,
 			);
