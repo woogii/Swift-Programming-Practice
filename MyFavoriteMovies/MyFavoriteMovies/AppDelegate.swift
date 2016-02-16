@@ -47,6 +47,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-
+    func generateURL(parameters :[String:String], withPathExtension: String? = nil) -> NSURL {
+        print(parameters)
+        
+        let components = NSURLComponents()
+        components.scheme = TMDBConstants.TMDB.APIScheme
+        components.host = TMDBConstants.TMDB.APIHost
+        components.path = TMDBConstants.TMDB.APIPath + (withPathExtension ?? "")
+        components.queryItems = [NSURLQueryItem]()
+        
+        for (key, value) in parameters {
+            let queryItem = NSURLQueryItem(name: key, value: "\(value)")
+            components.queryItems!.append(queryItem)
+        }
+        
+        return components.URL!
+    }
 }
 

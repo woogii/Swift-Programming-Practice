@@ -15,6 +15,7 @@
 		D20284111C6CBF830041F458 /* MyFavoriteMoviesUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D20284101C6CBF830041F458 /* MyFavoriteMoviesUITests.swift */; };
 		D202841F1C6CBF960041F458 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = D202841E1C6CBF960041F458 /* Secret.swift */; };
 		D2698BA11C6DB543000E18DF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2698BA01C6DB543000E18DF /* LoginViewController.swift */; };
+		D2964B721C730F9A00D5FF5C /* GCDBlackBox.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2964B711C730F9A00D5FF5C /* GCDBlackBox.swift */; };
 		D2DB61551C6DF7880099F350 /* TMDBConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2DB61541C6DF7880099F350 /* TMDBConstants.swift */; };
 /* End PBXBuildFile section */
 
@@ -50,6 +51,7 @@
 		D20284121C6CBF830041F458 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D202841E1C6CBF960041F458 /* Secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Secret.swift; path = ../Secret.swift; sourceTree = "<group>"; };
 		D2698BA01C6DB543000E18DF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		D2964B711C730F9A00D5FF5C /* GCDBlackBox.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GCDBlackBox.swift; sourceTree = "<group>"; };
 		D2DB61541C6DF7880099F350 /* TMDBConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TMDBConstants.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -105,6 +107,7 @@
 				D202841E1C6CBF960041F458 /* Secret.swift */,
 				D2DB61541C6DF7880099F350 /* TMDBConstants.swift */,
 				D2698BA01C6DB543000E18DF /* LoginViewController.swift */,
+				D2964B711C730F9A00D5FF5C /* GCDBlackBox.swift */,
 				D2DB61571C6E092C0099F350 /* Assets */,
 				D2DB61561C6E08A50099F350 /* Support Files */,
 			);
@@ -282,6 +285,7 @@
 				D2698BA11C6DB543000E18DF /* LoginViewController.swift in Sources */,
 				D202841F1C6CBF960041F458 /* Secret.swift in Sources */,
 				D20283F11C6CBF830041F458 /* AppDelegate.swift in Sources */,
+				D2964B721C730F9A00D5FF5C /* GCDBlackBox.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

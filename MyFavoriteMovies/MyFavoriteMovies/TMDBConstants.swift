@@ -15,10 +15,13 @@ struct TMDBConstants {
         static let APIScheme = "https"
         static let APIHost = "api.themoviedb.org"
         static let APIPath = "/3/"
+        static let APIAuthTokenNew = "/authentication/token/new"
+        static let APIValidateLogin = "/authentication/token/validate_with_login"
+        static let APISessionNew = "/authentication/session/new"
     }
     
     struct TMDBParamKeys{
-        static let ApiKey = "api_key"
+        static let APIKey = "api_key"
         static let RequestToken = "request_token"
         static let SessionID = "session_id"
         static let Username = "username"

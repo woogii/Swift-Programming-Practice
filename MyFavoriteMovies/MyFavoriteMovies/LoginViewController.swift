@@ -49,9 +49,187 @@ class LoginViewController: UIViewController {
     
     @IBAction func loginButtonClicked(sender: UIButton) {
         
-    
+        if usernameTextField.text!.isEmpty || passwordTextField.text!.isEmpty {
+            loginResponse.text = "Username or Password Empty."
+        } else {
+            getRequestToken()
+        }
+        
     }
         
+    func getRequestToken() {
+        
+        let methodParameters = [ TMDBConstants.TMDBParamKeys.APIKey : TMDBConstants.TMDBParameterValues.APIKey ]
+        print(methodParameters)
+        let url = appDelegate.generateURL(methodParameters, withPathExtension: TMDBConstants.TMDB.APIAuthTokenNew)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = appDelegate.session.dataTaskWithRequest(request)  {  (data, response, error) in
+            
+            func displayError(errorMessage:String) {
+                print(errorMessage)
+            }
+            
+            guard error == nil  else {
+                displayError("There was an error with your request")
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299  else {
+                displayError("Your request returned a status code other than 2xx!")
+                return
+            }
+            
+            guard let data = data else {
+                displayError("No date was returned by the request!")
+                return
+            }
+            
+            let parsedResult:AnyObject!
+            
+            do  {
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                
+                print(parsedResult)
+                
+                guard let requestToken = parsedResult[TMDBConstants.TMDBResponseKeys.RequestToken] as? String else{
+                    displayError("Can not parse data with a key \(TMDBConstants.TMDBResponseKeys.RequestToken)")
+                    return
+                }
+                
+                 self.validateLogin(requestToken)
+                
+                
+            } catch {
+                print("error")
+            }
+        }
+        
+        task.resume()
+        
+    }
+    
+    func validateLogin(requestToken:String) {
+    
+        let methodParamethers = [
+            TMDBConstants.TMDBParamKeys.APIKey : TMDBConstants.TMDBParameterValues.APIKey,
+            TMDBConstants.TMDBParamKeys.RequestToken : requestToken,
+            TMDBConstants.TMDBParamKeys.Username : TMDBConstants.TMDBParameterValues.Username,
+            TMDBConstants.TMDBParamKeys.Password : TMDBConstants.TMDBParameterValues.Password
+        ]
+        
+        let url = appDelegate.generateURL(methodParamethers, withPathExtension: TMDBConstants.TMDB.APIValidateLogin)
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = appDelegate.session.dataTaskWithRequest(request) {  (data, response, error) in
+            
+            func displayError(errorMessage:String) {
+                print(errorMessage)
+            }
+            
+            guard error == nil else {
+                displayError("There was an error with your request")
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                displayError("Your request returned a status code other than 2XX")
+                return
+            }
+            
+            guard let data = data else{
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            let parsedResult:AnyObject!
+            
+            do {
+                
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                
+                guard let success = parsedResult[TMDBConstants.TMDBResponseKeys.Success] as? Int else {
+                    displayError("Cannot parse the result with a key \(TMDBConstants.TMDBResponseKeys.Success)")
+                    return
+                }
+                print(parsedResult)
+                
+                if success==1 {
+                   self.getSessionId(requestToken)
+                } else {
+                    displayError("Your login information is not valid")
+                    return
+                }
+                
+                
+            } catch let error as NSError {
+                displayError(error.description)
+            }
+        }
+        
+        task.resume()
+    }
+    
+    func getSessionId(requestToken:String) {
+     
+        let methodParameters = [
+            TMDBConstants.TMDBParamKeys.APIKey : TMDBConstants.TMDBParameterValues.APIKey,
+            TMDBConstants.TMDBParamKeys.RequestToken : requestToken
+        ]
+        
+        let url = appDelegate.generateURL(methodParameters, withPathExtension: TMDBConstants.TMDB.APISessionNew)
+        
+        let request = NSMutableURLRequest(URL: url)
+        request.addValue("application/json", forHTTPHeaderField: "Accept")
+        
+        let task = appDelegate.session.dataTaskWithRequest(request) { (data, response, error) in
+            
+            func displayError(errorMessage:String) {
+                print(errorMessage)
+                return
+            }
+            
+            guard error == nil else {
+                
+                return
+            }
+            
+            guard let statusCode = (response as? NSHTTPURLResponse)?.statusCode where statusCode >= 200 && statusCode <= 299 else {
+                
+                displayError("Your request returned a status code other than 2XX")
+                return
+            }
+            
+            guard let data = data else {
+                displayError("No data was returned by the request!")
+                return
+            }
+            
+            
+            let parsedResult:AnyObject!
+            do {
+                
+                parsedResult = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+                
+                guard let sessionId = parsedResult[TMDBConstants.TMDBResponseKeys.SessionID] as? String else {
+                    displayError("Can not parse the data with a key : \(TMDBConstants.TMDBResponseKeys.SessionID)")
+                    return
+                }
+                
+                print("Session ID : \(sessionId)")
+                
+            } catch let error as NSError {
+                print(error.description)
+            }
+        
+            
+        }
+        task.resume()
+    }
+    
 }
 
 extension LoginViewController : UITextFieldDelegate {
