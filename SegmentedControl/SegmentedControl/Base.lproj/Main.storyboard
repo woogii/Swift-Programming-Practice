@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="YZk-vc-26D">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <scenes>
+        <!--My Movie Info-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="MovieListviewController" customModule="SegmentedControl" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="4jK-nG-1Qh">
+                                <rect key="frame" x="10" y="82" width="301" height="29"/>
+                                <segments>
+                                    <segment title="Top Lists"/>
+                                    <segment title="In Theater"/>
+                                    <segment title="Upcoming"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="BYZ-38-t0r" eventType="valueChanged" id="Vzz-gr-g5Y"/>
+                                </connections>
+                            </segmentedControl>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ECW-gY-Wf8">
+                                <rect key="frame" x="0.0" y="118" width="320" height="450"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="MovieInfoCell" id="sBh-a2-9Rf">
+                                        <rect key="frame" x="0.0" y="28" width="320" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="sBh-a2-9Rf" id="qTa-KB-Kkn">
+                                            <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </tableViewCellContentView>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="BYZ-38-t0r" id="qzg-QB-dHe"/>
+                                    <outlet property="delegate" destination="BYZ-38-t0r" id="yb2-wE-uWB"/>
+                                </connections>
+                            </tableView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="ECW-gY-Wf8" firstAttribute="bottom" secondItem="wfy-db-euE" secondAttribute="top" id="4PG-B4-tbg"/>
+                            <constraint firstAttribute="trailing" secondItem="ECW-gY-Wf8" secondAttribute="trailing" id="I0u-GH-AFP"/>
+                            <constraint firstItem="ECW-gY-Wf8" firstAttribute="top" secondItem="4jK-nG-1Qh" secondAttribute="bottom" constant="8" symbolic="YES" id="JOl-Nq-JpP"/>
+                            <constraint firstItem="4jK-nG-1Qh" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="18" id="VBw-cl-Gzy"/>
+                            <constraint firstItem="4jK-nG-1Qh" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-6" id="Zpb-tL-QmB"/>
+                            <constraint firstItem="ECW-gY-Wf8" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="cS9-bI-pKw"/>
+                            <constraint firstItem="4jK-nG-1Qh" firstAttribute="centerX" secondItem="ECW-gY-Wf8" secondAttribute="centerX" id="stp-fr-3aU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="My Movie Info" id="P3T-kd-WdB"/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="segmentedControl" destination="4jK-nG-1Qh" id="GDO-Pl-2ex"/>
+                        <outlet property="tableView" destination="ECW-gY-Wf8" id="aXk-i5-3eB"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="713" y="429"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="30V-tV-a2P">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="YZk-vc-26D" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="4iy-ec-RdW">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="eTx-a7-ZTS"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vKd-SH-AEd" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="338" y="429"/>
+        </scene>
+    </scenes>
+</document>

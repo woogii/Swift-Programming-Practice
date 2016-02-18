@@ -56,7 +56,11 @@ class LoginViewController: UIViewController {
         }
         
     }
+    
+    func completeLogin() {
         
+    }
+    
     func getRequestToken() {
         
         let methodParameters = [ TMDBConstants.TMDBParamKeys.APIKey : TMDBConstants.TMDBParameterValues.APIKey ]
@@ -220,6 +224,8 @@ class LoginViewController: UIViewController {
                 }
                 
                 print("Session ID : \(sessionId)")
+                
+                self.completeLogin()
                 
             } catch let error as NSError {
                 print(error.description)
