@@ -57,6 +57,7 @@ class ViewController: UIViewController {
             
         })
         
+        // The block to execute after the operation's main task is completed
         operation1.completionBlock = {
             print("Operation 1 completed, cancelled:\(operation1.cancelled)")
         }
@@ -72,6 +73,8 @@ class ViewController: UIViewController {
         })
         
         operation2.addDependency(operation1)
+        
+        
         operation2.completionBlock = {
             print("Operation 2 completed, cancelled:\(operation2.cancelled)")
         }
