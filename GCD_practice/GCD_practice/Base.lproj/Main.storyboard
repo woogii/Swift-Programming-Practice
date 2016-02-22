@@ -18,24 +18,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4c8-iO-ipx">
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
+                            </imageView>
                             <toolbar opaque="NO" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9hK-WX-Q3j">
                                 <rect key="frame" x="0.0" y="524" width="320" height="44"/>
                                 <items>
                                     <barButtonItem title="Sync" id="yk3-9J-NCe">
                                         <connections>
-                                            <action selector="synchronousDownload:" destination="BYZ-38-t0r" id="tTe-uI-gsZ"/>
+                                            <action selector="synchronousDownload:" destination="BYZ-38-t0r" id="hdE-xD-mpq"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="hdN-DL-xkZ"/>
                                     <barButtonItem title="Async" id="ahF-hL-bx3">
                                         <connections>
-                                            <action selector="simpleAsynchronousDownload:" destination="BYZ-38-t0r" id="eEm-61-glj"/>
+                                            <action selector="asynchronousDownload:" destination="BYZ-38-t0r" id="qYR-1u-Rfd"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem width="42" style="plain" systemItem="fixedSpace" id="XdX-eq-RBc"/>
                                     <barButtonItem title="Async + Completion Closure" id="CJv-E6-dD5">
                                         <connections>
-                                            <action selector="asynchronousDownload:" destination="BYZ-38-t0r" id="LJV-Oq-vyL"/>
+                                            <action selector="asynchronousWithCompletion:" destination="BYZ-38-t0r" id="YBn-cb-YB8"/>
                                         </connections>
                                     </barButtonItem>
                                     <barButtonItem title="Item" id="Ivf-fH-yEw"/>
@@ -44,12 +47,12 @@
                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="ulq-Go-jfi">
                                 <rect key="frame" x="10" y="281" width="300" height="31"/>
                                 <connections>
-                                    <action selector="setTransparencyOfImage:" destination="BYZ-38-t0r" eventType="valueChanged" id="xdc-Dm-RxC"/>
+                                    <action selector="setTransparencyOfImage:" destination="BYZ-38-t0r" eventType="valueChanged" id="7qc-nA-mMq"/>
                                 </connections>
                             </slider>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="4c8-iO-ipx">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="524"/>
-                            </imageView>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="iyE-xn-iKd">
+                                <rect key="frame" x="151" y="251" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
                         <constraints>
@@ -67,6 +70,7 @@
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
+                        <outlet property="activityView" destination="iyE-xn-iKd" id="vHM-jd-VsS"/>
                         <outlet property="photoView" destination="4c8-iO-ipx" id="4wa-b7-eIR"/>
                     </connections>
                 </viewController>

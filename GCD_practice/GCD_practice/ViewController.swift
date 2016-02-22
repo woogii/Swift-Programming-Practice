@@ -18,7 +18,7 @@ class ViewController: UIViewController {
 
     @IBOutlet weak var photoView: UIImageView!
     
-    
+    @IBOutlet weak var activityView: UIActivityIndicatorView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,16 +26,47 @@ class ViewController: UIViewController {
         
     }
 
-    @IBAction func simpleAsynchronousDownload(sender: UIBarButtonItem) {
-        print("test")
+    @IBAction func synchronousDownload(sender: UIBarButtonItem) {
+        photoView.image = nil
+        
+        activityView.startAnimating()
+        
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW,1),dispatch_get_main_queue()) { () -> Void in
+            
+            guard let url = NSURL(string:String(BigImages.shark.rawValue)) else {
+                print("Cannot get url")
+                return
+            }
+        
+            guard let data = NSData(contentsOfURL: url) else {
+                print("Cannot get data")
+                return
+            }
+        
+            let image = UIImage(data: data)
+        
+            dispatch_async(dispatch_get_main_queue()) {
+                self.photoView.image = image
+                self.activityView.stopAnimating()
+            }
+        }
+    }
+
+    
+    @IBAction func asynchronousDownload(sender: UIBarButtonItem) {
+        
+        photoView.image = nil
         
         guard let url = NSURL(string:String(BigImages.whale.rawValue)) else {
             print("Cannot get url")
             return
         }
         
+        // Creates a new dispatch queue to which blocks can be submitted
         let download = dispatch_queue_create("download", nil)
+        activityView.startAnimating()
         
+        // Submits a block for asynchronous execution on a dispatch queue and returns immediately.
         dispatch_async(download) { () -> Void in
             
             guard let data = NSData(contentsOfURL: url) else {
@@ -45,42 +76,58 @@ class ViewController: UIViewController {
             
             let image = UIImage(data: data)
             
+            // update UI in the main queue
             dispatch_async(dispatch_get_main_queue()) {
                 self.photoView.image = image
+                self.activityView.stopAnimating()
             }
         }
         
-
-        
     }
   
-    
-    @IBAction func synchronousDownload(sender: UIBarButtonItem) {
-        
-        guard let url = NSURL(string:String(BigImages.whale.rawValue)) else {
-            print("Cannot get url")
-            return
-        }
-        
-        guard let data = NSData(contentsOfURL: url) else {
-            print("Cannot get data")
-            return
-        }
-        
-        let image = UIImage(data: data)
-        
-        dispatch_async(dispatch_get_main_queue()) {
-            self.photoView.image = image
-        }
-    }
-
+  
     @IBAction func setTransparencyOfImage(sender: UISlider) {
         
-        
+        photoView.alpha = CGFloat(sender.value)
         
     }
     
-    @IBAction func asynchronousDownload(sender: UIBarButtonItem) {
+    @IBAction func asynchronousWithCompletion(sender: UIBarButtonItem) {
+        photoView.image = nil
+        
+        activityView.startAnimating()
+               
+        imageHandle() { image in
+            
+            self.photoView.image = image
+            self.activityView.stopAnimating()
+        }
+    }
+    
+    func imageHandle(completionHandler:(image:UIImage)->Void )
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0)) { ()-> Void in
+            
+            guard let url = NSURL(string:String(BigImages.seaLion.rawValue)) else {
+                print("Cannot get url")
+                return
+            }
+
+            guard let data = NSData(contentsOfURL: url) else {
+                print("Cannot get data")
+                return
+            }
+            
+            let image = UIImage(data: data)
+            
+            dispatch_async(dispatch_get_main_queue(), {
+              
+                completionHandler(image:image!)
+                
+            })
+           
+        }
+        
     }
     
 }
