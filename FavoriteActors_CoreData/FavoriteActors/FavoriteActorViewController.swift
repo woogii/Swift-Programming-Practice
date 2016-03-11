@@ -109,9 +109,10 @@ class FavoriteActorViewController : UITableViewController, ActorPickerViewContro
         cell.frameImageView.image = UIImage(named: "personFrame")
         cell.accessoryType = UITableViewCellAccessoryType.DisclosureIndicator
         
-        if let localImage = actor.image {
+        if let localImage = actor.image {       // if there is already an image
             cell.actorImageView.image = localImage
-        } else if actor.imagePath == nil || actor.imagePath == "" {
+        } else if actor.imagePath == nil || actor.imagePath == "" {  // if there is no path information,
+                                                // which means the image have never saved on a disk
             cell.actorImageView.image = UIImage(named: "personNoImage")
         }
             
