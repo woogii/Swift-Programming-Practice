@@ -20,11 +20,11 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Z9z-Ey-Uie">
                                 <rect key="frame" x="14" y="28" width="296" height="523"/>
                                 <subviews>
-                                    <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3bu-SM-nfs">
-                                        <rect key="frame" x="0.0" y="0.0" width="216" height="26"/>
+                                    <stackView opaque="NO" contentMode="scaleToFill" alignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="3bu-SM-nfs">
+                                        <rect key="frame" x="0.0" y="0.0" width="216" height="62"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="                   Flickr Finder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FG-2W-LBU">
-                                                <rect key="frame" x="0.0" y="0.0" width="216" height="26"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="                   Flickr Finder" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6FG-2W-LBU">
+                                                <rect key="frame" x="0.0" y="18" width="216" height="26"/>
                                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                 <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -32,7 +32,7 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="wYZ-lM-WOu">
-                                        <rect key="frame" x="0.0" y="51" width="285" height="175"/>
+                                        <rect key="frame" x="0.0" y="87" width="285" height="175"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="JDw-5i-pPa">
                                                 <rect key="frame" x="0.0" y="0.0" width="285" height="175"/>
@@ -43,10 +43,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="13" translatesAutoresizingMaskIntoConstraints="NO" id="3De-gd-KcE">
-                                        <rect key="frame" x="0.0" y="251" width="293" height="60"/>
+                                        <rect key="frame" x="0.0" y="287" width="293" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Phrase" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ROW-G4-Yhg">
-                                                <rect key="frame" x="0.0" y="0.0" width="240" height="60"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="240" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="240" id="guh-Ah-gOV"/>
                                                 </constraints>
@@ -54,7 +54,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1U5-aQ-qxk">
-                                                <rect key="frame" x="253" y="0.0" width="40" height="60"/>
+                                                <rect key="frame" x="253" y="0.0" width="40" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="UGJ-lF-ybH"/>
                                                 </constraints>
@@ -66,10 +66,10 @@
                                         </subviews>
                                     </stackView>
                                     <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" spacing="16" translatesAutoresizingMaskIntoConstraints="NO" id="kuV-MU-eDz">
-                                        <rect key="frame" x="0.0" y="336" width="296" height="36"/>
+                                        <rect key="frame" x="0.0" y="342" width="296" height="30"/>
                                         <subviews>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Latitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ei6-3o-t7J">
-                                                <rect key="frame" x="0.0" y="0.0" width="112" height="36"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="112" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="112" id="494-L8-URP"/>
                                                 </constraints>
@@ -77,7 +77,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Enter Longitude" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Npi-VG-GxW">
-                                                <rect key="frame" x="128" y="0.0" width="112" height="36"/>
+                                                <rect key="frame" x="128" y="0.0" width="112" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="112" id="Crx-l6-ZnE"/>
                                                 </constraints>
@@ -85,7 +85,7 @@
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <button opaque="NO" contentMode="scaleToFill" misplaced="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="z2T-cL-bZV">
-                                                <rect key="frame" x="256" y="0.0" width="40" height="36"/>
+                                                <rect key="frame" x="256" y="0.0" width="40" height="30"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="837-HD-7Pk"/>
                                                 </constraints>
