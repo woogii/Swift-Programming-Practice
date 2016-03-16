@@ -138,6 +138,8 @@ class MovieListViewController : UITableViewController {
         }
     }
     
+    var example = UIApplication.sharedApplication().delegate as! AppDelegate
+    
     // MARK: - Alert View
     
     func alertViewForError(error: NSError) {

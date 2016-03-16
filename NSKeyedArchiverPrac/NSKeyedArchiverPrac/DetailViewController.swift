@@ -17,14 +17,19 @@ class DetailViewController: UIViewController {
         
         didSet {
             // Update the view.
+            print("in didSet")
             self.configureView()
         }
     }
-
+    
+    //var detailItem:AnyObject?
+    
     func configureView() {
+        print("in configure view")
         // Update the user interface for the detail item.
         if let detail = self.detailItem {
             if let label = self.detailDescriptionLabel {
+                print("set text")
                 label.text = detail.description
             }
         }
@@ -32,6 +37,7 @@ class DetailViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        print("view did load")
         // Do any additional setup after loading the view, typically from a nib.
         self.configureView()
     }

@@ -89,7 +89,7 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="w6s-CF-RfP" id="eNg-4R-PCV"/>
-                        <segue destination="BYZ-38-t0r" kind="show" id="FQf-Uu-oft"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showDetailView" id="FQf-Uu-oft"/>
                         <segue destination="ybJ-my-xY9" kind="presentation" identifier="showAddView" id="hb3-kY-XKT"/>
                     </connections>
                 </viewController>
@@ -116,10 +116,10 @@
             </objects>
             <point key="canvasLocation" x="-401" y="518"/>
         </scene>
-        <!--Item Edit View Controller-->
+        <!--Item Detail View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ItemEditViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ItemDetailViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -127,9 +127,33 @@
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ape-y4-zoi">
+                                <rect key="frame" x="27" y="87" width="265" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hm5-SQ-dI5">
+                                <rect key="frame" x="27" y="144" width="265" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                            </textField>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="Ape-y4-zoi" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="11" id="FLN-9R-ctH"/>
+                            <constraint firstItem="Hm5-SQ-dI5" firstAttribute="trailing" secondItem="Ape-y4-zoi" secondAttribute="trailing" id="ICG-f0-IBn"/>
+                            <constraint firstItem="Ape-y4-zoi" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="23" id="cn9-QL-UGB"/>
+                            <constraint firstItem="Hm5-SQ-dI5" firstAttribute="top" secondItem="Ape-y4-zoi" secondAttribute="bottom" constant="27" id="hD0-ES-B9O"/>
+                            <constraint firstItem="Ape-y4-zoi" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="lL3-sP-cJS"/>
+                            <constraint firstItem="Hm5-SQ-dI5" firstAttribute="leading" secondItem="Ape-y4-zoi" secondAttribute="leading" id="wDu-pL-sOx"/>
+                        </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <connections>
+                        <outlet property="nameTextField" destination="Ape-y4-zoi" id="tL1-Sn-EUa"/>
+                        <outlet property="priceTextField" destination="Hm5-SQ-dI5" id="Dtd-kH-iUf"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
@@ -138,7 +162,6 @@
         <!--Item Add View Controller-->
         <scene sceneID="P8p-MT-gyI">
             <objects>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Pyh-YQ-BaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <viewController storyboardIdentifier="ItemAddViewController" id="WJo-hT-2M2" customClass="ItemAddViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="hOk-lo-bgE"/>
@@ -176,6 +199,7 @@
                         <outlet property="priceTextField" destination="L4p-mO-r5M" id="DeL-mp-i1N"/>
                     </connections>
                 </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Pyh-YQ-BaA" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1132" y="869"/>
         </scene>
