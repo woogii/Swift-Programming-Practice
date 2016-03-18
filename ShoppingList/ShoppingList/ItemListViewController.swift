@@ -8,6 +8,10 @@
 
 import UIKit
 
+
+let shoppingListAddNotification = "com.shoppingList.notificationKey"
+let selectedKey = "selectedKey"
+
 class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
 
     // MARK : - Property
@@ -19,6 +23,7 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
     }
     
     let cellIdentifier = "itemCell"
+    var items:[Item]!
     
     // MARK : - View LifeCycle
     override func viewDidLoad() {
@@ -26,8 +31,19 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
         
         configureUI()
         
-        appDelegate.items.append(Item(price: 5000, name: "banana"))
+        items = appDelegate.items
+        
+        items.append(Item(price: 5000, name: "banana"))
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addShoppingListNotification", name: shoppingListAddNotification, object: nil)
     }
+    
+    func addShoppingListNotification() {
+        
+    }
+    
+    
+    
     
     override func viewWillAppear(animated: Bool) {
         tableView.reloadData()
@@ -59,7 +75,7 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
     }
     
     func addItemInList(controller: ItemAddViewController, item: Item) {
-        appDelegate.items.append(item)
+        items.append(item)
         tableView.reloadData()
     }
     
@@ -78,7 +94,7 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
             if let indexPath = sender as? NSIndexPath {
              
                 print(indexPath.row)
-                controller.item = Item(price: appDelegate.items[indexPath.row].price, name: appDelegate.items[indexPath.row].name)
+                controller.item = Item(price: items[indexPath.row].price, name: items[indexPath.row].name)
             }
             
         }
@@ -89,19 +105,19 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
 extension ItemListViewController : UITableViewDelegate, UITableViewDataSource {
   
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return appDelegate.items.count
+        return items.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
-        cell.textLabel!.text = appDelegate.items[indexPath.row].name
+        cell.textLabel!.text = items[indexPath.row].name
         return cell
     }
     
     func tableView(tableView: UITableView, commitEditingStyle editingStyle: UITableViewCellEditingStyle, forRowAtIndexPath indexPath: NSIndexPath) {
         
         if editingStyle == .Delete {
-            appDelegate.items.removeAtIndex(indexPath.row)
+            items.removeAtIndex(indexPath.row)
             tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Fade)
         } else if editingStyle == .Insert {
 
@@ -119,7 +135,12 @@ extension ItemListViewController : UITableViewDelegate, UITableViewDataSource {
             cell?.imageView?.image = nil
         }
         
+        //let userInfo = NSDictionary(object: items[indexPath.row].name, forKey: "itemName")
+        var userInfo = [String:String]()
         
+        userInfo[selectedKey] = items[indexPath.row].name
+    
+        NSNotificationCenter.defaultCenter().postNotificationName(shoppingListAddNotification, object: nil, userInfo: userInfo )
     }
     
     // Tell the delegate that the user tapped the accessory (disclosure) view associated with a given row
