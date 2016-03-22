@@ -12,13 +12,51 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    var items = [Item]()
+    let seedExist = "seedExist"
 
+    var filePath: String {
+        
+        let fileName = "seedFile"
+        let fileURL:NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        return fileURL.URLByAppendingPathComponent(fileName).path!
+    }
+    
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
         return true
     }
 
+    
+    func loadSampleData() {
+        
+
+        guard let isSeedExist = NSUserDefaults.standardUserDefaults().objectForKey(seedExist) as? Bool else {
+            print("Cannot unwrapped optional")
+            return
+        }
+        
+        if !isSeedExist {
+        
+            if let filePath  = NSBundle.mainBundle().pathForResource("seed", ofType: "plist"), let seedItems = NSArray(contentsOfFile: filePath) {
+        
+                var items:[Item]?
+            
+                for seedItem in seedItems {
+            
+                    if let name = seedItem["name"] as? String, let price = seedItem["price"] as? Float
+                    {
+                        print("name: \(name), price : \(price)")
+                    
+                        // Create Item
+                        items?.append(Item(price: price, name: name))
+                    }
+                }
+            }
+            
+            NSUserDefaults.standardUserDefaults().setObject("true", forKey: seedExist)
+        }
+    }
+    
     func applicationWillResignActive(application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
         // Use this method to pause ongoing tasks, disable timers, and throttle down OpenGL ES frame rates. Games should use this method to pause the game.

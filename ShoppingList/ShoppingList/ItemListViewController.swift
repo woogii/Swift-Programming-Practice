@@ -9,7 +9,7 @@
 import UIKit
 
 
-let shoppingListAddNotification = "com.shoppingList.notificationKey"
+let shoppingListAddNotification = "notificationKey"
 let selectedKey = "selectedKey"
 
 class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
@@ -17,13 +17,10 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
     // MARK : - Property
     @IBOutlet weak var tableView: UITableView!
     
-    
-    var appDelegate : AppDelegate {
-        return UIApplication.sharedApplication().delegate as! AppDelegate
-    }
-    
     let cellIdentifier = "itemCell"
-    var items:[Item]!
+    var items = [Item]()
+    
+
     
     // MARK : - View LifeCycle
     override func viewDidLoad() {
@@ -31,22 +28,24 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
         
         configureUI()
         
-        items = appDelegate.items
-        
-        items.append(Item(price: 5000, name: "banana"))
-        
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "addShoppingListNotification", name: shoppingListAddNotification, object: nil)
     }
     
-    func addShoppingListNotification() {
-        
+    required init?(coder aDecoder: NSCoder) {
+        super.init(coder: aDecoder)
+        loadItems()
     }
     
+    func loadItems()
+    {
+        // The nil-coalescing operator a ?? b is a shortcut for
+        // a != nil ? a! : b
+        // It returns either the left operand unwrapped or the right operand
+        items = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [Item] ?? [Item]()
+    }
     
-    
-    
-    override func viewWillAppear(animated: Bool) {
-        tableView.reloadData()
+    func addShoppingListNotification() {
+        print("notification")
     }
     
     func configureUI() {
@@ -65,7 +64,6 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
     }
-
  
     func addItem(barButtonItem: UIBarButtonItem) {
         //let controller = self.storyboard?.instantiateViewControllerWithIdentifier("ItemAddViewController")
@@ -76,7 +74,10 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
     
     func addItemInList(controller: ItemAddViewController, item: Item) {
         items.append(item)
-        tableView.reloadData()
+        
+        tableView.insertRowsAtIndexPaths([NSIndexPath(forRow: items.count-1, inSection: 0)], withRowAnimation: .None)
+        saveItem()
+        // tableView.reloadData()
     }
     
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
@@ -98,6 +99,22 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate {
             }
             
         }
+    }
+    
+    func saveItem()
+    {
+        NSKeyedArchiver.archiveRootObject(items, toFile: filePath)
+    }
+    
+    var filePath : String {
+        
+        let fileName = "itemList"
+        
+        let documentDirectoryURL:NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
+        // Returns a new URL made by appending a path component to the original URL.
+        // The path component to add to the URL, in its original form (not URL encoded).
+        return documentDirectoryURL.URLByAppendingPathComponent(fileName).path!
+
     }
     
 }
@@ -131,16 +148,22 @@ extension ItemListViewController : UITableViewDelegate, UITableViewDataSource {
         
         if cell?.imageView?.image == nil {
             cell?.imageView?.image = UIImage(named: "checkmark")
+        
         } else {
             cell?.imageView?.image = nil
         }
         
-        //let userInfo = NSDictionary(object: items[indexPath.row].name, forKey: "itemName")
-        var userInfo = [String:String]()
+        // let userInfo = NSDictionary(object: items[indexPath.row].name, forKey: "itemName")
+        // var userInfo = [String:String]()
+        // userInfo[selectedKey] = items[indexPath.row].name
         
-        userInfo[selectedKey] = items[indexPath.row].name
-    
-        NSNotificationCenter.defaultCenter().postNotificationName(shoppingListAddNotification, object: nil, userInfo: userInfo )
+        
+        items[indexPath.row].isShoppingList = true
+        saveItem()
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(shoppingListAddNotification, object: self)
+        
+      
     }
     
     // Tell the delegate that the user tapped the accessory (disclosure) view associated with a given row
@@ -151,8 +174,8 @@ extension ItemListViewController : UITableViewDelegate, UITableViewDataSource {
     
     // Toggle the table view into and out of editing mode
     override func setEditing(editing: Bool, animated: Bool) {
-        tableView.setEditing(editing, animated: animated)
-        super.setEditing(editing, animated: animated)
+        tableView.setEditing(!tableView.editing, animated: animated)
+        // super.setEditing(editing, animated: animated)
     }
     
 

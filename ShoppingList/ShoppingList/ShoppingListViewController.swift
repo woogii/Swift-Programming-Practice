@@ -16,25 +16,36 @@ class ShoppingListviewController: UIViewController {
     
     let cellIdentifier = "itemNameList"
     var selectedItem:String?
-    var shoppingList = [String]()
+    
+    var shoppingList = [Item]()
 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addList:", name: shoppingListAddNotification, object: nil)
+        
     }
+    
     
     override func viewWillAppear(animated: Bool) {
-        
         super.viewWillAppear(animated)
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addToShoppingList:", name: shoppingListAddNotification, object: nil)
+        tableView.reloadData()
     }
     
-    func addToShoppingList(notification: NSNotification) {
+    override func viewWillDisappear(animated: Bool) {
+        print("remove notification")
+        NSNotificationCenter.defaultCenter().removeObserver(self, name: shoppingListAddNotification, object: nil)
+    }
+    
+    func addList(notification: NSNotification) {
         
         let userInfo = notification.userInfo
-        
-        selectedItem = userInfo![selectedKey] as? String
-        print(selectedItem)
+        if let item = userInfo![selectedKey] as? String {
+            selectedItem = item
+            print(selectedItem)
+        }
     }
     
     
@@ -50,6 +61,8 @@ extension ShoppingListviewController : UITableViewDelegate, UITableViewDataSourc
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(cellIdentifier, forIndexPath: indexPath)
+
+        // cell.textLabel?.text = shoppingList[0]
         
         return cell
     }
