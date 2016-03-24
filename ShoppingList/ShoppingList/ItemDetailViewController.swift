@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 
 
+
 class ItemDetailViewController : UIViewController {
     
     @IBOutlet weak var nameTextField: UITextField!
@@ -21,15 +22,12 @@ class ItemDetailViewController : UIViewController {
         super.viewDidLoad()
         
         let barButtonItem = UIBarButtonItem(barButtonSystemItem: .Save, target: self, action: "saveButtonTapped")
-       
         self.navigationItem.rightBarButtonItem = barButtonItem
     }
     
     override func viewWillAppear(animated: Bool) {
-    
         nameTextField.text = item.name
         priceTextField.text = "\(item.price)"
-
     }
     
     func saveButtonTapped() {

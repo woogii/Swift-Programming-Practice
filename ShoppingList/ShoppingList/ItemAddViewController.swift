@@ -45,7 +45,7 @@ class ItemAddViewController : UIViewController {
         // appDelegate.items.append(newItem)
         
         //
-        let newItem = Item(price: Float(priceTextField.text!)!, name: nameTextField.text!)
+        let newItem = Item(name: nameTextField.text!, price: Float(priceTextField.text!)!)
         delegate!.addItemInList(self, item: newItem)
         
         self.dismissViewControllerAnimated(true, completion: nil)

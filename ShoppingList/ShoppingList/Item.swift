@@ -24,11 +24,11 @@ class Item : NSObject, NSCoding {
         static let IsList  = "isShoppingList"
     }
     
-    init(price:Float, name:String){
+    init(name:String, price:Float){
         super.init()
     
-        self.price = price
         self.name = name
+        self.price = price
     }
     
     // init (coder:) is invoked whenever an encoded object needs to be converted back to 
@@ -47,8 +47,8 @@ class Item : NSObject, NSCoding {
             name = archiveName
         }
         
-        aDecoder.decodeDoubleForKey(Keys.Price)
-        aDecoder.decodeBoolForKey(Keys.IsList)
+        price = aDecoder.decodeFloatForKey(Keys.Price)
+        isShoppingList = aDecoder.decodeBoolForKey(Keys.IsList)
     }
     
     func encodeWithCoder(aCoder: NSCoder) {

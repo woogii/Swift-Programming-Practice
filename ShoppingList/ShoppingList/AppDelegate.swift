@@ -12,25 +12,27 @@ import UIKit
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    let seedExist = "seedExist"
+    let seedList = "seedList"
 
+    
+    // MARK : Computed Property
     var filePath: String {
-        
-        let fileName = "seedFile"
+        // Get file path
+        let fileName = "seedList"
         let fileURL:NSURL = NSFileManager.defaultManager().URLsForDirectory(.DocumentDirectory, inDomains: .UserDomainMask).first!
         return fileURL.URLByAppendingPathComponent(fileName).path!
     }
     
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
         // Override point for customization after application launch.
+        loadSampleData()
         return true
     }
 
-    
+    // MARK : Helper Method
     func loadSampleData() {
-        
-
-        guard let isSeedExist = NSUserDefaults.standardUserDefaults().objectForKey(seedExist) as? Bool else {
+    
+        guard let isSeedExist = NSUserDefaults.standardUserDefaults().objectForKey(seedList) as? Bool else {
             print("Cannot unwrapped optional")
             return
         }
@@ -48,12 +50,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         print("name: \(name), price : \(price)")
                     
                         // Create Item
-                        items?.append(Item(price: price, name: name))
+                        items?.append(Item(name: name, price:price))
                     }
                 }
             }
             
-            NSUserDefaults.standardUserDefaults().setObject("true", forKey: seedExist)
+            NSUserDefaults.standardUserDefaults().setObject("true", forKey: seedList)
         }
     }
     
