@@ -98,7 +98,9 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate, I
             // Set delegate to self
             controller.delegate = self
             // Pass selected Item to EditView
-            controller.item = selectedItem!
+            if let item = selectedItem {
+                controller.item = item
+            }
             
         }
     }
@@ -114,6 +116,8 @@ class ItemListViewController: UIViewController, ItemAddViewControllerDelegate, I
     func saveItem()
     {
         NSKeyedArchiver.archiveRootObject(items, toFile: filePath)
+        
+        NSNotificationCenter.defaultCenter().postNotificationName(shoppingListAddNotification, object: self)
     }
 
     var filePath : String {
@@ -184,7 +188,7 @@ extension ItemListViewController : UITableViewDelegate, UITableViewDataSource {
         
         saveItem()
         
-        NSNotificationCenter.defaultCenter().postNotificationName(shoppingListAddNotification, object: self)
+        
     }
     
     // Tell the delegate that the user tapped the accessory (disclosure) view associated with a given row
