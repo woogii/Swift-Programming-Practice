@@ -11,10 +11,10 @@ import UIKit
 
 class ShoppingListviewController: UIViewController {
     
-
+    // MARK : Properties
     @IBOutlet weak var tableView: UITableView!
     
-    // MARK : Properties
+
     let cellIdentifier = "itemNameList"
     var selectedItem:String?
 
@@ -37,15 +37,15 @@ class ShoppingListviewController: UIViewController {
     
         loadItems()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "addShoppingList:", name: shoppingListAddNotification, object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "updateShoppingList:", name: shoppingListAddNotification, object: nil)
         
     }
     
-    func addShoppingList(notification: NSNotification) {
-        print("Shopping list notification")
+    func updateShoppingList(notification: NSNotification) {
         loadItems()
     }
     
+    // MARK : Helper Methods
     func loadItems() {
         items = NSKeyedUnarchiver.unarchiveObjectWithFile(filePath) as? [Item] ?? [Item]()
     }
@@ -66,7 +66,7 @@ class ShoppingListviewController: UIViewController {
     // MARK : UITableView DataSource Methods
     func buildShoppingList() {
         // shoppingList property observer is executed right after this line of code
-        shoppingList = items.filter( {  $0.isShoppingList == true })
+        shoppingList = items.filter( {  $0.isShoppingList == true })  // returns an array that holds true in boolean variable
     }
     
     

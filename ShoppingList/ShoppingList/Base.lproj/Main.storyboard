@@ -112,8 +112,8 @@
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
                     <connections>
                         <outlet property="tableView" destination="w6s-CF-RfP" id="eNg-4R-PCV"/>
-                        <segue destination="BYZ-38-t0r" kind="show" identifier="showDetailView" id="FQf-Uu-oft"/>
-                        <segue destination="ybJ-my-xY9" kind="presentation" identifier="showAddView" id="hb3-kY-XKT"/>
+                        <segue destination="BYZ-38-t0r" kind="show" identifier="showEditVC" id="FQf-Uu-oft"/>
+                        <segue destination="ybJ-my-xY9" kind="presentation" identifier="showAddVC" id="hb3-kY-XKT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Huj-Un-GTa" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -139,10 +139,10 @@
             </objects>
             <point key="canvasLocation" x="-401" y="518"/>
         </scene>
-        <!--Item Detail View Controller-->
+        <!--Item Edit View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ItemDetailViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ItemEditViewController" customModule="ShoppingList" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>

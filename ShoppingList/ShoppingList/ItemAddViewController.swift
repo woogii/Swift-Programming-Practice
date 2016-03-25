@@ -10,45 +10,48 @@ import Foundation
 import UIKit
 
 protocol ItemAddViewControllerDelegate {
-    func addItemInList(controller:ItemAddViewController, item:Item)
+    func addItemInList(controller:ItemAddViewController, addedItem item:Item)
 }
 
 class ItemAddViewController : UIViewController {
     
+    // MARK : Properties
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var priceTextField: UITextField!
     
-    var delegate : ItemListViewController?
-    
-    var appDelegate : AppDelegate {
-        return UIApplication.sharedApplication().delegate as! AppDelegate
-    }
-    
+    var delegate : ItemAddViewControllerDelegate?
+
+    // MARK : View Life Cycle   
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        configureUI()
+    }
+    
+    // MARK : Configure UI
+    func configureUI() {
         
         let cancelBarButton = UIBarButtonItem(title: "Cancel", style: .Plain, target: self, action: "cancle")
         let saveBarButton = UIBarButtonItem(title: "Save", style: .Plain, target: self, action: "save")
         
-        
         navigationItem.rightBarButtonItem = saveBarButton
         navigationItem.leftBarButtonItem = cancelBarButton
     }
+    
+    // MARK : Actions 
     
     func cancle(){
         self.dismissViewControllerAnimated(true, completion: nil)
     }
     
     func save() {
-        // If we use an array variable declared in AppDelegate.swift
-        // let newItem = Item(price: Double(priceTextField.text!)!, name: nameTextField.text!)
-        // appDelegate.items.append(newItem)
         
-        //
-        let newItem = Item(name: nameTextField.text!, price: Float(priceTextField.text!)!)
-        delegate!.addItemInList(self, item: newItem)
+        if let name = nameTextField.text, let priceText = priceTextField.text, let price = Float(priceText) {
+            // Call delegate method
+            delegate!.addItemInList(self, addedItem: Item(name:name, price:price))
         
-        self.dismissViewControllerAnimated(true, completion: nil)
+            self.dismissViewControllerAnimated(true, completion: nil)
+        }
     }
     
     

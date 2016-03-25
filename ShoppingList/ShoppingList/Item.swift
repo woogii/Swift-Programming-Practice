@@ -12,11 +12,13 @@ import Foundation
 // of the Item class, Item needs to adopt the NSCoding protocol
 class Item : NSObject, NSCoding {
     
+    // MARK: Properties
     var uuid:String = NSUUID().UUIDString
     var price:Float = 0.0
     var name:String = ""
     var isShoppingList = false
     
+    // MARK : Keys for Decoding and Encoding
     struct Keys {
         static let UUID = "uuid"
         static let Price = "price"
@@ -24,6 +26,7 @@ class Item : NSObject, NSCoding {
         static let IsList  = "isShoppingList"
     }
     
+    // MARK: Initializers
     init(name:String, price:Float){
         super.init()
     
@@ -31,10 +34,12 @@ class Item : NSObject, NSCoding {
         self.price = price
     }
     
-    // init (coder:) is invoked whenever an encoded object needs to be converted back to 
-    // an instance of the respective class
+    // MARK: NSCoding Protocol Methods
     
     required init?(coder aDecoder: NSCoder) {
+        // init (coder:) is invoked whenever an encoded object needs to be converted back to
+        // an instance of the respective class
+
         super.init()
         
         // decodeObjectForKey returns AnyObject?, so return value need to be cast to String
@@ -42,7 +47,6 @@ class Item : NSObject, NSCoding {
             uuid = archiveUuid
         }
         
-        //
         if let archiveName = aDecoder.decodeObjectForKey(Keys.Name) as? String {
             name = archiveName
         }
