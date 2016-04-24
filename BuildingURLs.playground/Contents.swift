@@ -178,7 +178,7 @@ print(val)
 
 //let url = NSURL(string:"http://api.popong.com/v0.1/party/?sort=logo&per_page=196&api_key=test")
 
-var urlString = "http://api.popong.com/v0.1/bill/search?q=데이터&s=김영환&api_key=test"
+//var urlString = "http://api.popong.com/v0.1/bill/search?q=데이터&s=김영환&api_key=test"
 //let url = NSURL(dataRepresentation:urlString.dataUsingEncoding(NSUTF8StringEncoding)!, relativeToURL:nil)
 //let url = NSURL(dataRepresentation:urlString.dataUsingEncoding(NSUTF8StringEncoding)!, relativeToURL:nil)
 
@@ -187,6 +187,8 @@ var urlString = "http://api.popong.com/v0.1/bill/search?q=데이터&s=김영환&
 //var urlString = "http://api.popong.com/v0.2/people/search?assembly_id=19&api_key=test"
 
 // var urlString =  "http://api.popong.com/v0.1/person/search?q=박&api_key=test"
+var urlString = "http://api.popong.com/v0.1/bill/search?q=데이터&s=김영환&api_key=test"
+// http://api.popong.com/v0.1/bill/search?q=데이터&s=김영환&api_key=test
 let url = NSURL(dataRepresentation:urlString.dataUsingEncoding(NSUTF8StringEncoding)!, relativeToURL:nil)
 //let url = NSURL(string:urlString)
 print(url)
@@ -220,7 +222,7 @@ let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ (data, res
         }
         
     
-
+ //api_key=test&q=%EC%95%88%EC%B2%A0%EC%88%98
     } catch {
         print("error")
         return
@@ -228,6 +230,7 @@ let task = NSURLSession.sharedSession().dataTaskWithRequest(request){ (data, res
     
 }
 task.resume()
+
 
 
 

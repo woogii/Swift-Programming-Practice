@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9531" systemVersion="14F27" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EDf-Z5-ddN">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9529"/>
+    </dependencies>
+    <scenes>
+        <!--Colour Memory-->
+        <scene sceneID="tne-QT-ifu">
+            <objects>
+                <viewController id="BYZ-38-t0r" customClass="GameBoardViewController" customModule="Colour_Memory" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
+                        <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="rAN-2d-oQU">
+                                <rect key="frame" x="12" y="136" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="a4i-H3-cJF"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="49W-jS-gjb">
+                                <rect key="frame" x="164" y="136" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="gXC-dr-20k"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="8ou-Vz-sDD">
+                                <rect key="frame" x="88" y="136" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="5Ck-EA-656"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UJr-ue-jqy">
+                                <rect key="frame" x="240" y="136" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="T3x-Qt-sV2"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="xvv-jw-OzW">
+                                <rect key="frame" x="12" y="242" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="ieB-LY-BOY"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kT4-cY-FKm">
+                                <rect key="frame" x="164" y="242" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="Kdm-nw-VXe"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="T1J-Ix-9Yp">
+                                <rect key="frame" x="88" y="242" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="j1j-6b-72D"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Byo-wJ-MzH">
+                                <rect key="frame" x="240" y="242" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="93g-yx-CG5"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="4bD-3e-HBh">
+                                <rect key="frame" x="13" y="454" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6xL-dp-kD9"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VKl-23-PxD">
+                                <rect key="frame" x="165" y="454" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="6mU-lR-fjj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wx2-ta-QYa">
+                                <rect key="frame" x="89" y="454" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="iqP-F7-eTt"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="HOF-GG-vL1">
+                                <rect key="frame" x="241" y="454" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="MMs-MK-xxs"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YBq-N5-uTP">
+                                <rect key="frame" x="12" y="349" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="hwd-ur-6mf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bG9-tI-T9n">
+                                <rect key="frame" x="164" y="349" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="BZa-pl-a4X"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WRO-Km-giX">
+                                <rect key="frame" x="88" y="349" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="EFR-1B-1tL"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MFo-s7-KDv">
+                                <rect key="frame" x="240" y="349" width="70" height="96"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <action selector="tapCardButton:" destination="BYZ-38-t0r" eventType="touchUpInside" id="GQC-0K-837"/>
+                                </connections>
+                            </button>
+                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="66f-na-fIs">
+                                <rect key="frame" x="12" y="72" width="70" height="50"/>
+                            </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COi-CN-RAF">
+                                <rect key="frame" x="225" y="82" width="85" height="30"/>
+                                <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <state key="normal" title="High Score"/>
+                            </button>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Score : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCN-ci-2c5">
+                                <rect key="frame" x="110" y="82" width="87" height="35"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <navigationItem key="navigationItem" title="Colour Memory" id="2pW-9g-MsL"/>
+                    <connections>
+                        <outletCollection property="cardButtons" destination="rAN-2d-oQU" collectionClass="NSMutableArray" id="Hi3-C4-zKK"/>
+                        <outletCollection property="cardButtons" destination="8ou-Vz-sDD" collectionClass="NSMutableArray" id="VCG-tY-axp"/>
+                        <outletCollection property="cardButtons" destination="49W-jS-gjb" collectionClass="NSMutableArray" id="Ihf-ay-9BI"/>
+                        <outletCollection property="cardButtons" destination="UJr-ue-jqy" collectionClass="NSMutableArray" id="AC6-us-FOd"/>
+                        <outletCollection property="cardButtons" destination="xvv-jw-OzW" collectionClass="NSMutableArray" id="ge6-kb-Tmb"/>
+                        <outletCollection property="cardButtons" destination="T1J-Ix-9Yp" collectionClass="NSMutableArray" id="8pr-ik-mON"/>
+                        <outletCollection property="cardButtons" destination="kT4-cY-FKm" collectionClass="NSMutableArray" id="MgA-eh-faE"/>
+                        <outletCollection property="cardButtons" destination="Byo-wJ-MzH" collectionClass="NSMutableArray" id="lXc-24-kCV"/>
+                        <outletCollection property="cardButtons" destination="YBq-N5-uTP" collectionClass="NSMutableArray" id="IZt-ey-EhT"/>
+                        <outletCollection property="cardButtons" destination="WRO-Km-giX" collectionClass="NSMutableArray" id="Eba-YI-9Fu"/>
+                        <outletCollection property="cardButtons" destination="bG9-tI-T9n" collectionClass="NSMutableArray" id="nrz-Pk-W9Y"/>
+                        <outletCollection property="cardButtons" destination="MFo-s7-KDv" collectionClass="NSMutableArray" id="uqh-9a-NyY"/>
+                        <outletCollection property="cardButtons" destination="4bD-3e-HBh" collectionClass="NSMutableArray" id="GZH-Af-WqS"/>
+                        <outletCollection property="cardButtons" destination="wx2-ta-QYa" collectionClass="NSMutableArray" id="CVd-yo-VhF"/>
+                        <outletCollection property="cardButtons" destination="VKl-23-PxD" collectionClass="NSMutableArray" id="rjj-L2-91C"/>
+                        <outletCollection property="cardButtons" destination="HOF-GG-vL1" collectionClass="NSMutableArray" id="9NT-UX-Xrt"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1305" y="315"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="tDK-lU-AjZ">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="EDf-Z5-ddN" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina4"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="a5t-Nh-hxR">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="mSr-VJ-Drm"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="JQd-xP-Jc1" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="926" y="304"/>
+        </scene>
+    </scenes>
+    <resources>
+        <image name="logo" width="267" height="107"/>
+    </resources>
+</document>
