@@ -11,9 +11,6 @@ import Foundation
 // MARK : - PlayingCard : Card 
 class PlayingCard : Card {
     
-    var colourDesc: String?
-    // static let suitSet = ["☁️","💧","❤️","⭐️","🌛","🎵","☀️","👑"]
-    
     // MARK : Property
     static let colourSet = ["blue","brown","darkGreen","green","lightBlue","olive","purple","red"]
     
@@ -38,7 +35,7 @@ class PlayingCard : Card {
         
         if(otherCards.count == 1) {
             
-            if let otherCard = otherCards.first as? PlayingCard {
+            if let otherCard = otherCards.first {
                 
                 if colourDesc == otherCard.colourDesc {
                     score = score + matchingPoint

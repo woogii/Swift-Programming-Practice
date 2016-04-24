@@ -12,7 +12,7 @@ import Foundation
 class CardMatchingManager : NSObject {
     
     // MARK : Properties
-    private var score:Int!
+    private var score:Int = 0
     private var cards = [Card]()
     let penaltyPoint = -1
     
@@ -70,5 +70,20 @@ class CardMatchingManager : NSObject {
     func cardAtIndex(index:Int)->Card?{
         
         return index<cards.count ? cards[index] : nil
+    }
+    
+    func getScore()->Int {
+        return score
+    }
+    
+    func checkNumOfMatchedCard()->Int{
+        var num:Int = 0
+        
+        for card in cards {
+            if card.isMatched {
+                num = num + 1
+            }
+        }
+        return num
     }
 }

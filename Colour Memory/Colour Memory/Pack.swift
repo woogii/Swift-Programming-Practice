@@ -25,6 +25,7 @@ class Pack : NSObject {
         var randomCard:Card?
         
         if cards.count > 0  {
+            
             // Pick random card and delete it from the card pack
             let index = Int(arc4random_uniform(UInt32(cards.count)))
             randomCard = cards[index]

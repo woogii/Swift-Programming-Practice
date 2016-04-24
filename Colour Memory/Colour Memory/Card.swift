@@ -12,9 +12,9 @@ import Foundation
 class Card : NSObject {
     
     // MARK : Properties
-    var isSelected:Bool?
-    var isMatched:Bool?
-    var contents:String?
+    var isSelected:Bool = false
+    var isMatched:Bool = false 
+    var colourDesc:String?
     let matchingPoint = 2
     
     // MARK : Matching Cards
@@ -22,7 +22,7 @@ class Card : NSObject {
         var score = 0
         
         for otherCard in otherCards {
-            if otherCard.contents == contents {
+            if otherCard.colourDesc == colourDesc {
                 score = score + matchingPoint
             } 
         }

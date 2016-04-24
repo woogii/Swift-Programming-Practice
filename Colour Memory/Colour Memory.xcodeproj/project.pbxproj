@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */; };
+		D240EFCB1CCCF595001F38BE /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFCA1CCCF595001F38BE /* CoreDataStackManager.swift */; };
+		D240EFCD1CCCF651001F38BE /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFCC1CCCF651001F38BE /* ScoreCell.swift */; };
 		D2E558491CCB62DF00DC40C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E558481CCB62DF00DC40C0 /* AppDelegate.swift */; };
 		D2E5584B1CCB62DF00DC40C0 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */; };
 		D2E5584E1CCB62DF00DC40C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E5584C1CCB62DF00DC40C0 /* Main.storyboard */; };
@@ -39,6 +42,9 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewController.swift; sourceTree = "<group>"; };
+		D240EFCA1CCCF595001F38BE /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		D240EFCC1CCCF651001F38BE /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreCell.swift; path = "Colour Memory/ScoreCell.swift"; sourceTree = "<group>"; };
 		D2E558451CCB62DF00DC40C0 /* Colour Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Colour Memory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E558481CCB62DF00DC40C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardViewController.swift; sourceTree = "<group>"; };
@@ -84,6 +90,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		D240EFC91CCCF33E001F38BE /* View */ = {
+			isa = PBXGroup;
+			children = (
+				D240EFCC1CCCF651001F38BE /* ScoreCell.swift */,
+			);
+			name = View;
+			path = ..;
+			sourceTree = "<group>";
+		};
 		D2E5583C1CCB62DF00DC40C0 = {
 			isa = PBXGroup;
 			children = (
@@ -108,7 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				D2E558761CCB672300DC40C0 /* Model */,
-				D2E558781CCB676600DC40C0 /* View Controllers */,
+				D240EFC91CCCF33E001F38BE /* View */,
+				D2E558781CCB676600DC40C0 /* Controllers */,
 				D2E558771CCB674100DC40C0 /* Assets */,
 				D2E558791CCB678500DC40C0 /* Supporting Files */,
 			);
@@ -141,6 +157,7 @@
 				D2E5587C1CCB692B00DC40C0 /* Pack.swift */,
 				D2E558801CCB694600DC40C0 /* PlayingPack.swift */,
 				D2E558821CCBA82100DC40C0 /* CardMatchingManager.swift */,
+				D240EFCA1CCCF595001F38BE /* CoreDataStackManager.swift */,
 			);
 			name = Model;
 			path = "Colour MemoryTests";
@@ -156,12 +173,13 @@
 			name = Assets;
 			sourceTree = "<group>";
 		};
-		D2E558781CCB676600DC40C0 /* View Controllers */ = {
+		D2E558781CCB676600DC40C0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */,
+				D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */,
 			);
-			name = "View Controllers";
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		D2E558791CCB678500DC40C0 /* Supporting Files */ = {
@@ -304,12 +322,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */,
 				D2E5587F1CCB693A00DC40C0 /* PlayingCard.swift in Sources */,
+				D240EFCB1CCCF595001F38BE /* CoreDataStackManager.swift in Sources */,
 				D2E558831CCBA82100DC40C0 /* CardMatchingManager.swift in Sources */,
 				D2E558811CCB694600DC40C0 /* PlayingPack.swift in Sources */,
 				D2E5587D1CCB692B00DC40C0 /* Pack.swift in Sources */,
 				D2E5584B1CCB62DF00DC40C0 /* GameBoardViewController.swift in Sources */,
 				D2E5587B1CCB691900DC40C0 /* Card.swift in Sources */,
+				D240EFCD1CCCF651001F38BE /* ScoreCell.swift in Sources */,
 				D2E558491CCB62DF00DC40C0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -535,6 +556,7 @@
 				D2E5586F1CCB62DF00DC40C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2E558701CCB62DF00DC40C0 /* Build configuration list for PBXNativeTarget "Colour MemoryTests" */ = {
 			isa = XCConfigurationList;
@@ -543,6 +565,7 @@
 				D2E558721CCB62DF00DC40C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D2E558731CCB62DF00DC40C0 /* Build configuration list for PBXNativeTarget "Colour MemoryUITests" */ = {
 			isa = XCConfigurationList;
@@ -551,6 +574,7 @@
 				D2E558751CCB62DF00DC40C0 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
