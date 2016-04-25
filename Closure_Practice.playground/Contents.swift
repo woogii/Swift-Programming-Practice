@@ -92,6 +92,11 @@ counter1()
 counter2()
 
 
+let scoresDictionary =  ["a": 123, "b":12321, "c":5555]
+
+let sortedKeysAndValues = scoresDictionary.sort { $0.1 > $1.1 }
+print(sortedKeysAndValues)
+
 
 
 

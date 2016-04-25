@@ -69,23 +69,26 @@ class GameBoardViewController: UIViewController {
         return orientation
     }
     
-    
-    func getScoresList() {
+    func getHighScoreList() {
         
         if let scoresDict = userDefaults.objectForKey(Constants.DefaultName) as? [String:Int] {
             scoresDictionary = scoresDict
-            let sortedKeysAndValues = scoresDictionary.sort { $0 > $1 }
+            let sortedKeysAndValues = scoresDictionary.sort { $0.1 > $1.1 }
             print(sortedKeysAndValues)
         }
     }
 
-    
-    
-    // do everything at the final score screen
-    func dosomething() {
+    func saveHighScoreList() {
         
         // do whatever you want to do here for final scoring and animations, etc.....
-        
+        if( scoresDictionary.count != 0 ) {
+            
+            // if scoresDictionary
+            
+            // http://stackoverflow.com/a/29359562 , dictionary index 
+        } else {
+            
+        }
         
         // save final score
         self.saveFinalScore()
@@ -158,7 +161,7 @@ class GameBoardViewController: UIViewController {
         
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = placeholder
-            textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
         })
         
         let cancel = UIAlertAction(title: Constants.ActionCancel, style: UIAlertActionStyle.Cancel, handler: { (_) -> Void in
@@ -169,7 +172,7 @@ class GameBoardViewController: UIViewController {
             let textfield = alert.textFields!.first!
             print(textfield.text)
             
-            
+            self.saveHighScoreList()
             self.performSegueWithIdentifier(Constants.SegueIdentifier, sender: self)
             
         })
@@ -211,6 +214,14 @@ extension UINavigationController {
     public override func shouldAutorotate() -> Bool {
         // This line enables GameBoardViewController to force 'portrait orientation'
         return visibleViewController!.shouldAutorotate()
+    }
+}
+
+extension Dictionary {
+    subscript(i:Int) -> (key:Key,value:Value) {
+        get {
+            return self[self.startIndex.advancedBy(i)]
+        }
     }
 }
 
