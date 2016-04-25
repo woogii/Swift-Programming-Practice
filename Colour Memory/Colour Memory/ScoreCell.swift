@@ -9,14 +9,11 @@
 import Foundation
 import UIKit
 
+// MARK : - ScoreCell : UITableViewCell 
 class ScoreCell : UITableViewCell {
     
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
-    
-    
-    
-    
     
 }

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */; };
-		D240EFCB1CCCF595001F38BE /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFCA1CCCF595001F38BE /* CoreDataStackManager.swift */; };
 		D240EFCD1CCCF651001F38BE /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFCC1CCCF651001F38BE /* ScoreCell.swift */; };
 		D2E558491CCB62DF00DC40C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E558481CCB62DF00DC40C0 /* AppDelegate.swift */; };
 		D2E5584B1CCB62DF00DC40C0 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */; };
@@ -43,7 +42,6 @@
 
 /* Begin PBXFileReference section */
 		D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewController.swift; sourceTree = "<group>"; };
-		D240EFCA1CCCF595001F38BE /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
 		D240EFCC1CCCF651001F38BE /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreCell.swift; path = "Colour Memory/ScoreCell.swift"; sourceTree = "<group>"; };
 		D2E558451CCB62DF00DC40C0 /* Colour Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Colour Memory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E558481CCB62DF00DC40C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -157,7 +155,6 @@
 				D2E5587C1CCB692B00DC40C0 /* Pack.swift */,
 				D2E558801CCB694600DC40C0 /* PlayingPack.swift */,
 				D2E558821CCBA82100DC40C0 /* CardMatchingManager.swift */,
-				D240EFCA1CCCF595001F38BE /* CoreDataStackManager.swift */,
 			);
 			name = Model;
 			path = "Colour MemoryTests";
@@ -324,7 +321,6 @@
 			files = (
 				D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */,
 				D2E5587F1CCB693A00DC40C0 /* PlayingCard.swift in Sources */,
-				D240EFCB1CCCF595001F38BE /* CoreDataStackManager.swift in Sources */,
 				D2E558831CCBA82100DC40C0 /* CardMatchingManager.swift in Sources */,
 				D2E558811CCB694600DC40C0 /* PlayingPack.swift in Sources */,
 				D2E5587D1CCB692B00DC40C0 /* Pack.swift in Sources */,

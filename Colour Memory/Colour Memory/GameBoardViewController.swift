@@ -19,10 +19,30 @@ class GameBoardViewController: UIViewController {
     weak var actionToEnable : UIAlertAction?
     
     var playingPack = PlayingPack()
-    var gameMatchManager: CardMatchingManager?
+    var gameMatchManager = CardMatchingManager()
     let delay = 1.0
     var numOfCard: Int?
-    let segueIdentifier = "showScoreTable"
+    
+    
+    var scoresDictionary:[String:Int] = [String:Int]()
+    var userName:String = String()
+    var userScore:Int = Int()
+    
+    var userDefaults : NSUserDefaults {
+        return NSUserDefaults.standardUserDefaults()
+    }
+    
+    struct Constants {
+        
+        static let DefaultName = "highScoreList"
+        static let SegueIdentifier = "showScoreTable"
+        static let BackGroundImageName = "card_bg"
+        static let AlertTitle = "Game Over"
+        static let AlertMessage = "Enter your name"
+        static let AlertPlaceholder = "Name"
+        static let ActionOk = "Ok"
+        static let ActionCancel = "Cancel"
+    }
     
     // MARK : View Life Cycle
     override func viewDidLoad() {
@@ -30,10 +50,12 @@ class GameBoardViewController: UIViewController {
         
         gameMatchManager = CardMatchingManager(count: cardButtons.count, pack: playingPack)
         
-        
         for card in cardButtons  {
-            card.setBackgroundImage(UIImage(named:"card_bg"), forState: .Normal)
+            card.setBackgroundImage(UIImage(named:Constants.BackGroundImageName), forState: .Normal)
         }
+        
+        // load the dictionary from NSUserDefaults, if exists
+        // getScoresList()
     }
     
     // MARK : Set AutoRotate option
@@ -43,11 +65,43 @@ class GameBoardViewController: UIViewController {
     
     // MARK : Force Orientation
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
-        let orientation: UIInterfaceOrientationMask =
-            [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
+        let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
         return orientation
     }
     
+    
+    func getScoresList() {
+        
+        if let scoresDict = userDefaults.objectForKey(Constants.DefaultName) as? [String:Int] {
+            scoresDictionary = scoresDict
+            let sortedKeysAndValues = scoresDictionary.sort { $0 > $1 }
+            print(sortedKeysAndValues)
+        }
+    }
+
+    
+    
+    // do everything at the final score screen
+    func dosomething() {
+        
+        // do whatever you want to do here for final scoring and animations, etc.....
+        
+        
+        // save final score
+        self.saveFinalScore()
+    }
+    
+    func saveFinalScore() {
+        
+        // add the user's score to the dictionary
+        self.scoresDictionary[userName] = userScore
+        
+        // set defaults to simplify NSUD access
+        let defaults = NSUserDefaults.standardUserDefaults()
+        
+        // write the dictionary to NSUserDefaults
+        defaults.setObject(self.scoresDictionary, forKey: "scoreDict")
+    }
     
     // MARK : Button Action
     @IBAction func tapCardButton(sender: UIButton)
@@ -55,18 +109,18 @@ class GameBoardViewController: UIViewController {
         print("tap button")
         let selectedBtnIndex =  cardButtons.indexOf(sender)
         print("selected index: \(selectedBtnIndex)")
-        gameMatchManager?.selectCardAtIndex(selectedBtnIndex!)
+        gameMatchManager.selectCardAtIndex(selectedBtnIndex!)
         performUIUpdate()
     }
     
     // MARK : UI Update
     func performUIUpdate() {
         print("UI Update")
-    
+        showAlert()
         for cardButton in cardButtons {
             
             let index = cardButtons.indexOf(cardButton)
-            let card =  gameMatchManager?.cardAtIndex(index!)
+            let card =  gameMatchManager.cardAtIndex(index!)
             
             cardButton.setBackgroundImage(getBackgroundImage(card!), forState: .Normal)
             
@@ -78,45 +132,45 @@ class GameBoardViewController: UIViewController {
                 cardButton.hidden = (card?.isMatched)!
             }
             
-            self.scoreLabel.text = "Score : \(self.gameMatchManager!.getScore())"
+            self.scoreLabel.text = "Score : \(self.gameMatchManager.getScore())"
         }
         
-        
-        if gameMatchManager?.checkNumOfMatchedCard() == cardButtons.count {
+        if gameMatchManager.checkNumOfMatchedCard() == cardButtons.count {
             showAlert()
         }
     }
     
     // MARK : Get Background Image of Card
     func getBackgroundImage(card:Card)->UIImage {
-        let imageName = (card.isSelected == true) ? card.colourDesc:"card_bg"
+        let imageName = (card.isSelected == true) ? card.colourDesc: Constants.BackGroundImageName
         return UIImage(named:imageName!)!
     }
     
     // MARK : Show AlertView
     func showAlert()
     {
-        let title = "Game is Over"
-        let message = "Enter your name"
+        let title = Constants.AlertTitle
+        let message = Constants.AlertMessage
         
         let alert = UIAlertController(title: title, message: message, preferredStyle: UIAlertControllerStyle.Alert)
         
-        let placeholder = "Name"
+        let placeholder = Constants.AlertPlaceholder
         
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = placeholder
             textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
         })
         
-        let cancel = UIAlertAction(title: "Cancel", style: UIAlertActionStyle.Cancel, handler: { (_) -> Void in
+        let cancel = UIAlertAction(title: Constants.ActionCancel, style: UIAlertActionStyle.Cancel, handler: { (_) -> Void in
             
         })
         
-        let action = UIAlertAction(title: "Ok", style: UIAlertActionStyle.Default, handler: { (_) -> Void in
+        let action = UIAlertAction(title: Constants.ActionOk, style: UIAlertActionStyle.Default, handler: { (_) -> Void in
             let textfield = alert.textFields!.first!
+            print(textfield.text)
             
-            //Do what you want with the textfield!
-            self.performSegueWithIdentifier(self.segueIdentifier, sender: self)
+            
+            self.performSegueWithIdentifier(Constants.SegueIdentifier, sender: self)
             
         })
         
@@ -137,7 +191,7 @@ class GameBoardViewController: UIViewController {
     // MARK : Prepare Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
-        if segue.identifier == segueIdentifier {
+        if segue.identifier == Constants.SegueIdentifier {
             // slet viewController = segue.destinationViewController as? HighScoreTableViewController
             // let indexPath = self.tableView.indexPathForSelectedRow()
             // viewController.pinCode = self.exams[indexPath.row]
