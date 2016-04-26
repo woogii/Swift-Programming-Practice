@@ -22,6 +22,7 @@ class CardMatchingManager : NSObject {
     }
     
     convenience init(count:Int, pack: Pack ) {
+        
         self.init()
         
         for _ in 0..<count {

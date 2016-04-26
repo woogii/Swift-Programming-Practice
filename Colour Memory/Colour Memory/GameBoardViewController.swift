@@ -54,13 +54,14 @@ class GameBoardViewController: UIViewController {
         super.viewDidLoad()
         
         gameMatchManager = CardMatchingManager(count: cardButtons.count, pack: playingPack)
-        
+        shuffleCard()
         // Load the dictionary from user's defaults database
         getHighScoreList()
     }
     
     override func viewWillAppear(animated: Bool) {
         scoreLabel.text = "Score : 0"
+        gameMatchManager = CardMatchingManager(count: cardButtons.count, pack: PlayingPack())
         shuffleCard()
     }
     
@@ -117,7 +118,7 @@ class GameBoardViewController: UIViewController {
             } else {
                 // If not, search through list whether user's score history exists
                 let index = sortedList.indexOf { $0.0 == self.userName }
-                
+                print("index: \(index)")
                 if let index = index {
                     rank = index + 1
                 }
@@ -188,15 +189,15 @@ class GameBoardViewController: UIViewController {
         
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = placeholder
-            // textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
-            textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
+            //textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
         })
         
         let cancel = UIAlertAction(title: Constants.ActionCancel, style: UIAlertActionStyle.Cancel, handler: { (_) -> Void in
             
         })
         
-        let save = UIAlertAction(title: Constants.ActionOk, style: UIAlertActionStyle.Default, handler: { (_) -> Void in
+        let ok = UIAlertAction(title: Constants.ActionOk, style: UIAlertActionStyle.Default, handler: { (_) -> Void in
             let textfield = alert.textFields!.first!
             print(textfield.text)
             self.userName = textfield.text!
@@ -206,10 +207,10 @@ class GameBoardViewController: UIViewController {
         })
         
         alert.addAction(cancel)
-        alert.addAction(save)
+        alert.addAction(ok)
         
-        actionToEnable = save
-        save.enabled = false
+        actionToEnable = ok
+        ok.enabled = false
         presentViewController(alert, animated: true, completion: nil)
     }
     
