@@ -23,25 +23,30 @@ class GameBoardViewController: UIViewController {
     let delay = 1.0
     var numOfCard: Int?
     
+    var scoresList:[String:Int] = [String:Int]()
     
-    var scoresDictionary:[String:Int] = [String:Int]()
     var userName:String = String()
     var userScore:Int = Int()
+    var rank:Int?
     
     var userDefaults : NSUserDefaults {
         return NSUserDefaults.standardUserDefaults()
     }
     
+    // MARK : Constants
     struct Constants {
         
         static let DefaultName = "highScoreList"
-        static let SegueIdentifier = "showScoreTable"
+        static let SegueIdentifier = "showScoreVC"
+        static let BtnSegueIdentifier = "showScoreTable"
         static let BackGroundImageName = "card_bg"
         static let AlertTitle = "Game Over"
         static let AlertMessage = "Enter your name"
         static let AlertPlaceholder = "Name"
         static let ActionOk = "Ok"
         static let ActionCancel = "Cancel"
+        static let CellIdentifier = "scoreCell"
+        
     }
     
     // MARK : View Life Cycle
@@ -50,12 +55,20 @@ class GameBoardViewController: UIViewController {
         
         gameMatchManager = CardMatchingManager(count: cardButtons.count, pack: playingPack)
         
+        // Load the dictionary from user's defaults database
+        getHighScoreList()
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        scoreLabel.text = "Score : 0"
+        shuffleCard()
+    }
+    
+    func shuffleCard() {
         for card in cardButtons  {
             card.setBackgroundImage(UIImage(named:Constants.BackGroundImageName), forState: .Normal)
+            card.hidden = false
         }
-        
-        // load the dictionary from NSUserDefaults, if exists
-        // getScoresList()
     }
     
     // MARK : Set AutoRotate option
@@ -71,55 +84,69 @@ class GameBoardViewController: UIViewController {
     
     func getHighScoreList() {
         
-        if let scoresDict = userDefaults.objectForKey(Constants.DefaultName) as? [String:Int] {
-            scoresDictionary = scoresDict
-            let sortedKeysAndValues = scoresDictionary.sort { $0.1 > $1.1 }
-            print(sortedKeysAndValues)
+        if let scoresDictionary = userDefaults.objectForKey(Constants.DefaultName) as? [String:Int] {
+            print("Load Score")
+            scoresList = scoresDictionary
         }
     }
 
     func saveHighScoreList() {
+        print("Save High Score List")
+        if( scoresList.count > 0 ) {
         
-        // do whatever you want to do here for final scoring and animations, etc.....
-        if( scoresDictionary.count != 0 ) {
+            // Sort the dictionary in a descending order
+            let sortedList = scoresList.sort { $0.1 > $1.1 }
             
-            // if scoresDictionary
+            print("Dictionary : \(scoresList)")
+            print("Sorted List : \(sortedList)")
             
-            // http://stackoverflow.com/a/29359562 , dictionary index 
+            print("current Score: \(gameMatchManager.getScore())")
+            
+            // If the current user's score is higher than the existing highest score
+            if( gameMatchManager.getScore() >= sortedList[0].1){
+                
+                // Add the user's score to the dictionary
+                scoresList[userName] = userScore
+                
+                // Save to user's defaults database
+                let defaults = NSUserDefaults.standardUserDefaults()
+                defaults.setObject(scoresList, forKey: Constants.DefaultName)
+                
+                // Set rank
+                rank = 1
+            } else {
+                // If not, search through list whether user's score history exists
+                let index = sortedList.indexOf { $0.0 == self.userName }
+                
+                if let index = index {
+                    rank = index + 1
+                }
+            }
+            
         } else {
+            rank = 1
+            scoresList[userName] = userScore
             
+            let defaults = NSUserDefaults.standardUserDefaults()
+            defaults.setObject(scoresList, forKey: Constants.DefaultName)
+
         }
         
-        // save final score
-        self.saveFinalScore()
+        
     }
-    
-    func saveFinalScore() {
-        
-        // add the user's score to the dictionary
-        self.scoresDictionary[userName] = userScore
-        
-        // set defaults to simplify NSUD access
-        let defaults = NSUserDefaults.standardUserDefaults()
-        
-        // write the dictionary to NSUserDefaults
-        defaults.setObject(self.scoresDictionary, forKey: "scoreDict")
-    }
-    
+
     // MARK : Button Action
     @IBAction func tapCardButton(sender: UIButton)
     {
-        print("tap button")
         let selectedBtnIndex =  cardButtons.indexOf(sender)
-        print("selected index: \(selectedBtnIndex)")
+        
         gameMatchManager.selectCardAtIndex(selectedBtnIndex!)
         performUIUpdate()
     }
     
     // MARK : UI Update
     func performUIUpdate() {
-        print("UI Update")
-        showAlert()
+        
         for cardButton in cardButtons {
             
             let index = cardButtons.indexOf(cardButton)
@@ -135,10 +162,10 @@ class GameBoardViewController: UIViewController {
                 cardButton.hidden = (card?.isMatched)!
             }
             
-            self.scoreLabel.text = "Score : \(self.gameMatchManager.getScore())"
+            scoreLabel.text = "Score : \(self.gameMatchManager.getScore())"
         }
         
-        if gameMatchManager.checkNumOfMatchedCard() == cardButtons.count {
+        if gameMatchManager.numOfMatchedCard() == cardButtons.count {
             showAlert()
         }
     }
@@ -161,53 +188,64 @@ class GameBoardViewController: UIViewController {
         
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = placeholder
-            textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
+            // textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
+            textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
         })
         
         let cancel = UIAlertAction(title: Constants.ActionCancel, style: UIAlertActionStyle.Cancel, handler: { (_) -> Void in
             
         })
         
-        let action = UIAlertAction(title: Constants.ActionOk, style: UIAlertActionStyle.Default, handler: { (_) -> Void in
+        let save = UIAlertAction(title: Constants.ActionOk, style: UIAlertActionStyle.Default, handler: { (_) -> Void in
             let textfield = alert.textFields!.first!
             print(textfield.text)
-            
+            self.userName = textfield.text!
+            self.userScore = self.gameMatchManager.getScore()
             self.saveHighScoreList()
             self.performSegueWithIdentifier(Constants.SegueIdentifier, sender: self)
-            
         })
         
         alert.addAction(cancel)
-        alert.addAction(action)
+        alert.addAction(save)
         
-        self.actionToEnable = action
-        action.enabled = false
-        self.presentViewController(alert, animated: true, completion: nil)
+        actionToEnable = save
+        save.enabled = false
+        presentViewController(alert, animated: true, completion: nil)
     }
     
     // MARK : TextField Action Method
     func textChanged(sender:UITextField) {
+        
         // If text is entered, UIAlertAction becomes enabled
-        self.actionToEnable?.enabled = (sender.text! != "")
+        actionToEnable?.enabled = (sender.text! != "")
     }
     
     // MARK : Prepare Segue
     override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
         
         if segue.identifier == Constants.SegueIdentifier {
-            // slet viewController = segue.destinationViewController as? HighScoreTableViewController
-            // let indexPath = self.tableView.indexPathForSelectedRow()
-            // viewController.pinCode = self.exams[indexPath.row]
-
+            
+            let highScoreVC = segue.destinationViewController as? HighScoreTableViewController
+            print("PrepareSegue")
+            print("score : \(userScore)")
+            print("rank  : \(rank)")
+            highScoreVC?.score = userScore
+            highScoreVC?.rank  = rank 
+            highScoreVC?.highScoreList = scoresList
+            
         }
-    
+        
+        if segue.identifier == Constants.BtnSegueIdentifier {
+            
+            let highScoreVC = segue.destinationViewController as? HighScoreTableViewController
+            highScoreVC?.highScoreList = scoresList
+        }
     }
 
     
 }
 
- // MARK : UINavigationController Extension
-
+// MARK : UINavigationController Extension
 extension UINavigationController {
     
     // MARK : Override Auto Rotate
@@ -217,7 +255,10 @@ extension UINavigationController {
     }
 }
 
+// MARK : Dictionary Extension
 extension Dictionary {
+    
+    // MARK : Subscripting Dictionary By Index
     subscript(i:Int) -> (key:Key,value:Value) {
         get {
             return self[self.startIndex.advancedBy(i)]

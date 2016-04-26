@@ -2,7 +2,7 @@
 //  ScoreCell.swift
 //  Colour Memory
 //
-//  Created by TeamSlogup on 2016. 4. 24..
+//  Created by Hyun on 2016. 4. 24..
 //  Copyright © 2016년 siwook. All rights reserved.
 //
 

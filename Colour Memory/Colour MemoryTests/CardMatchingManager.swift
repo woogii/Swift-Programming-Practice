@@ -66,17 +66,19 @@ class CardMatchingManager : NSObject {
         }
     }
     
-    // MARK : Return Card At Index
+    // MARK : Card Instance At Index
     func cardAtIndex(index:Int)->Card?{
         
         return index<cards.count ? cards[index] : nil
     }
     
+    // MARK : Current Score
     func getScore()->Int {
         return score
     }
     
-    func checkNumOfMatchedCard()->Int{
+    // MARK : Number of matched cards
+    func numOfMatchedCard()->Int{
         var num:Int = 0
         
         for card in cards {

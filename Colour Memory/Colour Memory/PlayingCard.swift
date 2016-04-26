@@ -28,8 +28,19 @@ class PlayingCard : Card {
             self.colourDesc = colourDesc
         }
     }
+   
     
     // MARK : Matching Cards
+    
+    /**
+       Compare card objects based on the colour description
+       If matched, added score will be returned, otherwise zero point will be returned
+     
+     - Parameter otherCards: Card object array
+     
+     - Returns: score
+     
+     */
     override func match(otherCards:[Card])-> Int{
         var score = 0
         
