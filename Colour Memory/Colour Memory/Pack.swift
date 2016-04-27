@@ -19,7 +19,11 @@ class Pack : NSObject {
         cards.append(newCard)
     }
     
-    // MARK : Pick Random Card 
+    // MARK : Pick Random Card
+    
+    /// Return Card object with random index from Card Array.
+    /// After return, the card object is removed from the array
+    /// - Returns: Card object
     func pickRandomCard()->Card?{
         
         var randomCard:Card?

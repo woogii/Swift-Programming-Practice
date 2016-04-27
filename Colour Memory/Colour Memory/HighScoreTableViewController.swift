@@ -17,108 +17,90 @@ class HighScoreTableViewController : UIViewController {
     @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var rankLabel: UILabel!
     @IBOutlet weak var messageLabel: UILabel!
+    @IBOutlet weak var tableviewTopConstraint: NSLayoutConstraint!
     
     var highScoreList = [String:Int]()
     var score:Int? = nil
-    var rank:Int?  = nil
+    var rank:Int? = nil
     
-   
+    // MARK : Constants 
+    struct Constants {
+        
+        static let HeaderCellIdentifier = "sectionHeader"
+        static let CellIdentifier       = "scoreCell"
+        static let HeaderFirstColumn    = "RANK"
+        static let HeaderSecondColumn   = "NAME"
+        static let HeaderThirdColumn    = "SCORE"
+        static let RankLabelTag         = 100
+        static let NameLabelTag         = 101
+        static let ScoreLabelTag        = 102
+        static let NumOfHeader          = 1
+        static let layoutContraintValue = 109
+    }
+    
     // MARK : View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-
-        let nib:UINib = UINib(nibName: "ScoreTableHeader", bundle: nil)
-        tableView.registerNib(nib, forHeaderFooterViewReuseIdentifier: "ScoreTableHeader")
     }
-    
-    override func  viewWillLayoutSubviews()
-    {
-        super.viewWillLayoutSubviews()
-        tableView.frame = CGRectMake(0,0,CGRectGetWidth(self.view.frame),300);
-    }
-
     
     override func viewWillAppear(animated: Bool) {
-        print("viewWillAppear")
-        print(score)
-        
+       
+        // If there is no score value, which means user did not play game
         guard let score = score else {
+            
+            // Hide labels
             scoreLabel.hidden = true
             rankLabel.hidden = true
             messageLabel.hidden = true
             
-            // tableview.view.frame =  CGRectMake(tableview.view.frame.origin.x, tableview.view.frame.origin.y + yOffset, tableview.view.frame.size.width, tableview.view.frame.size.height);
-            // tableView.frame = CGRect(x: 0, y: 0, width: tableView.frame.size.width, height: tableView.frame.size.height)
-            // tableView.contentInset = UIEdgeInsets(top: 0,left: 0,bottom: 0,right: 0)
-            
-            // var frame = tableView.frame
-            // frame.origin.y -= 40
-            // tableView.frame = frame
-            // tableView.setContentOffset(CGPoint(x: 0, y: 0), animated: true)
-            
+            // Move tableview up
+            tableviewTopConstraint.constant = tableviewTopConstraint.constant - CGFloat(Constants.layoutContraintValue)
             
             return
         }
         
         scoreLabel.text = "Your Score : \(score)"
         
+        // If there is no rank value
         guard let rank = rank else {
-            rankLabel.text = "Your Rank : No Data"
+            rankLabel.text = "Your Rank : No Record Found"
             return
         }
-        rankLabel.text = "Your Rank : \(rank)"
+        
+        // If rank value is set
+        if rank != 0  {
+            rankLabel.text = "Your Rank : \(rank)"
+        }else {
+            rankLabel.text = "Your Rank : No Record Found"
+        }
+        
     }
 }
 
 // MARK : - HighScoreTableViewController : UITableViewDelegate, UITableViewDataSource
 extension HighScoreTableViewController : UITableViewDelegate, UITableViewDataSource {
     
-    
-    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    // header height
-    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-        return 60
-    }
-    
-    
-    // header view
+    // MARK : UITableViewDelegate Method
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        // let header :ScoreTableHeader = self.tableView.dequeueReusableHeaderFooterViewWithIdentifier("ScoreTableHeader") as! ScoreTableHeader
-        //header.headerView.frame.size = CGRectMake(0, 0, tableView.frame.size.width, 44).size
-        // Dequeue with the reuse identifier
-        let cell = tableView.dequeueReusableCellWithIdentifier("sectionHeader")
         
-
-        let rankLabel = cell?.viewWithTag(100) as! UILabel
-        rankLabel.text = "RANK"
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.HeaderCellIdentifier)
         
-        let nameLabel = cell?.viewWithTag(101) as! UILabel
-        nameLabel.text = "NAME"
+        let rankLabel = cell?.viewWithTag(Constants.RankLabelTag) as! UILabel
+        rankLabel.text = Constants.HeaderFirstColumn
+        
+        let nameLabel = cell?.viewWithTag(Constants.NameLabelTag) as! UILabel
+        nameLabel.text = Constants.HeaderSecondColumn
   
-        let scoreLabel = cell?.viewWithTag(102) as! UILabel
-        scoreLabel.text = "SCORE"
+        let scoreLabel = cell?.viewWithTag(Constants.ScoreLabelTag) as! UILabel
+        scoreLabel.text = Constants.HeaderThirdColumn
 
-        
         return cell
     }
     
-    
-//    func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        guard let headerView = NSBundle.mainBundle().loadNibNamed("ScoreTableHeader", owner: nil, options: nil).first as? ScoreTableHeader else {
-//            return nil
-//        }
-//        
-//        // configure header as normal
-//        headerView.backgroundColor = UIColor.redColor()
-//        headerView.rankLabel.textColor = UIColor.whiteColor()
-//        headerView.rankLabel.text = "Hello"
-//        
-//        return headerView
-//    }
+    // MARK : UITableViewDataSource Methods
+    func numberOfSectionsInTableView(tableView: UITableView) -> Int {
+        return Constants.NumOfHeader
+    }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return highScoreList.count
@@ -126,13 +108,13 @@ extension HighScoreTableViewController : UITableViewDelegate, UITableViewDataSou
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
-        
-        let cell = tableView.dequeueReusableCellWithIdentifier("scoreCell", forIndexPath: indexPath) as? ScoreCell
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier, forIndexPath: indexPath) as? ScoreCell
     
+        // Sort scores descending and then display scores in order
         let sortedList = highScoreList.sort { $0.1 > $1.1 }
+        
         cell?.rankLabel.text = String(indexPath.row+1)
         cell?.nameLabel.text = sortedList[indexPath.row].0
-        
         cell?.scoreLabel.text = String(sortedList[indexPath.row].1)
     
         return cell!

@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */; };
 		D240EFCD1CCCF651001F38BE /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFCC1CCCF651001F38BE /* ScoreCell.swift */; };
+		D2BA0E711CD04CE900055D69 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0E701CD04CE900055D69 /* BorderedButton.swift */; };
 		D2E558491CCB62DF00DC40C0 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E558481CCB62DF00DC40C0 /* AppDelegate.swift */; };
 		D2E5584B1CCB62DF00DC40C0 /* GameBoardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */; };
 		D2E5584E1CCB62DF00DC40C0 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D2E5584C1CCB62DF00DC40C0 /* Main.storyboard */; };
@@ -43,6 +44,7 @@
 /* Begin PBXFileReference section */
 		D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewController.swift; sourceTree = "<group>"; };
 		D240EFCC1CCCF651001F38BE /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreCell.swift; path = "Colour Memory/ScoreCell.swift"; sourceTree = "<group>"; };
+		D2BA0E701CD04CE900055D69 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D2E558451CCB62DF00DC40C0 /* Colour Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Colour Memory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E558481CCB62DF00DC40C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardViewController.swift; sourceTree = "<group>"; };
@@ -92,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				D240EFCC1CCCF651001F38BE /* ScoreCell.swift */,
+				D2BA0E701CD04CE900055D69 /* BorderedButton.swift */,
 			);
 			name = View;
 			path = ..;
@@ -256,6 +259,7 @@
 				TargetAttributes = {
 					D2E558441CCB62DF00DC40C0 = {
 						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = MFYH4C9VNG;
 					};
 					D2E558581CCB62DF00DC40C0 = {
 						CreatedOnToolsVersion = 7.2;
@@ -319,6 +323,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D2BA0E711CD04CE900055D69 /* BorderedButton.swift in Sources */,
 				D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */,
 				D2E5587F1CCB693A00DC40C0 /* PlayingCard.swift in Sources */,
 				D2E558831CCBA82100DC40C0 /* CardMatchingManager.swift in Sources */,
@@ -467,10 +472,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Colour Memory/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.test.siwook.Colour-Memory";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -478,10 +486,13 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "Colour Memory/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.test.siwook.Colour-Memory";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

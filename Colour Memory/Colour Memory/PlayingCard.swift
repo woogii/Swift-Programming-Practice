@@ -19,6 +19,11 @@ class PlayingCard : Card {
         super.init()
     }
     
+    // MARK : Matching Cards
+    
+    /// Initialize PlayingCard object with given colour description
+    /// - Parameter colourDesc : Colour Description
+    /// - Returns: An initialized object
     convenience init(let colourDesc:String) {
 
         self.init()
@@ -31,26 +36,24 @@ class PlayingCard : Card {
    
     
     // MARK : Matching Cards
-    
-    /**
-       Compare card objects based on the colour description
-       If matched, added score will be returned, otherwise zero point will be returned
-     
-     - Parameter otherCards: Card object array
-     
-     - Returns: score
-     
-     */
+
+    /// Compare card objects based on the colour description
+    /// If matched, matching score will be returned, otherwise zero score will be returned
+    /// - Parameter otherCards: Card object array
+    /// - Returns: score
     override func match(otherCards:[Card])-> Int{
         var score = 0
         
+        // Compare the card with another card
         if(otherCards.count == 1) {
             
-            if let otherCard = otherCards.first {
-                
-                if colourDesc == otherCard.colourDesc {
-                    score = score + matchingPoint
-                }
+            guard let otherCard = otherCards.first else {
+                print("otherCard instance is nil")
+                return score
+            }
+            
+            if colourDesc == otherCard.colourDesc {
+                score = score + matchingPoint
             }
         }
         

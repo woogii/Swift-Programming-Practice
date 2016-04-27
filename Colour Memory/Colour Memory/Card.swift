@@ -15,7 +15,7 @@ class Card : NSObject {
     var isSelected:Bool = false
     var isMatched:Bool = false 
     var colourDesc:String?
-    let matchingPoint = 5
+    let matchingPoint = 2
     
     // MARK : Matching Cards
     func match(otherCards:[Card])-> Int{
