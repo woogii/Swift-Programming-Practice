@@ -14,8 +14,8 @@ class Card : NSObject {
     // MARK : Properties
     var isSelected:Bool = false
     var isMatched:Bool = false 
-    var colourDesc:String?
-    let matchingPoint = 2
+    var colourDesc:String = ""
+    
     
     // MARK : Matching Cards
     func match(otherCards:[Card])-> Int{
@@ -23,7 +23,7 @@ class Card : NSObject {
         
         for otherCard in otherCards {
             if otherCard.colourDesc == colourDesc {
-                score = score + matchingPoint
+                score = score + Constants.MatchingPoint
             } 
         }
         

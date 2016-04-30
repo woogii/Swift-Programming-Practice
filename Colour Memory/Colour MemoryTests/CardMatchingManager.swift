@@ -14,7 +14,6 @@ class CardMatchingManager : NSObject {
     // MARK : Properties
     private var score:Int = 0
     private var cards = [Card]()
-    let penaltyPoint = -1
     
     // MARK : Initialization
     override init() {
@@ -43,51 +42,65 @@ class CardMatchingManager : NSObject {
     /// Get Card object at index in Card array and compare it with another Card object.
     /// Based on the result of the comparison, calculates the game score and sets properties of card objects accrodingly
     func selectCardAtIndex(index:Int) {
+
+        var matchScore = 0
         
         guard let card = cardAtIndex(index) else {
-            print("Card instance is nil")
             return
         }
+        print("Current card isMatched : \(card.isMatched)")
+        print("Current card isSelected : \(card.isSelected)")
         
         // Card is not matched
-        if ( card.isMatched == false ) {
+        if (card.isMatched == false) {
             
             // And Card is selected
-            if( card.isSelected == true) {
+            if(card.isSelected == true) {
                 
                 // Mark as selected
                 card.isSelected = false
                 
             } else {
-                
                 // Card is not selected. This card can be matched with other cards
+                card.isSelected = true
+                
                 for otherCard in cards  {
                     
+                    
                     // If another card is selected but not matched
-                    if otherCard.isSelected == true && otherCard.isMatched == false {
-                        
+                    // 다른 카드 중에 선택되고 비교되지 않은 카드가 있을 경우
+                    if otherCard.isSelected == true && otherCard.isMatched == false && otherCard != card {
+                        print("other card is also selected")
                         // Match card against another card
-                        let matchScore = card.match([otherCard])
+                        matchScore = card.match([otherCard])
+                        
                         
                         // If both card are matched
-                        if (matchScore > 0 ) {
-                        
+                        if (matchScore > 0) {
+                            print("Matched")
                             score = score + matchScore
                             otherCard.isMatched = true
-                            card.isMatched = true
-                        
+                   
                         } else {
                             // Not Matched, impose penalty
-                            score = score + penaltyPoint
+                            print("Not matched")
+                            score = score + Constants.PenaltyPoint
+                        
                             otherCard.isSelected = false
+                            card.isSelected = false
                         
                         }
+                        
                         break
                     }
+                    
                 }
-                card.isSelected = true
+                // 카드 처음 폈을 경우 
+                // 둘 다 폈을때 맞지 않는 경우
+                // card.isSelected = true
             }
         }
+        
     }
     
     

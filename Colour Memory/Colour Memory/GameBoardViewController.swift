@@ -28,25 +28,7 @@ class GameBoardViewController: UIViewController {
     var userDefaults : NSUserDefaults {
         return NSUserDefaults.standardUserDefaults()
     }
-    
-    // MARK : Constants
-    struct Constants {
         
-        static let DefaultName         = "highScoreList"
-        static let SegueIdentifier     = "showScoreVC"
-        static let BtnSegueIdentifier  = "showScoreTable"
-        static let BackGroundImageName = "card_bg"
-        static let AlertTitle          = "Mission Completed!"
-        static let AlertMessage        = "Enter your name"
-        static let AlertPlaceholder    = "Name"
-        static let ActionOk            = "Ok"
-        static let ActionCancel        = "Cancel"
-        static let CellIdentifier      = "scoreCell"
-        static let Delay               = 1.0
-        static let InitScoreLabelText  = "Score : 0"
-        
-    }
-    
     // MARK : View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -73,7 +55,7 @@ class GameBoardViewController: UIViewController {
         
         for card in cardButtons  {
             card.setBackgroundImage(UIImage(named:Constants.BackGroundImageName), forState: .Normal)
-            card.hidden = false
+            card.alpha = 1.0
         }
     }
     
@@ -92,7 +74,6 @@ class GameBoardViewController: UIViewController {
     func getHighScoreList() {
         
         guard let scoresDictionary = userDefaults.objectForKey(Constants.DefaultName) as? [String:Int] else {
-            print("Cannot get data from defaults database")
             return
         }
         scoresList = scoresDictionary
@@ -131,7 +112,6 @@ class GameBoardViewController: UIViewController {
                 let returnIndex = sortedList.indexOf { $0.0 == self.userName }
                 
                 guard let index = returnIndex else {
-                    print("Could not locate index with given user name")
                     return
                 }
                 
@@ -151,9 +131,10 @@ class GameBoardViewController: UIViewController {
     // MARK : Button Action
     @IBAction func tapCardButton(sender: UIButton)
     {
-        let selectedBtnIndex =  cardButtons.indexOf(sender)
+        let selectedBtnIndex = cardButtons.indexOf(sender)
         
         gameMatchManager.selectCardAtIndex(selectedBtnIndex!)
+        
         performUIUpdate()
     }
     
@@ -162,10 +143,19 @@ class GameBoardViewController: UIViewController {
         
         for cardButton in cardButtons {
             
-            let index = cardButtons.indexOf(cardButton)
-            let card =  gameMatchManager.cardAtIndex(index!)
+            guard let index = cardButtons.indexOf(cardButton) else {
+                return
+            }
             
-            cardButton.setBackgroundImage(getBackgroundImage(card!), forState: .Normal)
+            guard let card =  gameMatchManager.cardAtIndex(index) else {
+                return
+            }
+            
+            if( card.isSelected == true ) {
+                
+            }
+            
+            cardButton.setBackgroundImage(UIImage(named:getBackgroundImage(card)), forState: .Normal)
             
             // Creates a dispatch_time_t relative to the default clock or modifies an existing dispatch_time_t.
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.Delay * Double(NSEC_PER_SEC)))
@@ -174,10 +164,15 @@ class GameBoardViewController: UIViewController {
             dispatch_after(time, dispatch_get_main_queue()) {
                 
                 // Hidden card after posing one second
-                cardButton.hidden = (card?.isMatched)!
+                // Have to use alpha property since stackview was adopted
+                if card.isMatched {
+                    cardButton.alpha = 0.0
+                } else {
+                    cardButton.alpha = 1.0
+                }
             }
             
-            scoreLabel.text = "Score : \(self.gameMatchManager.getScore())"
+            scoreLabel.text =  Constants.ScoreLabelText + String(self.gameMatchManager.getScore())
         }
         
         // All cards are matched, show alert message to ask user to input his/her name
@@ -187,9 +182,8 @@ class GameBoardViewController: UIViewController {
     }
     
     // MARK : Get Background Image of Card
-    func getBackgroundImage(card:Card)->UIImage {
-        let imageName = (card.isSelected == true) ? card.colourDesc: Constants.BackGroundImageName
-        return UIImage(named:imageName!)!
+    func getBackgroundImage(card:Card)->String {
+        return (card.isSelected == true) ? card.colourDesc: Constants.BackGroundImageName
     }
     
     // MARK : Show AlertView
@@ -206,7 +200,9 @@ class GameBoardViewController: UIViewController {
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = placeholder
             // Associate target object with action 'textChanged:' when a control event occurs
-            textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            // textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            textField.addTarget(self, action: "textChanged", forControlEvents: .EditingChanged)
+            
         })
         
         // Define action when 'Cancle' button tapped

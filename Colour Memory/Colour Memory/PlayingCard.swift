@@ -12,7 +12,15 @@ import Foundation
 class PlayingCard : Card {
     
     // MARK : Property
-    static let colourSet = ["blue","brown","darkGreen","green","lightBlue","olive","purple","red"]
+    static let colourSet = [ Constants.ColourSetBlue,
+                             Constants.ColourSetBrown,
+                             Constants.ColourSetDarkGreen,
+                             Constants.ColourSetGreen,
+                             Constants.ColourSetLightBlue,
+                             Constants.ColourSetOlive,
+                             Constants.ColourSetPurple,
+                             Constants.ColourSetRed
+    ]
     
     // MARK : Initialization
     override init() {
@@ -48,12 +56,11 @@ class PlayingCard : Card {
         if(otherCards.count == 1) {
             
             guard let otherCard = otherCards.first else {
-                print("otherCard instance is nil")
                 return score
             }
             
             if colourDesc == otherCard.colourDesc {
-                score = score + matchingPoint
+                score = score + Constants.MatchingPoint
             }
         }
         

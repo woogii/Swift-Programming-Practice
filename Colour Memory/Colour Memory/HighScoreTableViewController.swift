@@ -23,21 +23,6 @@ class HighScoreTableViewController : UIViewController {
     var score:Int? = nil
     var rank:Int? = nil
     
-    // MARK : Constants 
-    struct Constants {
-        
-        static let HeaderCellIdentifier = "sectionHeader"
-        static let CellIdentifier       = "scoreCell"
-        static let HeaderFirstColumn    = "RANK"
-        static let HeaderSecondColumn   = "NAME"
-        static let HeaderThirdColumn    = "SCORE"
-        static let RankLabelTag         = 100
-        static let NameLabelTag         = 101
-        static let ScoreLabelTag        = 102
-        static let NumOfHeader          = 1
-        static let layoutContraintValue = 109
-    }
-    
     // MARK : View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -59,19 +44,19 @@ class HighScoreTableViewController : UIViewController {
             return
         }
         
-        scoreLabel.text = "Your Score : \(score)"
+        scoreLabel.text = Constants.ResultScoreText + String(score)
         
         // If there is no rank value
         guard let rank = rank else {
-            rankLabel.text = "Your Rank : No Record Found"
+            rankLabel.text = Constants.ResultNoRankText
             return
         }
         
         // If rank value is set
         if rank != 0  {
-            rankLabel.text = "Your Rank : \(rank)"
+            rankLabel.text = Constants.ResultRankText + String(rank)
         }else {
-            rankLabel.text = "Your Rank : No Record Found"
+            rankLabel.text = Constants.ResultNoRankText
         }
         
     }
