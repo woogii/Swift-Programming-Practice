@@ -97,7 +97,13 @@ extension HighScoreTableViewController : UITableViewDelegate, UITableViewDataSou
         
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier, forIndexPath: indexPath) as? ScoreCell
         
-        highScoreList.sortInPlace({$0.score as Int > $1.score as Int})
+        highScoreList.sortInPlace({
+            // If there are records with same score, then sort records by the 'date' property
+            if $0.score as Int == $1.score as Int {
+                return $0.recordTime.compare($1.recordTime) == NSComparisonResult.OrderedDescending
+            }
+            return $0.score as Int > $1.score as Int
+        })
         
         cell?.rankLabel.text = String(indexPath.row+1)
         cell?.nameLabel.text = highScoreList[indexPath.row].name

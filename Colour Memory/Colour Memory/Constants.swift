@@ -17,7 +17,7 @@ struct Constants {
     static let KeyName              = "name"
     static let KeyScore             = "score"
     static let KeyRank              = "rank"
-    static let KeyDate              = "date"
+    static let KeyDate              = "recordTime"
     static let CoreDataFileName     = "ScoreList.sqlite"
     static let ModelName            = "Model"
     static let ModelExtension       = "momd"
@@ -71,7 +71,7 @@ struct Constants {
     static let KeyOrientation       = "orientation"
     
     // MARK : Point
-    static let MatchingPoint        = 5
+    static let MatchingPoint        = 30
     static let PenaltyPoint         = -1
     
     // MARK : Error
@@ -80,4 +80,5 @@ struct Constants {
     static let ErrorDomain          = "persistent coordinator create"
     static let ErrorLogPrefix       = "Unresolved error"
     
+    static let numOfFlippedCards    = 2
 }

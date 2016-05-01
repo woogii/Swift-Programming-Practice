@@ -13,8 +13,8 @@ import CoreData
 class GameBoardViewController: UIViewController {
 
     // MARK : Properties
-    @IBOutlet var      cardButtons : [UIButton]!
-    @IBOutlet weak var   scoreLabel: UILabel!
+    @IBOutlet var cardButtons : [UIButton]!
+    @IBOutlet weak var scoreLabel: UILabel!
     @IBOutlet weak var highScoreBtn: BorderedButton!
     
     weak var actionToEnable : UIAlertAction?
@@ -22,21 +22,19 @@ class GameBoardViewController: UIViewController {
     
     var gameMatchManager = CardMatchingManager()
 
-    var userName         = String()
-    var userScore        = Int()
-    var rank             = 0
-    var scoreDict        = [String:AnyObject]()
-    
-    var scoreList         = [ScoreList]()
+    var userName  = String()
+    var userScore = Int()
+    var rank      = 0
+    var scoreDict = [String:AnyObject]()
+    var scoreList = [ScoreList]()
+    var selectedCard  = [Card]()
+    var buttonIndices = [Int]()
+    var numOfFlippedCards = 0
+
     
     var sharedContext : NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
-    
-    var selectedCard  = [Card]()
-    var buttonIndices = [Int]()
-    var numOfFlippedCards = 0
-    
     
     // MARK : Fetch score list
     func fetchAllScores()->[ScoreList] {
@@ -102,11 +100,8 @@ class GameBoardViewController: UIViewController {
     func saveHighScoreList() {
     
         let newScore = ScoreList(dictionary: scoreDict, context: self.sharedContext)
-        
         scoreList.append(newScore)
-        
         CoreDataStackManager.sharedInstance().saveContext()
-
     }
     
     // MARK : Process(= Rank,Sort and save Result) game result
@@ -208,11 +203,9 @@ class GameBoardViewController: UIViewController {
         let num = calNumberOfFlippedCards()
         print("number of flipped Card : \(num)")
         
-        if (num == Constants.Pair) {
+        if (num >= Constants.numOfFlippedCards) {
             checkTwoCardsFlipped()
-            // numOfFlippedCards = 0
         }
-
         
         // All cards are matched, show alert message to ask user to input his/her name
         if gameMatchManager.numOfMatchedCard() == cardButtons.count {
@@ -221,6 +214,7 @@ class GameBoardViewController: UIViewController {
     }
     
     func calNumberOfFlippedCards()->Int{
+        
         var num = 0
         
         for cardButton in cardButtons {
@@ -255,6 +249,9 @@ class GameBoardViewController: UIViewController {
             }
             
             if card.isSelected == true {
+                print("card.isSelected : \(card.isSelected)")
+                print("button index : \(index)")
+                
                 selectedCard.append(card)
                 buttonIndices.append(index)
             }
@@ -265,9 +262,9 @@ class GameBoardViewController: UIViewController {
         // Enqueue a block for execution at the specified time
         dispatch_after(time, dispatch_get_main_queue()) {
             
-            print(self.buttonIndices.count)
+            print("button indiced count \(self.buttonIndices.count)")
             // if users tap diffrent buttons, face down two cards.
-            if ( self.buttonIndices.count == 2 ) {
+            if ( self.buttonIndices.count >= 2 ) {
                 
                 for i in 0..<self.selectedCard.count {
                     self.selectedCard[i].isSelected = false
@@ -279,6 +276,7 @@ class GameBoardViewController: UIViewController {
             self.selectedCard = [Card]()
             self.buttonIndices = [Int]()
         }
+    
     }
     
     

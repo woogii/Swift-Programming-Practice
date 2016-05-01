@@ -13,7 +13,7 @@ class ScoreList : NSManagedObject {
 
     @NSManaged var name : String
     @NSManaged var score: NSNumber
-    @NSManaged var date : NSDate
+    @NSManaged var recordTime : NSDate
     
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context : NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
@@ -27,7 +27,7 @@ class ScoreList : NSManagedObject {
         
         name  = dictionary[Constants.KeyName]  as! String
         score = dictionary[Constants.KeyScore] as! Int
-        date  = dictionary[Constants.KeyDate]  as! NSDate
+        recordTime  = dictionary[Constants.KeyDate]  as! NSDate
         
     }
 }
