@@ -48,68 +48,49 @@ class CardMatchingManager : NSObject {
         guard let card = cardAtIndex(index) else {
             return
         }
+        
         print("Current card isMatched : \(card.isMatched)")
         // Card is not matched
         if (card.isMatched == false) {
             
-            // And Card is selected
-            if(card.isSelected == true) {
+            // Card is not selected. This card can be matched with other cards
+            card.isSelected = true
                 
-                // Mark as selected
-                // card.isSelected = false
-                
-            } else {
-                // Card is not selected. This card can be matched with other cards
-                card.isSelected = true
-                
-                for otherCard in cards  {
+            for otherCard in cards  {
                     
                     
-                    // If another card is selected but not matched
-                    // 다른 카드 중에 선택되고 비교되지 않은 카드가 있을 경우
-                    if otherCard.isSelected == true && otherCard.isMatched == false && otherCard != card {
-                        print("other card was also selected")
+                // If another card is selected but not matched
+                // 다른 카드 중에 선택되고 비교되지 않은 카드가 있을 경우
+                if otherCard.isSelected == true && otherCard.isMatched == false && otherCard != card {
+                    
+                    print("other card was also selected")
                         // Match card against another card
-                        matchScore = card.match([otherCard])
+                    matchScore = card.match([otherCard])
                         
                         
-                        // If both card are matched
-                        if (matchScore > 0) {
-                            print("Matched")
+                    // If both card are matched
+                    if (matchScore > 0) {
+                        print("Matched")
                             
-                            score = score + matchScore
-                            otherCard.isMatched = true
-                            card.isMatched = true
-                            print("Current card isSelected : \(card.isSelected)")
-                            print("Current card isMatched : \(card.isMatched)")
-                            print("Other card isSelected : \(otherCard.isSelected)")
-                            print("Other card isMatched : \(otherCard.isMatched)")
-                            
+                        score = score + matchScore
+                        otherCard.isMatched = true
+                        card.isMatched = true
                    
-                        } else {
-                            // Not Matched, impose penalty
-                            print("Not matched")
-                            score = score + Constants.PenaltyPoint
+                    } else {
+                        // Not Matched, impose penalty
+                        print("Not matched")
+                        score = score + Constants.PenaltyPoint
                         
-                            // otherCard.isSelected = false
-                            // card.isSelected = false
-                            
-                            print("Current card isSelected : \(card.isSelected)")
-                            print("Current card isMatched : \(card.isMatched)")
-                            print("Other card isSelected : \(otherCard.isSelected)")
-                            print("Other card isMatched : \(otherCard.isMatched)")
+                        // otherCard.isSelected = false
+                        // card.isSelected = false
                         
-                        }
-                        
-                        break
                     }
-                    
+                    break
                 }
-                // 카드 처음 폈을 경우 
-                // 둘 다 폈을때 맞지 않는 경우
-                // card.isSelected = true
             }
+                // card.isSelected = true
         }
+        
         
     }
     
@@ -136,17 +117,4 @@ class CardMatchingManager : NSObject {
         return num
     }
     
-    func checkBothCardSelected() {
-        
-    }
-    
-//    func isSecondTry()->Bool {
-//        var num = 0
-//        for card in cards {
-//            if (card.isMatched == true) {
-//                num = num + 1
-//            }
-//        }
-//        return num == 1 ? true : false
-//    }
 }

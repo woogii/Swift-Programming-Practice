@@ -7,46 +7,65 @@
 //
 
 import UIKit
+import CoreData
 
 // MARK : - MemoryGameViewController : UIViewController
 class GameBoardViewController: UIViewController {
 
     // MARK : Properties
-    @IBOutlet var cardButtons : [UIButton]!
-    @IBOutlet weak var scoreLabel: UILabel!
+    @IBOutlet var      cardButtons : [UIButton]!
+    @IBOutlet weak var   scoreLabel: UILabel!
     @IBOutlet weak var highScoreBtn: BorderedButton!
     
     weak var actionToEnable : UIAlertAction?
+    var numOfCard: Int?
     
     var gameMatchManager = CardMatchingManager()
-    var numOfCard: Int?
-    var userName:String = String()
-    var userScore:Int = Int()
-    var rank = 0
-    var scoresList:[String:Int] = [String:Int]()
+
+    var userName         = String()
+    var userScore        = Int()
+    var rank             = 0
+    var scoreDict        = [String:AnyObject]()
     
-    var userDefaults : NSUserDefaults {
-        return NSUserDefaults.standardUserDefaults()
+    var scoreList         = [ScoreList]()
+    
+    var sharedContext : NSManagedObjectContext {
+        return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     
     var selectedCard  = [Card]()
     var buttonIndices = [Int]()
     var numOfFlippedCards = 0
     
+    
+    // MARK : Fetch score list
+    func fetchAllScores()->[ScoreList] {
+        
+        let fetchRequest = NSFetchRequest(entityName: Constants.EntityName)
+        let sortDescriptorByScore = NSSortDescriptor(key: Constants.KeyScore, ascending: false)
+        let sortDescriptorByDate  = NSSortDescriptor(key: Constants.KeyDate,  ascending: false)
+        
+        fetchRequest.sortDescriptors = [sortDescriptorByScore, sortDescriptorByDate]
+        
+        do {
+            return try sharedContext.executeFetchRequest(fetchRequest) as! [ScoreList]
+        } catch let error as NSError {
+            print(error.description)
+            return [ScoreList]()
+        }
+    }
+    
     // MARK : View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        // Load the dictionary from user's defaults database
-        getHighScoreList()
+        scoreList = fetchAllScores()
+        print("score list count \(scoreList.count)")
     }
     
     override func viewWillAppear(animated: Bool) {
         resetGame()
-        
         let value = UIInterfaceOrientation.Portrait.rawValue
-        UIDevice.currentDevice().setValue(value, forKey: "orientation")
-        //supportedInterfaceOrientations()
+        UIDevice.currentDevice().setValue(value, forKey: Constants.KeyOrientation)
     }
     
     // MARK : Reset Game
@@ -77,62 +96,63 @@ class GameBoardViewController: UIViewController {
         return orientation
     }
     
-    // MARK : Get Scores
-    func getHighScoreList() {
-        
-        guard let scoresDictionary = userDefaults.objectForKey(Constants.DefaultName) as? [String:Int] else {
-            return
-        }
-        scoresList = scoresDictionary
-    }
 
-    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
-        return UIInterfaceOrientationMask.Portrait
-    }
     
     // MARK : Save Scores
     func saveHighScoreList() {
     
-        // Save to user's defaults database
-        let defaults = NSUserDefaults.standardUserDefaults()
-        defaults.setObject(scoresList, forKey: Constants.DefaultName)
+        let newScore = ScoreList(dictionary: scoreDict, context: self.sharedContext)
+        
+        scoreList.append(newScore)
+        
+        CoreDataStackManager.sharedInstance().saveContext()
+
     }
     
     // MARK : Process(= Rank,Sort and save Result) game result
     func processGameResult() {
         
+        print(scoreList)
+        
         // If there is scores saved
-        if( scoresList.count > 0 ) {
-            
-            // Sort the dictionary in a descending order
-            let sortedList = scoresList.sort { $0.1 > $1.1 }
+        if( scoreList.count > 0 ) {
             
             // If the current user's score is higher than the existing highest score
-            if( gameMatchManager.getScore() >= sortedList[0].1){
+            // if( gameMatchManager.getScore() >= (scoreDict[0].1 as! Int)){
+            
+            if( gameMatchManager.getScore() >= Int(scoreList[0].score) ){
                 
                 // Add the user's score to the dictionary
-                scoresList[userName] = userScore
+                scoreDict[Constants.KeyName]  = userName
+                scoreDict[Constants.KeyScore] = userScore
+                scoreDict[Constants.KeyDate]  = NSDate()
                 
                 saveHighScoreList()
-                rank = 1
-                
+
+                rank = 1 
             } else {
                 
-                // If not, search through list whether user's score history exists
-                let returnIndex = sortedList.indexOf { $0.0 == self.userName }
+                var i = 0
                 
-                guard let index = returnIndex else {
-                    return
+                // If not, search through list whether user's score history exists
+                for list in scoreList {
+                    
+                    if list.name == userName {
+                        rank = i+1
+                        break
+                    }
+                    i = i + 1
                 }
                 
-                rank = index + 1
             }
             
         } else {
             // First player will be ranked at the top spot
             rank = 1
             
-            scoresList[userName] = userScore
+            scoreDict[Constants.KeyName]  = userName
+            scoreDict[Constants.KeyScore] = userScore
+            scoreDict[Constants.KeyDate]  = NSDate()
             saveHighScoreList()
         }
     
@@ -142,7 +162,7 @@ class GameBoardViewController: UIViewController {
     @IBAction func tapCardButton(sender: UIButton)
     {
         let selectedBtnIndex = cardButtons.indexOf(sender)
-        
+
         gameMatchManager.selectCardAtIndex(selectedBtnIndex!)
         
         performUIUpdate()
@@ -183,12 +203,14 @@ class GameBoardViewController: UIViewController {
         
             scoreLabel.text =  Constants.ScoreLabelText + String(self.gameMatchManager.getScore())
         }
+       
+
+        let num = calNumberOfFlippedCards()
+        print("number of flipped Card : \(num)")
         
-        numOfFlippedCards = numOfFlippedCards + 1
-        
-        if (numOfFlippedCards == 2) {
+        if (num == Constants.Pair) {
             checkTwoCardsFlipped()
-            numOfFlippedCards = 0
+            // numOfFlippedCards = 0
         }
 
         
@@ -198,8 +220,30 @@ class GameBoardViewController: UIViewController {
         }
     }
     
-    func checkTwoCardsFlipped() {
+    func calNumberOfFlippedCards()->Int{
+        var num = 0
+        
+        for cardButton in cardButtons {
+            
+            guard let index = cardButtons.indexOf(cardButton) else {
+                return 0
+            }
+            
+            guard let card =  gameMatchManager.cardAtIndex(index) else {
+                return 0
+            }
+            
+            if card.isSelected == true {
+                num = num + 1
+            }
+        }
+        return num
+    }
     
+    func checkTwoCardsFlipped() {
+        
+        print("In checkTwoCardsFlipped")
+        
         for cardButton in cardButtons {
             
             guard let index = cardButtons.indexOf(cardButton) else {
@@ -211,31 +255,27 @@ class GameBoardViewController: UIViewController {
             }
             
             if card.isSelected == true {
-                print("card is selected")
-                print("card value \(card.isSelected)")
-                print("card value \(card.isMatched)")
                 selectedCard.append(card)
                 buttonIndices.append(index)
             }
         }
         
-        
-        print("two flipped cards")
         let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.Delay * Double(NSEC_PER_SEC)))
             
         // Enqueue a block for execution at the specified time
         dispatch_after(time, dispatch_get_main_queue()) {
             
-            print(self.selectedCard.count)
-            for i in 0..<self.selectedCard.count {
-                self.selectedCard[i].isSelected = false
-                    
-                let imageName = self.getBackgroundImage(self.selectedCard[i])
-                print("imageName : \(imageName)")
-                self.cardButtons[self.buttonIndices[i]].setBackgroundImage(UIImage(named:imageName), forState: .Normal)
+            print(self.buttonIndices.count)
+            // if users tap diffrent buttons, face down two cards.
+            if ( self.buttonIndices.count == 2 ) {
                 
+                for i in 0..<self.selectedCard.count {
+                    self.selectedCard[i].isSelected = false
+                    
+                    let imageName = self.getBackgroundImage(self.selectedCard[i])
+                    self.cardButtons[self.buttonIndices[i]].setBackgroundImage(UIImage(named:imageName), forState: .Normal)
+                }
             }
-
             self.selectedCard = [Card]()
             self.buttonIndices = [Int]()
         }
@@ -323,7 +363,7 @@ class GameBoardViewController: UIViewController {
             let highScoreVC = segue.destinationViewController as? HighScoreTableViewController
             highScoreVC?.score = userScore
             highScoreVC?.rank  = rank 
-            highScoreVC?.highScoreList = scoresList
+            highScoreVC?.highScoreList = scoreList
             
         }
         
@@ -331,10 +371,14 @@ class GameBoardViewController: UIViewController {
         if segue.identifier == Constants.BtnSegueIdentifier {
             
             let highScoreVC = segue.destinationViewController as? HighScoreTableViewController
-            highScoreVC?.highScoreList = scoresList
+            highScoreVC?.highScoreList = scoreList
         }
     }
 }
+
+//    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+//        return UIInterfaceOrientationMask.Portrait
+//    }
 
 // MARK : - UINavigationController ( Force orientation )
 extension UINavigationController {
@@ -350,7 +394,7 @@ extension UINavigationController {
     }
 }
 
-
+// MARK : UIAlertController ( For Preventing Layout error : http://goo.gl/IUeHk9 )  
 extension UIAlertController {
     public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]

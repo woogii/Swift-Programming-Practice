@@ -19,7 +19,9 @@ class HighScoreTableViewController : UIViewController {
     @IBOutlet weak var messageLabel: UILabel!
     @IBOutlet weak var tableviewTopConstraint: NSLayoutConstraint!
     
-    var highScoreList = [String:Int]()
+    // var highScoreList = [String:AnyObject]()
+    var highScoreList = [ScoreList]()
+    
     var score:Int? = nil
     var rank:Int? = nil
     
@@ -94,13 +96,12 @@ extension HighScoreTableViewController : UITableViewDelegate, UITableViewDataSou
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier, forIndexPath: indexPath) as? ScoreCell
-    
-        // Sort scores descending and then display scores in order
-        let sortedList = highScoreList.sort { $0.1 > $1.1 }
+        
+        highScoreList.sortInPlace({$0.score as Int > $1.score as Int})
         
         cell?.rankLabel.text = String(indexPath.row+1)
-        cell?.nameLabel.text = sortedList[indexPath.row].0
-        cell?.scoreLabel.text = String(sortedList[indexPath.row].1)
+        cell?.nameLabel.text = highScoreList[indexPath.row].name
+        cell?.scoreLabel.text = String(highScoreList[indexPath.row].score as Int)
     
         return cell!
     }

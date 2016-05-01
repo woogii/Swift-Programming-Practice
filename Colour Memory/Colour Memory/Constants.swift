@@ -12,8 +12,17 @@ import Foundation
 // MARK : Constants
 struct Constants {
     
-    static let DefaultName          = "highScoreList"
-    static let BackGroundImageName  = "card_bg"
+    // MARK : CoreData
+    static let EntityName           = "ScoreList"
+    static let KeyName              = "name"
+    static let KeyScore             = "score"
+    static let KeyRank              = "rank"
+    static let KeyDate              = "date"
+    static let CoreDataFileName     = "ScoreList.sqlite"
+    static let ModelName            = "Model"
+    static let ModelExtension       = "momd"
+    
+    // MARK : AlertController
     static let AlertTitle           = "Mission Completed!"
     static let AlertMessage         = "Enter your name"
     static let AlertPlaceholder     = "Name"
@@ -35,12 +44,11 @@ struct Constants {
     static let NameLabelTag         = 101
     static let ScoreLabelTag        = 102
 
-
     // MARK : Segue
     static let SegueIdentifier      = "showScoreVC"
     static let BtnSegueIdentifier   = "showScoreTable"
 
-    
+    // MARK : Score Label
     static let InitScoreLabelText   = "Score : 0"
     static let ScoreLabelText       = "Score : "
     static let ResultScoreText      = "Your Score : "
@@ -48,18 +56,28 @@ struct Constants {
     static let ResultNoScoreText    = "Your Score : No Record Found"
     static let ResultNoRankText     = "Your Rank  : No Record Found"
     
-    static let ColourSetBlue         = "blue"
-    static let ColourSetBrown        = "brown"
-    static let ColourSetDarkGreen    = "darkGreen"
-    static let ColourSetGreen        = "green"
-    static let ColourSetLightBlue    = "lightBlue"
-    static let ColourSetOlive        = "olive"
-    static let ColourSetPurple       = "purple"
-    static let ColourSetRed          = "red"
-    
-    
+    // MARK : Image Names
+    static let ColourSetBlue        = "blue"
+    static let ColourSetBrown       = "brown"
+    static let ColourSetDarkGreen   = "darkGreen"
+    static let ColourSetGreen       = "green"
+    static let ColourSetLightBlue   = "lightBlue"
+    static let ColourSetOlive       = "olive"
+    static let ColourSetPurple      = "purple"
+    static let ColourSetRed         = "red"
+    static let BackGroundImageName  = "card_bg"
 
-    static let MatchingPoint        = 2
+    // MARK : Orientation 
+    static let KeyOrientation       = "orientation"
+    
+    // MARK : Point
+    static let MatchingPoint        = 5
     static let PenaltyPoint         = -1
+    
+    // MARK : Error
+    static let CreateOrLoadError    = "There was an error creating or loading the application's saved data."
+    static let FailToInitSavedData  = "Failed to initialize the application's saved data"
+    static let ErrorDomain          = "persistent coordinator create"
+    static let ErrorLogPrefix       = "Unresolved error"
     
 }

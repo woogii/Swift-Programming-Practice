@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		D210E4271CD4ACDA00E96764 /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = D210E4261CD4ACDA00E96764 /* Constants.swift */; };
+		D210E42C1CD5F5E200E96764 /* Model.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = D210E42A1CD5F5E200E96764 /* Model.xcdatamodeld */; };
+		D210E42E1CD6012300E96764 /* ScoreList.swift in Sources */ = {isa = PBXBuildFile; fileRef = D210E42D1CD6012300E96764 /* ScoreList.swift */; };
+		D210E4381CD602AA00E96764 /* CoreDataStackManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D210E4361CD602AA00E96764 /* CoreDataStackManager.swift */; };
+		D210E4391CD602AA00E96764 /* CardMatchingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D210E4371CD602AA00E96764 /* CardMatchingManager.swift */; };
 		D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */; };
 		D240EFCD1CCCF651001F38BE /* ScoreCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = D240EFCC1CCCF651001F38BE /* ScoreCell.swift */; };
 		D2BA0E711CD04CE900055D69 /* BorderedButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2BA0E701CD04CE900055D69 /* BorderedButton.swift */; };
@@ -22,7 +26,6 @@
 		D2E5587D1CCB692B00DC40C0 /* Pack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E5587C1CCB692B00DC40C0 /* Pack.swift */; };
 		D2E5587F1CCB693A00DC40C0 /* PlayingCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E5587E1CCB693A00DC40C0 /* PlayingCard.swift */; };
 		D2E558811CCB694600DC40C0 /* PlayingPack.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E558801CCB694600DC40C0 /* PlayingPack.swift */; };
-		D2E558831CCBA82100DC40C0 /* CardMatchingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D2E558821CCBA82100DC40C0 /* CardMatchingManager.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -44,6 +47,10 @@
 
 /* Begin PBXFileReference section */
 		D210E4261CD4ACDA00E96764 /* Constants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Constants.swift; path = "../Colour Memory/Constants.swift"; sourceTree = "<group>"; };
+		D210E42B1CD5F5E200E96764 /* Model.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Model.xcdatamodel; sourceTree = "<group>"; };
+		D210E42D1CD6012300E96764 /* ScoreList.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreList.swift; path = "Colour Memory/ScoreList.swift"; sourceTree = SOURCE_ROOT; };
+		D210E4361CD602AA00E96764 /* CoreDataStackManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStackManager.swift; sourceTree = "<group>"; };
+		D210E4371CD602AA00E96764 /* CardMatchingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardMatchingManager.swift; sourceTree = "<group>"; };
 		D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HighScoreTableViewController.swift; sourceTree = "<group>"; };
 		D240EFCC1CCCF651001F38BE /* ScoreCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ScoreCell.swift; path = "Colour Memory/ScoreCell.swift"; sourceTree = "<group>"; };
 		D2BA0E701CD04CE900055D69 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
@@ -64,7 +71,6 @@
 		D2E5587C1CCB692B00DC40C0 /* Pack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = Pack.swift; path = "../Colour Memory/Pack.swift"; sourceTree = "<group>"; };
 		D2E5587E1CCB693A00DC40C0 /* PlayingCard.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayingCard.swift; path = "../Colour Memory/PlayingCard.swift"; sourceTree = "<group>"; };
 		D2E558801CCB694600DC40C0 /* PlayingPack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = PlayingPack.swift; path = "../Colour Memory/PlayingPack.swift"; sourceTree = "<group>"; };
-		D2E558821CCBA82100DC40C0 /* CardMatchingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CardMatchingManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,8 +165,11 @@
 				D2E5587E1CCB693A00DC40C0 /* PlayingCard.swift */,
 				D2E5587C1CCB692B00DC40C0 /* Pack.swift */,
 				D2E558801CCB694600DC40C0 /* PlayingPack.swift */,
-				D2E558821CCBA82100DC40C0 /* CardMatchingManager.swift */,
 				D210E4261CD4ACDA00E96764 /* Constants.swift */,
+				D210E4371CD602AA00E96764 /* CardMatchingManager.swift */,
+				D210E42D1CD6012300E96764 /* ScoreList.swift */,
+				D210E42A1CD5F5E200E96764 /* Model.xcdatamodeld */,
+				D210E4361CD602AA00E96764 /* CoreDataStackManager.swift */,
 			);
 			name = Model;
 			path = "Colour MemoryTests";
@@ -330,12 +339,15 @@
 				D210E4271CD4ACDA00E96764 /* Constants.swift in Sources */,
 				D240EFC81CCCE9B1001F38BE /* HighScoreTableViewController.swift in Sources */,
 				D2E5587F1CCB693A00DC40C0 /* PlayingCard.swift in Sources */,
-				D2E558831CCBA82100DC40C0 /* CardMatchingManager.swift in Sources */,
 				D2E558811CCB694600DC40C0 /* PlayingPack.swift in Sources */,
 				D2E5587D1CCB692B00DC40C0 /* Pack.swift in Sources */,
 				D2E5584B1CCB62DF00DC40C0 /* GameBoardViewController.swift in Sources */,
 				D2E5587B1CCB691900DC40C0 /* Card.swift in Sources */,
+				D210E4391CD602AA00E96764 /* CardMatchingManager.swift in Sources */,
+				D210E42E1CD6012300E96764 /* ScoreList.swift in Sources */,
+				D210E4381CD602AA00E96764 /* CoreDataStackManager.swift in Sources */,
 				D240EFCD1CCCF651001F38BE /* ScoreCell.swift in Sources */,
+				D210E42C1CD5F5E200E96764 /* Model.xcdatamodeld in Sources */,
 				D2E558491CCB62DF00DC40C0 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +600,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		D210E42A1CD5F5E200E96764 /* Model.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				D210E42B1CD5F5E200E96764 /* Model.xcdatamodel */,
+			);
+			currentVersion = D210E42B1CD5F5E200E96764 /* Model.xcdatamodel */;
+			path = Model.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = D2E5583D1CCB62DF00DC40C0 /* Project object */;
 }
