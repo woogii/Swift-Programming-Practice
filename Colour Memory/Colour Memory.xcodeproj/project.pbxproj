@@ -49,7 +49,7 @@
 		D2BA0E701CD04CE900055D69 /* BorderedButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderedButton.swift; sourceTree = "<group>"; };
 		D2E558451CCB62DF00DC40C0 /* Colour Memory.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Colour Memory.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		D2E558481CCB62DF00DC40C0 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = GameBoardViewController.swift; path = "../Colour Memory/GameBoardViewController.swift"; sourceTree = "<group>"; };
+		D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameBoardViewController.swift; sourceTree = "<group>"; };
 		D2E5584D1CCB62DF00DC40C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D2E5584F1CCB62DF00DC40C0 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D2E558521CCB62DF00DC40C0 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -160,7 +160,6 @@
 				D2E5587C1CCB692B00DC40C0 /* Pack.swift */,
 				D2E558801CCB694600DC40C0 /* PlayingPack.swift */,
 				D2E558821CCBA82100DC40C0 /* CardMatchingManager.swift */,
-				D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */,
 				D210E4261CD4ACDA00E96764 /* Constants.swift */,
 			);
 			name = Model;
@@ -180,6 +179,7 @@
 		D2E558781CCB676600DC40C0 /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				D2E5584A1CCB62DF00DC40C0 /* GameBoardViewController.swift */,
 				D240EFC71CCCE9B1001F38BE /* HighScoreTableViewController.swift */,
 			);
 			name = Controllers;

@@ -19,28 +19,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="66f-na-fIs">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalCompressionResistancePriority="751" image="logo" translatesAutoresizingMaskIntoConstraints="NO" id="66f-na-fIs">
                                 <rect key="frame" x="7" y="80" width="75" height="45"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="75" id="K5D-Hf-lY4"/>
                                 </constraints>
                             </imageView>
-                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COi-CN-RAF" customClass="BorderedButton" customModule="Colour_Memory" customModuleProvider="target">
-                                <rect key="frame" x="230" y="82" width="85" height="39"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="85" id="pUz-5Y-Qa7"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
-                                <state key="normal" title="High Score">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="M37-37-YzL" kind="show" identifier="showScoreTable" id="O8j-lZ-vG9"/>
-                                </connections>
-                            </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCN-ci-2c5">
-                                <rect key="frame" x="102" y="92" width="110" height="21"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" text="Score : " textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lCN-ci-2c5">
+                                <rect key="frame" x="102" y="92" width="104" height="21"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="21" id="yC3-s1-odG"/>
                                 </constraints>
@@ -185,26 +171,39 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
+                            <button opaque="NO" contentMode="scaleToFill" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="COi-CN-RAF" customClass="BorderedButton" customModule="Colour_Memory" customModuleProvider="target">
+                                <rect key="frame" x="222" y="83" width="83" height="39"/>
+                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="83" id="1si-tb-Oz6"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="15"/>
+                                <state key="normal" title="High Score">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <segue destination="M37-37-YzL" kind="show" identifier="showScoreTable" id="O8j-lZ-vG9"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" red="0.18650376998923668" green="0.75757109540385958" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
                             <constraint firstItem="66f-na-fIs" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="16" id="2NX-fp-o1f"/>
                             <constraint firstItem="66f-na-fIs" firstAttribute="centerY" secondItem="lCN-ci-2c5" secondAttribute="centerY" id="E4C-1A-QgQ"/>
                             <constraint firstItem="smp-Ld-Wfm" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-4" id="Fw4-8C-7sW"/>
-                            <constraint firstItem="smp-Ld-Wfm" firstAttribute="top" secondItem="COi-CN-RAF" secondAttribute="bottom" constant="27" id="GgX-Rv-2ag"/>
+                            <constraint firstItem="smp-Ld-Wfm" firstAttribute="top" secondItem="COi-CN-RAF" secondAttribute="bottom" constant="26" id="GgX-Rv-2ag"/>
                             <constraint firstItem="66f-na-fIs" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leadingMargin" constant="-9" id="Y6D-fe-NC2"/>
                             <constraint firstItem="wfy-db-euE" firstAttribute="top" secondItem="smp-Ld-Wfm" secondAttribute="bottom" constant="5" id="Yha-LZ-ter"/>
-                            <constraint firstItem="COi-CN-RAF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="18" id="aU4-4m-LqK"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="COi-CN-RAF" secondAttribute="trailing" constant="-11" id="gUM-Bp-pdW"/>
+                            <constraint firstItem="COi-CN-RAF" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="19" id="aU4-4m-LqK"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="COi-CN-RAF" secondAttribute="trailing" constant="-1" id="gUM-Bp-pdW"/>
                             <constraint firstItem="lCN-ci-2c5" firstAttribute="top" secondItem="y3c-jy-aDJ" secondAttribute="bottom" constant="28" id="iXa-4b-4aB"/>
-                            <constraint firstItem="COi-CN-RAF" firstAttribute="leading" secondItem="lCN-ci-2c5" secondAttribute="trailing" constant="18" id="mTy-E7-khR"/>
+                            <constraint firstItem="COi-CN-RAF" firstAttribute="leading" relation="lessThanOrEqual" secondItem="lCN-ci-2c5" secondAttribute="trailing" constant="16" id="mTy-E7-khR"/>
                             <constraint firstItem="lCN-ci-2c5" firstAttribute="leading" secondItem="66f-na-fIs" secondAttribute="trailing" constant="20" id="qQJ-PU-6LJ"/>
                             <constraint firstItem="smp-Ld-Wfm" firstAttribute="top" secondItem="66f-na-fIs" secondAttribute="bottom" constant="23" id="uhy-vP-qIL"/>
                             <constraint firstAttribute="trailingMargin" secondItem="smp-Ld-Wfm" secondAttribute="trailing" constant="-4" id="vPy-qJ-7QX"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Colour Memory" id="2pW-9g-MsL"/>
-                    <simulatedOrientationMetrics key="simulatedOrientationMetrics"/>
                     <connections>
                         <outlet property="highScoreBtn" destination="COi-CN-RAF" id="5LJ-Uy-InQ"/>
                         <outlet property="scoreLabel" destination="lCN-ci-2c5" id="KrP-C6-fbM"/>

@@ -40,9 +40,9 @@ struct Constants {
     static let SegueIdentifier      = "showScoreVC"
     static let BtnSegueIdentifier   = "showScoreTable"
 
+    
     static let InitScoreLabelText   = "Score : 0"
     static let ScoreLabelText       = "Score : "
-    
     static let ResultScoreText      = "Your Score : "
     static let ResultRankText       = "Your Rank  : "
     static let ResultNoScoreText    = "Your Score : No Record Found"

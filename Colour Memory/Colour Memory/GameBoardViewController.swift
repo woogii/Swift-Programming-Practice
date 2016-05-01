@@ -28,7 +28,11 @@ class GameBoardViewController: UIViewController {
     var userDefaults : NSUserDefaults {
         return NSUserDefaults.standardUserDefaults()
     }
-        
+    
+    var selectedCard  = [Card]()
+    var buttonIndices = [Int]()
+    var numOfFlippedCards = 0
+    
     // MARK : View Life Cycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -39,6 +43,10 @@ class GameBoardViewController: UIViewController {
     
     override func viewWillAppear(animated: Bool) {
         resetGame()
+        
+        let value = UIInterfaceOrientation.Portrait.rawValue
+        UIDevice.currentDevice().setValue(value, forKey: "orientation")
+        //supportedInterfaceOrientations()
     }
     
     // MARK : Reset Game
@@ -63,8 +71,7 @@ class GameBoardViewController: UIViewController {
     override func shouldAutorotate() -> Bool {
         return false
     }
-    
-    // MARK : Force Orientation
+
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
         return orientation
@@ -79,6 +86,9 @@ class GameBoardViewController: UIViewController {
         scoresList = scoresDictionary
     }
 
+    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
+        return UIInterfaceOrientationMask.Portrait
+    }
     
     // MARK : Save Scores
     func saveHighScoreList() {
@@ -140,6 +150,7 @@ class GameBoardViewController: UIViewController {
     
     // MARK : UI Update
     func performUIUpdate() {
+        print("UI update")
         
         for cardButton in cardButtons {
             
@@ -151,12 +162,10 @@ class GameBoardViewController: UIViewController {
                 return
             }
             
-            if( card.isSelected == true ) {
-                
-            }
-            
-            cardButton.setBackgroundImage(UIImage(named:getBackgroundImage(card)), forState: .Normal)
-            
+            let imageName = self.getBackgroundImage(card)
+            cardButton.setBackgroundImage(UIImage(named:imageName), forState: .Normal)
+        
+        
             // Creates a dispatch_time_t relative to the default clock or modifies an existing dispatch_time_t.
             let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.Delay * Double(NSEC_PER_SEC)))
             
@@ -171,9 +180,17 @@ class GameBoardViewController: UIViewController {
                     cardButton.alpha = 1.0
                 }
             }
-            
+        
             scoreLabel.text =  Constants.ScoreLabelText + String(self.gameMatchManager.getScore())
         }
+        
+        numOfFlippedCards = numOfFlippedCards + 1
+        
+        if (numOfFlippedCards == 2) {
+            checkTwoCardsFlipped()
+            numOfFlippedCards = 0
+        }
+
         
         // All cards are matched, show alert message to ask user to input his/her name
         if gameMatchManager.numOfMatchedCard() == cardButtons.count {
@@ -181,9 +198,59 @@ class GameBoardViewController: UIViewController {
         }
     }
     
+    func checkTwoCardsFlipped() {
+    
+        for cardButton in cardButtons {
+            
+            guard let index = cardButtons.indexOf(cardButton) else {
+                return
+            }
+            
+            guard let card =  gameMatchManager.cardAtIndex(index) else {
+                return
+            }
+            
+            if card.isSelected == true {
+                print("card is selected")
+                print("card value \(card.isSelected)")
+                print("card value \(card.isMatched)")
+                selectedCard.append(card)
+                buttonIndices.append(index)
+            }
+        }
+        
+        
+        print("two flipped cards")
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.Delay * Double(NSEC_PER_SEC)))
+            
+        // Enqueue a block for execution at the specified time
+        dispatch_after(time, dispatch_get_main_queue()) {
+            
+            print(self.selectedCard.count)
+            for i in 0..<self.selectedCard.count {
+                self.selectedCard[i].isSelected = false
+                    
+                let imageName = self.getBackgroundImage(self.selectedCard[i])
+                print("imageName : \(imageName)")
+                self.cardButtons[self.buttonIndices[i]].setBackgroundImage(UIImage(named:imageName), forState: .Normal)
+                
+            }
+
+            self.selectedCard = [Card]()
+            self.buttonIndices = [Int]()
+        }
+    }
+    
+    
     // MARK : Get Background Image of Card
     func getBackgroundImage(card:Card)->String {
-        return (card.isSelected == true) ? card.colourDesc: Constants.BackGroundImageName
+        
+        if (card.isSelected == true) {
+            return card.colourDesc
+        }else {
+            return Constants.BackGroundImageName
+        }
+        
     }
     
     // MARK : Show AlertView
@@ -201,7 +268,7 @@ class GameBoardViewController: UIViewController {
             textField.placeholder = placeholder
             // Associate target object with action 'textChanged:' when a control event occurs
             // textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
-            textField.addTarget(self, action: "textChanged", forControlEvents: .EditingChanged)
+            textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
             
         })
         
@@ -277,6 +344,21 @@ extension UINavigationController {
         // This line enables GameBoardViewController to force 'portrait orientation'
         return visibleViewController!.shouldAutorotate()
     }
+    
+    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        return (visibleViewController?.supportedInterfaceOrientations())!
+    }
+}
+
+
+extension UIAlertController {
+    public override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
+        let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
+        return orientation
+    }
+    public override func shouldAutorotate() -> Bool {
+        return false
+    }
 }
 
 // MARK : - Dictionary ( Subscripting support )
@@ -288,5 +370,6 @@ extension Dictionary {
             return self[self.startIndex.advancedBy(i)]
         }
     }
+
 }
 
