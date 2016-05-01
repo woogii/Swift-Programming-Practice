@@ -97,6 +97,7 @@ extension HighScoreTableViewController : UITableViewDelegate, UITableViewDataSou
         
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellIdentifier, forIndexPath: indexPath) as? ScoreCell
         
+        // Sort ScoreList by score 
         highScoreList.sortInPlace({
             // If there are records with same score, then sort records by the 'date' property
             if $0.score as Int == $1.score as Int {

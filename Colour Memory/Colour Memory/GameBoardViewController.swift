@@ -13,29 +13,46 @@ import CoreData
 class GameBoardViewController: UIViewController {
 
     // MARK : Properties
-    @IBOutlet var cardButtons : [UIButton]!
+    @IBOutlet weak var button1: UIButton!
+    @IBOutlet weak var button2: UIButton!
+    @IBOutlet weak var button3: UIButton!
+    @IBOutlet weak var button4: UIButton!
+    @IBOutlet weak var button5: UIButton!
+    @IBOutlet weak var button6: UIButton!
+    @IBOutlet weak var button7: UIButton!
+    @IBOutlet weak var button8: UIButton!
+    @IBOutlet weak var button9: UIButton!
+    @IBOutlet weak var button10: UIButton!
+    @IBOutlet weak var button11: UIButton!
+    @IBOutlet weak var button12: UIButton!
+    @IBOutlet weak var button13: UIButton!
+    @IBOutlet weak var button14: UIButton!
+    @IBOutlet weak var button15: UIButton!
+    @IBOutlet weak var button16: UIButton!
     @IBOutlet weak var scoreLabel: UILabel!
+    
     @IBOutlet weak var highScoreBtn: BorderedButton!
     
-    weak var actionToEnable : UIAlertAction?
-    var numOfCard: Int?
+    var cardButtons:[UIButton]! {
+        return [button1,button2,button3,button4,button5,button6,button7,button8,
+            button9,button10,button11,button12,button13,button14,button15,button16]
+    }
     
-    var gameMatchManager = CardMatchingManager()
-
+    weak var actionToEnable : UIAlertAction?
     var userName  = String()
     var userScore = Int()
     var rank      = 0
-    var scoreDict = [String:AnyObject]()
-    var scoreList = [ScoreList]()
-    var selectedCard  = [Card]()
-    var buttonIndices = [Int]()
-    var numOfFlippedCards = 0
-
     
     var sharedContext : NSManagedObjectContext {
         return CoreDataStackManager.sharedInstance().managedObjectContext
     }
     
+    var gameMatchManager = CardMatchingManager()
+    var scoreDict        = [String:AnyObject]()
+    var scoreList        = [ScoreList]()
+    var selectedCard     = [Card]()
+    var buttonIndices    = [Int]()
+
     // MARK : Fetch score list
     func fetchAllScores()->[ScoreList] {
         
@@ -57,11 +74,12 @@ class GameBoardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         scoreList = fetchAllScores()
-        print("score list count \(scoreList.count)")
     }
     
     override func viewWillAppear(animated: Bool) {
         resetGame()
+        
+        // Set Orientation as Portrait mode
         let value = UIInterfaceOrientation.Portrait.rawValue
         UIDevice.currentDevice().setValue(value, forKey: Constants.KeyOrientation)
     }
@@ -72,11 +90,11 @@ class GameBoardViewController: UIViewController {
         scoreLabel.text = Constants.InitScoreLabelText
         rank = 0
         gameMatchManager = CardMatchingManager(count: cardButtons.count, pack: PlayingPack())
-        faceDownCard()
+        placeCardsFaceDown()
     }
     
     // MARK : Place cards face down
-    func faceDownCard() {
+    func placeCardsFaceDown() {
         
         for card in cardButtons  {
             card.setBackgroundImage(UIImage(named:Constants.BackGroundImageName), forState: .Normal)
@@ -98,7 +116,7 @@ class GameBoardViewController: UIViewController {
     
     // MARK : Save Scores
     func saveHighScoreList() {
-    
+        
         let newScore = ScoreList(dictionary: scoreDict, context: self.sharedContext)
         scoreList.append(newScore)
         CoreDataStackManager.sharedInstance().saveContext()
@@ -107,14 +125,10 @@ class GameBoardViewController: UIViewController {
     // MARK : Process(= Rank,Sort and save Result) game result
     func processGameResult() {
         
-        print(scoreList)
-        
         // If there is scores saved
         if( scoreList.count > 0 ) {
             
             // If the current user's score is higher than the existing highest score
-            // if( gameMatchManager.getScore() >= (scoreDict[0].1 as! Int)){
-            
             if( gameMatchManager.getScore() >= Int(scoreList[0].score) ){
                 
                 // Add the user's score to the dictionary
@@ -138,9 +152,7 @@ class GameBoardViewController: UIViewController {
                     }
                     i = i + 1
                 }
-                
             }
-            
         } else {
             // First player will be ranked at the top spot
             rank = 1
@@ -165,7 +177,6 @@ class GameBoardViewController: UIViewController {
     
     // MARK : UI Update
     func performUIUpdate() {
-        print("UI update")
         
         for cardButton in cardButtons {
             
@@ -182,7 +193,7 @@ class GameBoardViewController: UIViewController {
         
         
             // Creates a dispatch_time_t relative to the default clock or modifies an existing dispatch_time_t.
-            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.Delay * Double(NSEC_PER_SEC)))
+            let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.DelayIfMathced * Double(NSEC_PER_SEC)))
             
             // Enqueue a block for execution at the specified time
             dispatch_after(time, dispatch_get_main_queue()) {
@@ -199,12 +210,12 @@ class GameBoardViewController: UIViewController {
             scoreLabel.text =  Constants.ScoreLabelText + String(self.gameMatchManager.getScore())
         }
        
-
-        let num = calNumberOfFlippedCards()
-        print("number of flipped Card : \(num)")
         
-        if (num >= Constants.numOfFlippedCards) {
-            checkTwoCardsFlipped()
+        let numberOfFlippedCards = calNumberOfFlippedCards()
+        
+        // If there are more than two cards selected
+        if (numberOfFlippedCards >= Constants.numOfFlippedCards) {
+            placeFippedCardsFaceDown()
         }
         
         // All cards are matched, show alert message to ask user to input his/her name
@@ -213,6 +224,7 @@ class GameBoardViewController: UIViewController {
         }
     }
     
+    // MARK : Calculate the number of flipped cards
     func calNumberOfFlippedCards()->Int{
         
         var num = 0
@@ -229,50 +241,38 @@ class GameBoardViewController: UIViewController {
             
             if card.isSelected == true {
                 num = num + 1
-            }
-        }
-        return num
-    }
-    
-    func checkTwoCardsFlipped() {
-        
-        print("In checkTwoCardsFlipped")
-        
-        for cardButton in cardButtons {
-            
-            guard let index = cardButtons.indexOf(cardButton) else {
-                return
-            }
-            
-            guard let card =  gameMatchManager.cardAtIndex(index) else {
-                return
-            }
-            
-            if card.isSelected == true {
-                print("card.isSelected : \(card.isSelected)")
-                print("button index : \(index)")
-                
+                // Save information about which indices and cards are selected
                 selectedCard.append(card)
                 buttonIndices.append(index)
             }
         }
         
-        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.Delay * Double(NSEC_PER_SEC)))
-            
-        // Enqueue a block for execution at the specified time
+        return num
+    }
+    
+    // MARK : Place flipped cards face down
+    func placeFippedCardsFaceDown() {
+        
+        let time = dispatch_time(dispatch_time_t(DISPATCH_TIME_NOW), Int64(Constants.DelayIfNotMathced * Double(NSEC_PER_SEC)))
+        
         dispatch_after(time, dispatch_get_main_queue()) {
             
-            print("button indiced count \(self.buttonIndices.count)")
-            // if users tap diffrent buttons, face down two cards.
+            // If there are more than two cards selected
             if ( self.buttonIndices.count >= 2 ) {
-                
+            
+                // loop through as much as the number of card selected
                 for i in 0..<self.selectedCard.count {
+                    
+                    // Set as not selected
                     self.selectedCard[i].isSelected = false
                     
+                    // Update Card background image as default image
                     let imageName = self.getBackgroundImage(self.selectedCard[i])
                     self.cardButtons[self.buttonIndices[i]].setBackgroundImage(UIImage(named:imageName), forState: .Normal)
+                    
                 }
             }
+            // Initialize both arrays
             self.selectedCard = [Card]()
             self.buttonIndices = [Int]()
         }
@@ -373,10 +373,6 @@ class GameBoardViewController: UIViewController {
         }
     }
 }
-
-//    func navigationControllerSupportedInterfaceOrientations(navigationController: UINavigationController) -> UIInterfaceOrientationMask {
-//        return UIInterfaceOrientationMask.Portrait
-//    }
 
 // MARK : - UINavigationController ( Force orientation )
 extension UINavigationController {

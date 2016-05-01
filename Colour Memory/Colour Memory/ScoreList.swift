@@ -9,12 +9,15 @@
 import Foundation
 import CoreData
 
+// MARK : - ScoreList : NSManagedObject
 class ScoreList : NSManagedObject {
 
+    // MARK : Properties
     @NSManaged var name : String
     @NSManaged var score: NSNumber
     @NSManaged var recordTime : NSDate
-    
+
+    // MARK : Initialization
     override init(entity: NSEntityDescription, insertIntoManagedObjectContext context : NSManagedObjectContext?) {
         super.init(entity: entity, insertIntoManagedObjectContext: context)
     }

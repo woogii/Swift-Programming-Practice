@@ -28,7 +28,6 @@ struct Constants {
     static let AlertPlaceholder     = "Name"
     static let ActionOk             = "Ok"
     static let ActionCancel         = "Cancel"
-    static let Delay                = 1.0
     
     // MARK : TableView
     static let HeaderCellIdentifier = "sectionHeader"
@@ -81,4 +80,6 @@ struct Constants {
     static let ErrorLogPrefix       = "Unresolved error"
     
     static let numOfFlippedCards    = 2
+    static let DelayIfMathced       = 1.0
+    static let DelayIfNotMathced    = 0.7
 }
