@@ -70,7 +70,7 @@ struct Constants {
     static let KeyOrientation       = "orientation"
     
     // MARK : Point
-    static let MatchingPoint        = 30
+    static let MatchingPoint        = 5
     static let PenaltyPoint         = -1
     
     // MARK : Error
