@@ -140,7 +140,7 @@ class GameBoardViewController: UIViewController {
 
                 rank = 1 
             } else {
-                
+                print("Not highest")
                 var i = 0
                 
                 // If not, search through list whether user's score history exists
@@ -162,6 +162,17 @@ class GameBoardViewController: UIViewController {
             scoreDict[Constants.KeyDate]  = NSDate()
             saveHighScoreList()
         }
+        
+        
+        // Sort ScoreList after appending data
+        scoreList.sortInPlace({
+            // If there are records with same score, then sort records by the 'date' property
+            if $0.score as Int == $1.score as Int {
+                return $0.recordTime.compare($1.recordTime) == NSComparisonResult.OrderedDescending
+            }
+            return $0.score as Int > $1.score as Int
+        })
+
     
     }
     
@@ -305,9 +316,7 @@ class GameBoardViewController: UIViewController {
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = placeholder
             // Associate target object with action 'textChanged:' when a control event occurs
-            // textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
-            textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
-            
+            textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
         })
         
         // Define action when 'Cancle' button tapped
@@ -359,6 +368,8 @@ class GameBoardViewController: UIViewController {
         if segue.identifier == Constants.SegueIdentifier {
             
             let highScoreVC = segue.destinationViewController as? HighScoreTableViewController
+            print("userScore: \(userScore)")
+            print("rank : \(rank)")
             highScoreVC?.score = userScore
             highScoreVC?.rank  = rank 
             highScoreVC?.highScoreList = scoreList
@@ -370,6 +381,8 @@ class GameBoardViewController: UIViewController {
             
             let highScoreVC = segue.destinationViewController as? HighScoreTableViewController
             highScoreVC?.highScoreList = scoreList
+            
+
         }
     }
 }
