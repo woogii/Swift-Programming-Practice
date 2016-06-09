@@ -26,7 +26,7 @@ The application is a memory card game where users can select two cards on the ga
 *  In the high score table, users can see not only the high score list, but also their current scores and rankings. This screen can be seen in landscape mode, whereas the game board screen can only be seen in portrait mode.
 
 ![CM Finished](ScreenShot/HighScoreList_Portrait.png)
-![CM Finished](ScreenShot/HighScoreList_Landscape.PNG)
+![CM Finished](ScreenShot/HighScoreList_Landscape.png)
 
 
 
