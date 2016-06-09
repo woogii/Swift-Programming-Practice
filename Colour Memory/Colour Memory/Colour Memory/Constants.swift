@@ -70,7 +70,7 @@ struct Constants {
     static let KeyOrientation       = "orientation"
     
     // MARK : Point
-    static let MatchingPoint        = 5
+    static let MatchingPoint        = 2
     static let PenaltyPoint         = -1
     
     // MARK : Error
@@ -79,7 +79,10 @@ struct Constants {
     static let ErrorDomain          = "persistent coordinator create"
     static let ErrorLogPrefix       = "Unresolved error"
     
-    static let numOfFlippedCards    = 2
+    // MARK : Delay
     static let DelayIfMathced       = 1.0
     static let DelayIfNotMathced    = 0.7
+    
+    
+    static let numOfFlippedCards    = 2
 }

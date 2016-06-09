@@ -107,6 +107,7 @@ class GameBoardViewController: UIViewController {
         return false
     }
 
+    // MARK : Set Orientation
     override func supportedInterfaceOrientations() -> UIInterfaceOrientationMask {
         let orientation: UIInterfaceOrientationMask = [UIInterfaceOrientationMask.Portrait, UIInterfaceOrientationMask.PortraitUpsideDown]
         return orientation
@@ -140,7 +141,7 @@ class GameBoardViewController: UIViewController {
 
                 rank = 1 
             } else {
-                print("Not highest")
+                
                 var i = 0
                 
                 // If not, search through list whether user's score history exists
@@ -316,7 +317,8 @@ class GameBoardViewController: UIViewController {
         alert.addTextFieldWithConfigurationHandler({(textField: UITextField) in
             textField.placeholder = placeholder
             // Associate target object with action 'textChanged:' when a control event occurs
-            textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            // textField.addTarget(self, action: #selector(GameBoardViewController.textChanged(_:)), forControlEvents: .EditingChanged)
+            textField.addTarget(self, action: "textChanged:", forControlEvents: .EditingChanged)
         })
         
         // Define action when 'Cancle' button tapped
@@ -368,8 +370,6 @@ class GameBoardViewController: UIViewController {
         if segue.identifier == Constants.SegueIdentifier {
             
             let highScoreVC = segue.destinationViewController as? HighScoreTableViewController
-            print("userScore: \(userScore)")
-            print("rank : \(rank)")
             highScoreVC?.score = userScore
             highScoreVC?.rank  = rank 
             highScoreVC?.highScoreList = scoreList

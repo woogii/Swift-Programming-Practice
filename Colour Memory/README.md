@@ -1,38 +1,33 @@
 # Colour Memory 
-The application is memory card game that users can select two cards in the game board for each round and play game until all cards are matched. If a paif of cards are matched, players get score and then cards will disappear. If both cards are not matched, those card will be flipped over.
+The application is a memory card game where users can select two cards on the game board each round and play the game until all the cards have been matched. If the two cards match, the player gets a point and the cards disappear. If the cards do not match, they will be flipped back over.
 
 
 # Features 
 
-* This is the main screen when users launch the Colour Memory application. As you can see, there are 8 pairs of cards on the game board. Users can see their scores on the top of the screen. 
+* This is the main screen that will be shown when users launch the application. There are eight pairs of cards on the game board, the logo, the score label and one button. Users can see their scores via the score label while playing the game.  
 
-![CM Main](ScreenShot/StartScreen.png)
+![CM Main](ScreenShot/StartScreen.PNG)
 
-* User can select two cards for each round. If user choose cards, both cards are flipped over. If they are matched, users get score. Otherwise, they get penalty score, which is minus one point. 
+* In the upper right-hand corner of the screen, there is a button called 'High Score'. If users tap this button, the app moves to a new screen that shows the player's rank, name and score information in a table.
 
-![CM Select](ScreenShot/CardsSelected.png)
+![CM Finished](ScreenShot/HighScoreList_Initial.PNG)
 
-* If all cards are mathced, Alertview is popped up and Users can record his/her name and score. 
-![CM Matched](ScreenShot/AfterCardMatched.png)  
-
-
- 
-
- 
+* Users can select two cards each round. When the user chooses a card, it flips over. If they match, the user gets a point and the cards disappear. If they don't match, the user loses one point and both cards flip back over.
 
 
+![CM Select](ScreenShot/CardsSelected.PNG)
+![CM Matched](ScreenShot/AfterCardMatched.PNG)
 
-
-
-
-
-* 
-* 
-* 
-* 
+* Once all the cards have been matched, a small screen pops up and users can type their name to submit their score. Once users confirm their names, the app displays the high score table.
 
 
 ![CM Finished](ScreenShot/AfterGameFinished.PNG)
+
+*  In the high score table, users can see not only the high score list, but also their current scores and rankings. This screen can be seen in landscape mode, whereas the game board screen can only be seen in portrait mode.
+
+![CM Finished](ScreenShot/HighScoreList_Portrait.PNG)
+![CM Finished](ScreenShot/HighScoreList_Landscape.PNG)
+
 
 
 
@@ -42,16 +37,16 @@ The application is memory card game that users can select two cards in the game 
 
 ```
 $ git clone https://github.com/woogii/Swift-and-iOS-tutorial.git
-$ cd Colour\ Memory
+$ cd Colour\ Memory/
 ```
 
 2) Open the workspace in XCode
  
 ```
-$ open Colour Memory.xcodeproj/
+$ open Colour\ Memory.xcodeproj/
 ```
 
 3) Compile and run the app in your simulator 
 
 # Compatibility 
-The code of this project works in Swift2.2, Xcode 7.3 and iOS 9.2
+The code of this project works in Swift2.2, Xcode 7.2 and iOS 9.2
