@@ -6,14 +6,14 @@ The application is memory card game that users can select two cards in the game 
 
 * This is the main screen when users launch the Colour Memory application. As you can see, there are 8 pairs of cards on the game board. Users can see their scores on the top of the screen. 
 
-![CM Main](ScreenShot/StartScreen.PNG)
+![CM Main](ScreenShot/StartScreen.png)
 
 * User can select two cards for each round. If user choose cards, both cards are flipped over. If they are matched, users get score. Otherwise, they get penalty score, which is minus one point. 
 
-![CM Select](ScreenShot/CardsSelected.PNG)
+![CM Select](ScreenShot/CardsSelected.png)
 
 * If all cards are mathced, Alertview is popped up and Users can record his/her name and score. 
-![CM Matched](ScreenShot/AfterCardMatched.PNG)  
+![CM Matched](ScreenShot/AfterCardMatched.png)  
 
 
  
