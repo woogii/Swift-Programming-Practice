@@ -1,0 +1,7 @@
+{
+     "items" : [
+           { "name": "Interview Item 1", "release_date" : "2016-04-19", "image": "item1.png" },
+           { "name": "Interview Item 2", "release_date" : "2015-04-19", "image": "item2.png" },
+           { "name": "Interview Item 3", "release_date" : "2014-04-19", "image": "item3.png" }
+     ]
+}
