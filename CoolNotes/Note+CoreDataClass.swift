@@ -26,5 +26,15 @@ class Note: NSManagedObject {
     }
   }
   
-  
+  var humanReadableAge : String {
+    get {
+      let fmt = DateFormatter()
+      fmt.timeStyle = .none
+      fmt.dateStyle = .short
+      fmt.doesRelativeDateFormatting = true
+      fmt.locale = NSLocale.current
+      
+      return fmt.string(from: creationDate! as Date)
+    }
+  }
 }

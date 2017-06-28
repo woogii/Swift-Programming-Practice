@@ -1,0 +1,6 @@
+framework module Pods_Scientific_Innovations {
+  umbrella header "Pods-Scientific Innovations-umbrella.h"
+
+  export *
+  module * { export * }
+}

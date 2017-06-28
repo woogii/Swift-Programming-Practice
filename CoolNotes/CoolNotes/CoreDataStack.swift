@@ -23,6 +23,7 @@ struct CoreDataStack {
   
   init?(modelName:String) {
     
+    // Load our data model
     guard let modelURL = Bundle.main.url(forResource: modelName, withExtension: "momd") else {
       
       print("Unable to find \(modelName) in the main bundle")
@@ -38,7 +39,7 @@ struct CoreDataStack {
     }
     self.model = model
     
-    // create the store coordinator
+    // create the store coordinator, which is responsible for reading from and writing to disk
     coordinator = NSPersistentStoreCoordinator(managedObjectModel: model)
     
     context = NSManagedObjectContext(concurrencyType: .mainQueueConcurrencyType)

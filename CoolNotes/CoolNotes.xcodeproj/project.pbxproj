@@ -7,8 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		B816A3381EE3DEDF00B2C97A /* NotebooksTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816A3371EE3DEDF00B2C97A /* NotebooksTableViewController.swift */; };
+		B816A36C1EE6DED400B2C97A /* NotesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B816A36B1EE6DED400B2C97A /* NotesViewController.swift */; };
 		B869EA281EC83FFA0013BC2B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869EA271EC83FFA0013BC2B /* AppDelegate.swift */; };
-		B869EA2A1EC83FFA0013BC2B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869EA291EC83FFA0013BC2B /* ViewController.swift */; };
+		B869EA2A1EC83FFA0013BC2B /* CoreDataTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B869EA291EC83FFA0013BC2B /* CoreDataTableViewController.swift */; };
 		B869EA2D1EC83FFA0013BC2B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B869EA2B1EC83FFA0013BC2B /* Main.storyboard */; };
 		B869EA2F1EC83FFA0013BC2B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B869EA2E1EC83FFA0013BC2B /* Assets.xcassets */; };
 		B869EA321EC83FFA0013BC2B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B869EA301EC83FFA0013BC2B /* LaunchScreen.storyboard */; };
@@ -32,9 +34,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		B816A3371EE3DEDF00B2C97A /* NotebooksTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotebooksTableViewController.swift; sourceTree = "<group>"; };
+		B816A36B1EE6DED400B2C97A /* NotesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NotesViewController.swift; sourceTree = "<group>"; };
 		B869EA241EC83FFA0013BC2B /* CoolNotes.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = CoolNotes.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B869EA271EC83FFA0013BC2B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		B869EA291EC83FFA0013BC2B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		B869EA291EC83FFA0013BC2B /* CoreDataTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataTableViewController.swift; sourceTree = "<group>"; };
 		B869EA2C1EC83FFA0013BC2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		B869EA2E1EC83FFA0013BC2B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		B869EA311EC83FFA0013BC2B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -89,14 +93,9 @@
 		B869EA261EC83FFA0013BC2B /* CoolNotes */ = {
 			isa = PBXGroup;
 			children = (
+				B8EBB3C61EE1B16D007FB1A4 /* Controller */,
 				B869EA541EC84D7E0013BC2B /* Model */,
-				B869EA271EC83FFA0013BC2B /* AppDelegate.swift */,
-				B869EA291EC83FFA0013BC2B /* ViewController.swift */,
-				B869EA2B1EC83FFA0013BC2B /* Main.storyboard */,
-				B869EA2E1EC83FFA0013BC2B /* Assets.xcassets */,
-				B869EA301EC83FFA0013BC2B /* LaunchScreen.storyboard */,
-				B869EA331EC83FFA0013BC2B /* Info.plist */,
-				B869EA471EC840330013BC2B /* Model.xcdatamodeld */,
+				B8EBB3C71EE1B18B007FB1A4 /* Supporting Files */,
 			);
 			path = CoolNotes;
 			sourceTree = "<group>";
@@ -118,8 +117,31 @@
 				B869EA4E1EC84CC30013BC2B /* Note+CoreDataClass.swift */,
 				B869EA4F1EC84CC30013BC2B /* Note+CoreDataProperties.swift */,
 				B869EA4A1EC846DD0013BC2B /* CoreDataStack.swift */,
+				B869EA471EC840330013BC2B /* Model.xcdatamodeld */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		B8EBB3C61EE1B16D007FB1A4 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				B869EA291EC83FFA0013BC2B /* CoreDataTableViewController.swift */,
+				B816A3371EE3DEDF00B2C97A /* NotebooksTableViewController.swift */,
+				B816A36B1EE6DED400B2C97A /* NotesViewController.swift */,
+			);
+			name = Controller;
+			sourceTree = "<group>";
+		};
+		B8EBB3C71EE1B18B007FB1A4 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B869EA271EC83FFA0013BC2B /* AppDelegate.swift */,
+				B869EA2B1EC83FFA0013BC2B /* Main.storyboard */,
+				B869EA2E1EC83FFA0013BC2B /* Assets.xcassets */,
+				B869EA301EC83FFA0013BC2B /* LaunchScreen.storyboard */,
+				B869EA331EC83FFA0013BC2B /* Info.plist */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -227,12 +249,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				B869EA2A1EC83FFA0013BC2B /* ViewController.swift in Sources */,
+				B869EA2A1EC83FFA0013BC2B /* CoreDataTableViewController.swift in Sources */,
 				B869EA531EC84CC30013BC2B /* Note+CoreDataProperties.swift in Sources */,
 				B869EA521EC84CC30013BC2B /* Note+CoreDataClass.swift in Sources */,
 				B869EA501EC84CC30013BC2B /* Notebook+CoreDataClass.swift in Sources */,
 				B869EA511EC84CC30013BC2B /* Notebook+CoreDataProperties.swift in Sources */,
 				B869EA281EC83FFA0013BC2B /* AppDelegate.swift in Sources */,
+				B816A36C1EE6DED400B2C97A /* NotesViewController.swift in Sources */,
+				B816A3381EE3DEDF00B2C97A /* NotebooksTableViewController.swift in Sources */,
 				B869EA491EC840330013BC2B /* Model.xcdatamodeld in Sources */,
 				B869EA4B1EC846DD0013BC2B /* CoreDataStack.swift in Sources */,
 			);
@@ -444,6 +468,7 @@
 				B869EA431EC83FFA0013BC2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B869EA441EC83FFA0013BC2B /* Build configuration list for PBXNativeTarget "CoolNotesTests" */ = {
 			isa = XCConfigurationList;
@@ -452,6 +477,7 @@
 				B869EA461EC83FFA0013BC2B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

@@ -12,7 +12,7 @@
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "3F5BA300-9D18-40C7-AA2E-0519DEEDDAC7",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
     "06B17395845E828303F27DC33B46C98360A84829" : "ios-networking",
-    "759B3D41078E1CD2965AE401005C18FF6B4AE9FB" : "Swift_iOS_tutorial\/",
+    "759B3D41078E1CD2965AE401005C18FF6B4AE9FB" : "Swift-and-iOS-tutorial\/",
     "FF41214CA25FE390FE8C58321EC7E1E262D2C473" : "ios-networking-2.0-raw\/",
     "DADF9CA0209A985E9ACCEE951C641FCAB60D7F28" : "ios-networking-2.0\/"
   },

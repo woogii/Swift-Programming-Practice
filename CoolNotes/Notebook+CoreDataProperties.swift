@@ -13,12 +13,8 @@ import CoreData
 
 extension Notebook {
 
-    @nonobjc public class func fetchRequest() -> NSFetchRequest<Notebook> {
-        return NSFetchRequest<Notebook>(entityName: "Notebook");
-    }
-
     @NSManaged public var creationDate: NSDate?
     @NSManaged public var name: String?
-    @NSManaged public var notes: Note?
+    @NSManaged public var notes: NSSet?
 
 }
