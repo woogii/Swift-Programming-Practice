@@ -13,6 +13,7 @@
 		B8A37B861F484E1C0052E525 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8A37B851F484E1C0052E525 /* Assets.xcassets */; };
 		B8A37B891F484E1C0052E525 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8A37B871F484E1C0052E525 /* LaunchScreen.storyboard */; };
 		B8A37B941F484E1C0052E525 /* SwiftInterviewAssignPracTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A37B931F484E1C0052E525 /* SwiftInterviewAssignPracTests.swift */; };
+		B8A37B9F1F484FDB0052E525 /* secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8A37B9E1F484FDB0052E525 /* secret.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +37,7 @@
 		B8A37B8F1F484E1C0052E525 /* SwiftInterviewAssignPracTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwiftInterviewAssignPracTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		B8A37B931F484E1C0052E525 /* SwiftInterviewAssignPracTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SwiftInterviewAssignPracTests.swift; sourceTree = "<group>"; };
 		B8A37B951F484E1C0052E525 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		B8A37B9E1F484FDB0052E525 /* secret.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = secret.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -78,6 +80,7 @@
 			isa = PBXGroup;
 			children = (
 				B8A37B7E1F484E1C0052E525 /* AppDelegate.swift */,
+				B8A37B9E1F484FDB0052E525 /* secret.swift */,
 				B8A37B801F484E1C0052E525 /* ViewController.swift */,
 				B8A37B821F484E1C0052E525 /* Main.storyboard */,
 				B8A37B851F484E1C0052E525 /* Assets.xcassets */,
@@ -203,6 +206,7 @@
 			files = (
 				B8A37B811F484E1C0052E525 /* ViewController.swift in Sources */,
 				B8A37B7F1F484E1C0052E525 /* AppDelegate.swift in Sources */,
+				B8A37B9F1F484FDB0052E525 /* secret.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
