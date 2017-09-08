@@ -7,11 +7,15 @@
 //
 
 import UIKit
+import CoreData
 
 class ViewController: UIViewController {
 
   @IBOutlet weak var tableView: UITableView!
-  var itemList = [String]()
+  var itemList = [Item]()
+  var appDelegate : AppDelegate  {
+    return UIApplication.shared.delegate as! AppDelegate
+  }
   
   override func viewDidLoad() {
     
@@ -22,6 +26,24 @@ class ViewController: UIViewController {
     
     navigationItem.title = "CoreData Practice"
     navigationItem.rightBarButtonItem = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(buttonTapped(_:)))
+    fetchData()
+  }
+  
+  private func fetchData() {
+    
+    let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
+    
+    do {
+      guard let fetchedResult = try appDelegate.managedContext.fetch(fetchRequest) as? [Item] else {
+        return
+      }
+      
+      itemList = fetchedResult
+      
+      self.tableView.reloadData()
+    } catch let error as NSError {
+      print("Fetch error..\(error.userInfo)..\(error.localizedDescription)")
+    }
     
   }
   
@@ -34,10 +56,19 @@ class ViewController: UIViewController {
       guard let textField = alertController.textFields?.first, let text = textField.text else {
         return
       }
-    
-      self.itemList.append(text)
+      
+      guard let entityDesc = NSEntityDescription.entity(forEntityName: "Item", in: self.appDelegate.managedContext) else {
+        return
+      }
+      
+      let item = Item(entity: entityDesc, insertInto: self.appDelegate.managedContext)
+      item.desc = text
+      
+      self.itemList.append(item)
+      self.appDelegate.save()
       
       DispatchQueue.main.async {
+        
         self.tableView.reloadData()
       }
     }
@@ -67,7 +98,7 @@ extension ViewController : UITableViewDataSource {
   
   func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
     let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
-    cell.textLabel?.text = itemList[indexPath.row]
+    cell.textLabel?.text = itemList[indexPath.row].desc
     return cell
   }
   
