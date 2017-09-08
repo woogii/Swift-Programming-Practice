@@ -13,6 +13,7 @@
 		B8CB4B4B1F62A5C300053D62 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = B8CB4B4A1F62A5C300053D62 /* Assets.xcassets */; };
 		B8CB4B4E1F62A5C300053D62 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B8CB4B4C1F62A5C300053D62 /* LaunchScreen.storyboard */; };
 		B8CB4B571F62A91200053D62 /* Item.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B8CB4B551F62A91200053D62 /* Item.xcdatamodeld */; };
+		B8CB4B591F62B7DF00053D62 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = B8CB4B581F62B7DF00053D62 /* CoreDataStack.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		B8CB4B4D1F62A5C300053D62 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		B8CB4B4F1F62A5C300053D62 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B8CB4B561F62A91200053D62 /* Item.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Item.xcdatamodel; sourceTree = "<group>"; };
+		B8CB4B581F62B7DF00053D62 /* CoreDataStack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +65,7 @@
 				B8CB4B4C1F62A5C300053D62 /* LaunchScreen.storyboard */,
 				B8CB4B4F1F62A5C300053D62 /* Info.plist */,
 				B8CB4B551F62A91200053D62 /* Item.xcdatamodeld */,
+				B8CB4B581F62B7DF00053D62 /* CoreDataStack.swift */,
 			);
 			path = BasicCoreData_Prac;
 			sourceTree = "<group>";
@@ -143,6 +146,7 @@
 				B8CB4B461F62A5C300053D62 /* ViewController.swift in Sources */,
 				B8CB4B571F62A91200053D62 /* Item.xcdatamodeld in Sources */,
 				B8CB4B441F62A5C300053D62 /* AppDelegate.swift in Sources */,
+				B8CB4B591F62B7DF00053D62 /* CoreDataStack.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -306,6 +310,7 @@
 				B8CB4B541F62A5C300053D62 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 

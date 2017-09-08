@@ -16,6 +16,9 @@ class ViewController: UIViewController {
   var appDelegate : AppDelegate  {
     return UIApplication.shared.delegate as! AppDelegate
   }
+  // var managedContext : NSManagedObjectContext
+  let coreDataStack = CoreDataStack()
+  
   
   override func viewDidLoad() {
     
@@ -34,7 +37,7 @@ class ViewController: UIViewController {
     let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "Item")
     
     do {
-      guard let fetchedResult = try appDelegate.managedContext.fetch(fetchRequest) as? [Item] else {
+      guard let fetchedResult = try coreDataStack.managedContext.fetch(fetchRequest) as? [Item] else {
         return
       }
       
@@ -57,15 +60,15 @@ class ViewController: UIViewController {
         return
       }
       
-      guard let entityDesc = NSEntityDescription.entity(forEntityName: "Item", in: self.appDelegate.managedContext) else {
+      guard let entityDesc = NSEntityDescription.entity(forEntityName: "Item", in: self.coreDataStack.managedContext) else {
         return
       }
       
-      let item = Item(entity: entityDesc, insertInto: self.appDelegate.managedContext)
+      let item = Item(entity: entityDesc, insertInto: self.coreDataStack.managedContext)
       item.desc = text
       
       self.itemList.append(item)
-      self.appDelegate.save()
+      self.coreDataStack.save()
       
       DispatchQueue.main.async {
         
